@@ -12,7 +12,7 @@ function Hero() {
         priority
         className="object-cover object-center"
       />
-      {/* Overlay */}
+      {/* Overlay init*/}
       <div className="absolute inset-0 bg-black/30" />
       {/* Content */}
       <div className="relative z-20 flex flex-row items-center justify-between h-full w-full px-4 lg:px-12 ">
