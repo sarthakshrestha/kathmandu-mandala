@@ -1,5 +1,5 @@
 "use client";
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Book, Menu, Sunset, Trees, Zap, Phone } from "lucide-react";
 
 import {
   Accordion,
@@ -7,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useTranslation } from "@/app/hooks/use-translation";
+
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -23,6 +25,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import LanguageSelector from "./language-selector";
 
 interface MenuItem {
   title: string;
@@ -54,86 +57,91 @@ interface Navbar1Props {
 
 const Navbar = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
+    url: "#",
+    src: "#",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    title: "#",
   },
-  menu = [
-    // { title: "Home", url: "#" },
+}: Navbar1Props) => {
+  const { t, locale, isLoaded } = useTranslation();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  const menu = [
     {
-      title: "Travel & Services",
+      title: t("navbar_menu_travel_services"),
       url: "#",
       items: [
         {
-          title: "Blog",
-          description: "The latest industry news, updates, and info",
+          title: t("navbar_menu_blog"),
+          description: t("navbar_menu_blog_desc"),
           icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Company",
-          description: "Our mission is to innovate and empower the world",
+          title: t("navbar_menu_company"),
+          description: t("navbar_menu_company_desc"),
           icon: <Trees className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
     {
-      title: "Information & Promotion",
+      title: t("navbar_menu_information_promotion"),
       url: "#",
       items: [
         {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
+          title: t("navbar_menu_help_center"),
+          description: t("navbar_menu_help_center_desc"),
           icon: <Zap className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
+          title: t("navbar_menu_contact_us"),
+          description: t("navbar_menu_contact_us_desc"),
           icon: <Sunset className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
     {
-      title: "Our Shop",
+      title: t("navbar_menu_our_shop"),
       url: "#",
       items: [
         {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
+          title: t("navbar_menu_help_center"),
+          description: t("navbar_menu_help_center_desc"),
           icon: <Zap className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
+          title: t("navbar_menu_contact_us"),
+          description: t("navbar_menu_contact_us_desc"),
           icon: <Sunset className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
+    {
+      title: t("navbar_menu_contact_us"),
+      url: "#",
+    },
+  ];
 
-    {
-      title: "Contact Us",
-      url: "#",
-    },
-  ],
-  auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
-  },
-}: Navbar1Props) => {
   return (
-    <section className="absolute top-0 left-0 w-full z-30">
-      <nav className="relative bg-black/30">
-        <div className="relative max-w-screen-2xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-sm:hidden">
+    <section className="sticky top-0 left-0 w-full z-30">
+      <nav className=" bg-black/40 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
+        <div className="relative max-w-screen-3xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
           {/* Logo */}
-          <a href={logo.url} className="flex items-center gap-2 z-10">
-            <span className="text-3xl font-garamond font-semibold tracking-tighter text-[#FFD868]">
-              Mandala
+          <a href={logo.url} className="flex items-center gap-2 z-10 flex-row">
+            <span className="text-3xl font-garamond tracking-tighter text-[#FFD868]">
+              <img
+                src="/images/icons/WhiteLogoHorizontal.svg"
+                alt={t("navbar_logo_alt")}
+                className="w-auto h-72"
+              />
             </span>
           </a>
           {/* Desktop Menu */}
@@ -146,44 +154,17 @@ const Navbar = ({
           </div>
           {/* Right Side */}
           <div className="flex items-center space-x-4 z-10">
-            {/* Language */}
-            <div className="hidden lg:flex items-center font-links text-white text-base cursor-pointer hover:text-yellow-300">
-              DE
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 9l6 6 6-6"
-                />
-              </svg>
+            <div className="mx-4">
+              <LanguageSelector />
             </div>
-            {/* Contact Box */}
             <div className="bg-[#4B2323] text-white rounded-lg px-4 py-2 flex items-center space-x-3 max-sm:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 7.07 7.07l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72a2 2 0 0 1 1.72 2z"
-                />
-              </svg>
+              <Phone className="w-6 h-6" />
               <div>
-                <div className="font-links text-xs">Haben Sie Fragen?</div>
-                <div className="font-links font-semibold text-base">
-                  (+977)-98123456789
+                <div className="font-links text-xs">
+                  {t("navbar_questions")}
+                </div>
+                <div className="font-links font-semibold ">
+                  {t("navbar_phone")}
                 </div>
               </div>
             </div>
@@ -194,38 +175,32 @@ const Navbar = ({
           <div className="flex items-center justify-end px-4 py-2">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="bg-transparent">
-                  <Menu className="size-4 bg-none text-white" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-transparent hover:bg-transparent"
+                >
+                  <Menu className="size-4 bg-none text-white hover:bg-transparent" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
+              <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
-                  <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img
-                        src={logo.src}
-                        className="max-h-8 dark:invert"
-                        alt={logo.alt}
-                      />
-                    </a>
+                  <SheetTitle className="font-garamond  text-3xl">
+                    <img
+                      src="/images/icons/DarkLogoHorizontal.svg"
+                      alt={t("navbar_logo_alt")}
+                      className="w-36 h-auto"
+                    />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
                   <Accordion
                     type="single"
                     collapsible
-                    className="flex w-full flex-col gap-4 bg-none"
+                    className="flex w-full flex-col gap-4 bg-none text-zinc-900"
                   >
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline" className="bg-none">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
-                  </div>
                 </div>
               </SheetContent>
             </Sheet>
@@ -240,7 +215,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title} className="bg-transparent">
-        <NavigationMenuTrigger className="font-links bg-transparent text-white text-base flex items-center gap-2 hover:text-zinc-500">
+        <NavigationMenuTrigger className=" bg-transparent text-white  flex items-center gap-2 hover:text-zinc-500">
           {item.title}
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground flex gap-2 p-6">
@@ -274,7 +249,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+        <AccordionTrigger className="text-md py-0 hover:no-underline">
           {item.title}
         </AccordionTrigger>
         <AccordionContent className="mt-2">
@@ -287,7 +262,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <a key={item.title} href={item.url} className="text-md ">
       {item.title}
     </a>
   );
@@ -301,7 +276,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
     >
       <div className="text-foreground">{item.icon}</div>
       <div>
-        <div className="text-sm font-semibold">{item.title}</div>
+        <div className=" font-semibold">{item.title}</div>
         {item.description && (
           <p className="text-muted-foreground text-sm leading-snug mt-4">
             {item.description}

@@ -1,12 +1,6 @@
 "use client";
-import Hero from "./components/hero/hero-main";
-import { Navbar } from "./components/reusable/navbar";
+import LandingPage from "./pages/landing-page";
 
 export default function Home() {
-  return (
-    <div className="w-full">
-      <Navbar />
-      <Hero />
-    </div>
-  );
+  return <LandingPage />;
 }
