@@ -12,10 +12,10 @@ export default function Component1() {
   }
 
   return (
-    <section className="bg-[#F7ECD8] py-12 px-4 md:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-center">
+    <section className="bg-[#F7ECD8]  px-4 md:px-12 py-16 max-sm:py-12 max-sm:px-8  items-center justify-center flex">
+      <div className="md:max-w-[85rem] mx-auto flex flex-col md:flex-row gap-10 items-center w-full">
         {/* Left: Text */}
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <h2 className="font-garamond text-2xl md:text-4xl lg:text-5xl text-[#4B2323] mb-4 leading-tight">
             {t("welcome")}
             <br />
@@ -70,38 +70,28 @@ export default function Component1() {
           >
             {t("download")}
           </a>
-        </div>
-        <div className="flex flex-col md:flex-row gap-4 md:w-[600px]">
-          {/* Left: Large image */}
-          <div className="md:w-[60%] w-full aspect-square relative">
+          {/* Mobile-only image below button */}
+          <div className="mt-6 w-full max-sm:block hidden">
             <Image
-              src="/images/Temple.png"
+              src="/images/MobileImage.png"
+              alt="Mobile Visual"
+              width={400}
+              height={400}
+              className="w-full h-auto rounded"
+            />
+          </div>
+        </div>
+        {/* Desktop images */}
+        <div className="flex flex-col md:flex-row gap-4 md:w-[700px] md:h-[800px] max-sm:hidden">
+          {/* Left: Large image */}
+          <div className="w-full aspect-square md:h-full relative">
+            <Image
+              src="/images/Component1.png"
               alt="Patan Square"
               fill
               className="object-cover rounded"
-              sizes="(max-width: 768px) 100vw, 360px"
+              sizes="(max-width: 868px) 100vw, 500px"
             />
-          </div>
-          {/* Right: Two stacked images */}
-          <div className="md:w-[40%] w-full flex flex-col gap-4">
-            <div className="w-full aspect-square relative">
-              <Image
-                src="/images/Trek.png"
-                alt="Trekking"
-                fill
-                className="object-cover rounded"
-                sizes="(max-width: 768px) 100vw, 240px"
-              />
-            </div>
-            <div className="w-full aspect-square relative">
-              <Image
-                src="/images/Window.png"
-                alt="Plane Window"
-                fill
-                className="object-cover rounded"
-                sizes="(max-width: 768px) 100vw, 240px"
-              />
-            </div>
           </div>
         </div>
       </div>

@@ -131,12 +131,16 @@ const Navbar = ({
   return (
     <section className="absolute top-0 left-0 w-full z-30">
       <nav className="relative bg-black/30">
-        <div className="relative max-w-screen-2xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
+        <div className="relative max-w-screen-3xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
           {" "}
           {/* Logo */}
-          <a href={logo.url} className="flex items-center gap-2 z-10">
+          <a href={logo.url} className="flex items-center gap-2 z-10 flex-row">
             <span className="text-3xl font-garamond tracking-tighter text-[#FFD868]">
-              Mandala
+              <img
+                src="/images/icons/WhiteLogoHorizontal.svg"
+                alt="Mandala Logo"
+                className="w-auto h-72"
+              />
             </span>
           </a>
           {/* Desktop Menu */}
@@ -180,8 +184,12 @@ const Navbar = ({
               </SheetTrigger>
               <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
-                  <SheetTitle className="font-garamond font-bold text-3xl">
-                    Mandala
+                  <SheetTitle className="font-garamond  text-3xl">
+                    <img
+                      src="/images/icons/DarkLogoHorizontal.svg"
+                      alt="Mandala Logo"
+                      className="w-36 h-auto"
+                    />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -214,7 +222,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title} className="bg-transparent">
-        <NavigationMenuTrigger className="font-links bg-transparent text-white  flex items-center gap-2 hover:text-zinc-500">
+        <NavigationMenuTrigger className=" bg-transparent text-white  flex items-center gap-2 hover:text-zinc-500">
           {item.title}
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground flex gap-2 p-6">
@@ -248,7 +256,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+        <AccordionTrigger className="text-md py-0 hover:no-underline">
           {item.title}
         </AccordionTrigger>
         <AccordionContent className="mt-2">
@@ -261,7 +269,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <a key={item.title} href={item.url} className="text-md ">
       {item.title}
     </a>
   );
