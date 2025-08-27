@@ -13,7 +13,7 @@ function Hero() {
   }
 
   return (
-    <div className="relative w-full h-[400px] lg:h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[400px] lg:h-screen flex items-center justify-center overflow-hidden md:-mt-20 max-sm:-mt-10">
       <Image
         src="/images/HeroImage.png"
         alt="Hero"

@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useTranslation } from "@/app/hooks/use-translation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -56,89 +57,89 @@ interface Navbar1Props {
 
 const Navbar = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
+    url: "#",
+    src: "#",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    title: "#",
   },
-  menu = [
-    // { title: "Home", url: "#" },
+}: Navbar1Props) => {
+  const { t, locale, isLoaded } = useTranslation();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  const menu = [
     {
-      title: "Travel & Services",
+      title: t("navbar_menu_travel_services"),
       url: "#",
       items: [
         {
-          title: "Blog",
-          description: "The latest industry news, updates, and info",
+          title: t("navbar_menu_blog"),
+          description: t("navbar_menu_blog_desc"),
           icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Company",
-          description: "Our mission is to innovate and empower the world",
+          title: t("navbar_menu_company"),
+          description: t("navbar_menu_company_desc"),
           icon: <Trees className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
     {
-      title: "Information & Promotion",
+      title: t("navbar_menu_information_promotion"),
       url: "#",
       items: [
         {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
+          title: t("navbar_menu_help_center"),
+          description: t("navbar_menu_help_center_desc"),
           icon: <Zap className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
+          title: t("navbar_menu_contact_us"),
+          description: t("navbar_menu_contact_us_desc"),
           icon: <Sunset className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
     {
-      title: "Our Shop",
+      title: t("navbar_menu_our_shop"),
       url: "#",
       items: [
         {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
+          title: t("navbar_menu_help_center"),
+          description: t("navbar_menu_help_center_desc"),
           icon: <Zap className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
+          title: t("navbar_menu_contact_us"),
+          description: t("navbar_menu_contact_us_desc"),
           icon: <Sunset className="size-5 shrink-0" />,
           url: "#",
         },
       ],
     },
+    {
+      title: t("navbar_menu_contact_us"),
+      url: "#",
+    },
+  ];
 
-    {
-      title: "Contact Us",
-      url: "#",
-    },
-  ],
-  auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
-  },
-}: Navbar1Props) => {
   return (
-    <section className="absolute top-0 left-0 w-full z-30">
-      <nav className="relative bg-black/30">
+    <section className="sticky top-0 left-0 w-full z-30">
+      <nav className=" bg-black/40 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
         <div className="relative max-w-screen-3xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
-          {" "}
           {/* Logo */}
           <a href={logo.url} className="flex items-center gap-2 z-10 flex-row">
             <span className="text-3xl font-garamond tracking-tighter text-[#FFD868]">
               <img
                 src="/images/icons/WhiteLogoHorizontal.svg"
-                alt="Mandala Logo"
+                alt={t("navbar_logo_alt")}
                 className="w-auto h-72"
               />
             </span>
@@ -153,17 +154,17 @@ const Navbar = ({
           </div>
           {/* Right Side */}
           <div className="flex items-center space-x-4 z-10">
-            {/* Language */}
             <div className="mx-4">
               <LanguageSelector />
             </div>
-            {/* Contact Box */}
             <div className="bg-[#4B2323] text-white rounded-lg px-4 py-2 flex items-center space-x-3 max-sm:hidden">
               <Phone className="w-6 h-6" />
               <div>
-                <div className="font-links text-xs">Haben Sie Fragen?</div>
+                <div className="font-links text-xs">
+                  {t("navbar_questions")}
+                </div>
                 <div className="font-links font-semibold ">
-                  (+977)-98123456789
+                  {t("navbar_phone")}
                 </div>
               </div>
             </div>
@@ -187,7 +188,7 @@ const Navbar = ({
                   <SheetTitle className="font-garamond  text-3xl">
                     <img
                       src="/images/icons/DarkLogoHorizontal.svg"
-                      alt="Mandala Logo"
+                      alt={t("navbar_logo_alt")}
                       className="w-36 h-auto"
                     />
                   </SheetTitle>
@@ -200,14 +201,6 @@ const Navbar = ({
                   >
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
-                  {/* <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline" className="bg-none">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
-                  </div> */}
                 </div>
               </SheetContent>
             </Sheet>
