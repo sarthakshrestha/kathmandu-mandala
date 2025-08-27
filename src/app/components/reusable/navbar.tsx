@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useTranslation } from "@/app/hooks/use-translation";
+import { useTranslationStore } from "@/app/store/translation-store";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -185,7 +186,7 @@ const Navbar = ({
               </SheetTrigger>
               <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
-                  <SheetTitle className="font-garamond  text-3xl">
+                  <SheetTitle className="font-garamond text-3xl">
                     <img
                       src="/images/icons/DarkLogoHorizontal.svg"
                       alt={t("navbar_logo_alt")}
@@ -201,6 +202,25 @@ const Navbar = ({
                   >
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
+                  {/* Language Switcher Buttons for mobile */}
+                  <div className="flex flex-col items-end gap-2 mt-8 absolute bottom-5">
+                    <Button
+                      onClick={() =>
+                        useTranslationStore.getState().setLocale("gb")
+                      }
+                      className="px-3 py-1 rounded bg-transparent shadow-none text-[#23233B] font-links text-sm focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
+                    >
+                      🇩🇪 Deutsch
+                    </Button>
+                    <Button
+                      onClick={() =>
+                        useTranslationStore.getState().setLocale("en")
+                      }
+                      className="px-3 py-1 rounded bg-transparent shadow-none text-[#23233B] font-links text-sm focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
+                    >
+                      🇬🇧 English
+                    </Button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
