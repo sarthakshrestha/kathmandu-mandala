@@ -1,16 +1,19 @@
 "use client";
 import Image from "next/image";
 import { FileText, CreditCard, RotateCcw } from "lucide-react";
-import { useTranslationStore } from "@/app/store/translation-store";
-import { useEffect } from "react";
 import { useTranslation } from "@/app/hooks/use-translation";
+import LoaderComponent from "../reusable/loader-component";
 
 export default function Component1() {
-  const { t, locale } = useTranslation();
+  const { t, locale, isLoaded } = useTranslation();
+
+  if (!isLoaded) {
+    return <LoaderComponent />;
+  }
 
   return (
     <section className="bg-[#F7ECD8] py-12 px-4 md:px-12">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-center">
         {/* Left: Text */}
         <div className="flex-1">
           <h2 className="font-garamond text-2xl md:text-4xl lg:text-5xl text-[#4B2323] mb-4 leading-tight">
@@ -19,25 +22,21 @@ export default function Component1() {
             <span className="font-garamond">{t("partner")}</span>
           </h2>
           <p className="text-[#4B2323] font-links text-base md:text-lg mb-6">
-            {/* Add a new key in your en.json and gb.json for this paragraph if you want it translated */}
-            {t("visa_paragraph") ||
-              "Laden Sie unser offizielles Visumantragsformular herunter, füllen Sie es bequem offline aus und laden Sie den ausgefüllten Antrag zusammen mit den erforderlichen Dokumenten hoch"}
+            {t("visa_paragraph")}
           </p>
           <div className="mb-6">
             <h3 className="font-garamond text-xl text-[#4B2323] mb-4">
-              {/* Add a new key for this as well if you want */}
-              {t("important_notes") || "Wichtige Hinweise"}
+              {t("important_notes")}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <FileText className="w-6 h-6 text-[#4B2323] mt-1" />
                 <div>
                   <span className="font-semibold text-[#4B2323]">
-                    {t("accepted_documents") || "Akzeptierte Dokumente"}
+                    {t("accepted_documents")}
                   </span>
                   <div className="text-[#4B2323] text-sm">
-                    {t("documents_list") ||
-                      "Reisepassscan, Passfoto, Reiseplan"}
+                    {t("documents_list")}
                   </div>
                 </div>
               </li>
@@ -45,11 +44,10 @@ export default function Component1() {
                 <CreditCard className="w-6 h-6 text-[#4B2323] mt-1" />
                 <div>
                   <span className="font-semibold text-[#4B2323]">
-                    {t("payment_info") || "Zahlungsinformationen"}
+                    {t("payment_info")}
                   </span>
                   <div className="text-[#4B2323] text-sm">
-                    {t("payment_details") ||
-                      "Bitte überweisen Sie die Visagebühr auf unser Konto und laden Sie den Zahlungsnachweis hoch."}
+                    {t("payment_details")}
                   </div>
                 </div>
               </li>
@@ -57,11 +55,10 @@ export default function Component1() {
                 <RotateCcw className="w-6 h-6 text-[#4B2323] mt-1" />
                 <div>
                   <span className="font-semibold text-[#4B2323]">
-                    {t("status_tracking") || "Statusverfolgung"}
+                    {t("status_tracking")}
                   </span>
                   <div className="text-[#4B2323] text-sm">
-                    {t("status_details") ||
-                      "Verfolgen Sie den Status Ihres Antrags bequem online."}
+                    {t("status_details")}
                   </div>
                 </div>
               </li>

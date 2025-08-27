@@ -170,38 +170,36 @@ const Navbar = ({
           <div className="flex items-center justify-end px-4 py-2">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="bg-transparent">
-                  <Menu className="size-4 bg-none text-white" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-transparent hover:bg-transparent"
+                >
+                  <Menu className="size-4 bg-none text-white hover:bg-transparent" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
+              <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
-                  <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img
-                        src={logo.src}
-                        className="max-h-8 dark:invert"
-                        alt={logo.alt}
-                      />
-                    </a>
+                  <SheetTitle className="font-garamond font-bold text-3xl">
+                    Mandala
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
                   <Accordion
                     type="single"
                     collapsible
-                    className="flex w-full flex-col gap-4 bg-none"
+                    className="flex w-full flex-col gap-4 bg-none text-zinc-900"
                   >
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
-                  <div className="flex flex-col gap-3">
+                  {/* <div className="flex flex-col gap-3">
                     <Button asChild variant="outline" className="bg-none">
                       <a href={auth.login.url}>{auth.login.title}</a>
                     </Button>
                     <Button asChild>
                       <a href={auth.signup.url}>{auth.signup.title}</a>
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
               </SheetContent>
             </Sheet>
@@ -216,7 +214,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title} className="bg-transparent">
-        <NavigationMenuTrigger className="font-links bg-transparent text-white text-base flex items-center gap-2 hover:text-zinc-500">
+        <NavigationMenuTrigger className="font-links bg-transparent text-white  flex items-center gap-2 hover:text-zinc-500">
           {item.title}
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground flex gap-2 p-6">
@@ -277,7 +275,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
     >
       <div className="text-foreground">{item.icon}</div>
       <div>
-        <div className="text-sm font-semibold">{item.title}</div>
+        <div className=" font-semibold">{item.title}</div>
         {item.description && (
           <p className="text-muted-foreground text-sm leading-snug mt-4">
             {item.description}
