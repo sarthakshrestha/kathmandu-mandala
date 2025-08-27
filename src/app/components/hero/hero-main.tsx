@@ -3,14 +3,14 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <div className="relative w-full h-[400px] lg:h-[600px] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[400px] lg:h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
         src="/images/HeroImage.png"
         alt="Hero"
         fill
         priority
-        className="object-cover object-center"
+        className="object-center object-cover"
       />
       {/* Overlay init*/}
       <div className="absolute inset-0 bg-black/30" />

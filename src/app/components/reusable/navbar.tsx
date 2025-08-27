@@ -1,5 +1,5 @@
 "use client";
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Book, Menu, Sunset, Trees, Zap, Phone } from "lucide-react";
 
 import {
   Accordion,
@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -23,6 +24,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import LanguageSelector from "./language-selector";
 
 interface MenuItem {
   title: string;
@@ -129,10 +131,11 @@ const Navbar = ({
   return (
     <section className="absolute top-0 left-0 w-full z-30">
       <nav className="relative bg-black/30">
-        <div className="relative max-w-screen-2xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-sm:hidden">
+        <div className="relative max-w-screen-2xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
+          {" "}
           {/* Logo */}
           <a href={logo.url} className="flex items-center gap-2 z-10">
-            <span className="text-3xl font-garamond font-semibold tracking-tighter text-[#FFD868]">
+            <span className="text-3xl font-garamond tracking-tighter text-[#FFD868]">
               Mandala
             </span>
           </a>
@@ -147,42 +150,15 @@ const Navbar = ({
           {/* Right Side */}
           <div className="flex items-center space-x-4 z-10">
             {/* Language */}
-            <div className="hidden lg:flex items-center font-links text-white text-base cursor-pointer hover:text-yellow-300">
-              DE
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 9l6 6 6-6"
-                />
-              </svg>
+            <div className="mx-4">
+              <LanguageSelector />
             </div>
             {/* Contact Box */}
             <div className="bg-[#4B2323] text-white rounded-lg px-4 py-2 flex items-center space-x-3 max-sm:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 7.07 7.07l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72a2 2 0 0 1 1.72 2z"
-                />
-              </svg>
+              <Phone className="w-6 h-6" />
               <div>
                 <div className="font-links text-xs">Haben Sie Fragen?</div>
-                <div className="font-links font-semibold text-base">
+                <div className="font-links font-semibold ">
                   (+977)-98123456789
                 </div>
               </div>
