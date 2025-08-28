@@ -36,7 +36,7 @@ function Hero() {
           </p>
           <div className="flex flex-row items-center space-x-2 sm:space-x-4 mt-2">
             <a
-              href="#"
+              href="/visa"
               className="bg-[#D6A346] hover:bg-[#D6A346] text-zinc-900 font-links font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow transition text-sm max-sm:text-sm"
             >
               {t("download")}
