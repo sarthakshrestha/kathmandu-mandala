@@ -80,5 +80,21 @@
   "hero_title": "Welcome to the Land of",
   "hero_subtitle": "the Himalayas",
   "hero_paragraph": "Nepal is an incredibly fascinating travel destination, captivating with its breathtaking landscapes, rich culture, and warm-hearted people. Here you will find valuable tips and interesting information to make your trip unforgettable. Let yourself be enchanted by the beauty of the Himalaya region and immerse yourself in the diverse traditions and customs of this unique country.",
-  "hero_button": "View more"
+  "hero_button": "View more",
+  "entries": "Entries",
+  "single": "Single",
+  "maximum_stay": "Maximum Stay",
+  "maximum_stay_value": "90 days",
+  "validity": "Validity",
+  "validity_value": "15 days",
+  "travel_purpose": "Travel Purpose",
+  "tourism_business": "Tourism, Business",
+  "download_form_button": "Download Form",
+  "visa_application_title": "Visa Application",
+  "visa_application_intro": "To apply for your Nepal Visa:",
+  "visa_application_step1": "Download the Visa Form",
+  "visa_application_step2": "Fill it out on your device or by hand",
+  "visa_application_step3_prefix": "Send Via Whatsapp to",
+  "visa_application_whatsapp": "+977 98123456789",
+  "open_whatsapp_button": "Open Whatsapp"
 }
