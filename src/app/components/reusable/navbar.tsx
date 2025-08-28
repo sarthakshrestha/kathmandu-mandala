@@ -76,15 +76,15 @@ const Navbar = ({
       url: "#",
       items: [
         {
-          title: t("navbar_menu_blog"),
-          description: t("navbar_menu_blog_desc"),
+          title: "WIP",
+          description: "WIP",
           icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: t("navbar_menu_company"),
-          description: t("navbar_menu_company_desc"),
-          icon: <Trees className="size-5 shrink-0" />,
+          title: "WIP",
+          description: "WIP",
+          icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
       ],
@@ -94,15 +94,15 @@ const Navbar = ({
       url: "#",
       items: [
         {
-          title: t("navbar_menu_help_center"),
-          description: t("navbar_menu_help_center_desc"),
-          icon: <Zap className="size-5 shrink-0" />,
+          title: "WIP",
+          description: "WIP",
+          icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: t("navbar_menu_contact_us"),
-          description: t("navbar_menu_contact_us_desc"),
-          icon: <Sunset className="size-5 shrink-0" />,
+          title: "WIP",
+          description: "WIP",
+          icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
       ],
@@ -112,15 +112,15 @@ const Navbar = ({
       url: "#",
       items: [
         {
-          title: t("navbar_menu_help_center"),
-          description: t("navbar_menu_help_center_desc"),
-          icon: <Zap className="size-5 shrink-0" />,
+          title: "WIP",
+          description: "WIP",
+          icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
         {
-          title: t("navbar_menu_contact_us"),
-          description: t("navbar_menu_contact_us_desc"),
-          icon: <Sunset className="size-5 shrink-0" />,
+          title: "WIP",
+          description: "WIP",
+          icon: <Book className="size-5 shrink-0" />,
           url: "#",
         },
       ],
@@ -133,15 +133,15 @@ const Navbar = ({
 
   return (
     <section className="sticky top-0 left-0 w-full z-30">
-      <nav className=" bg-black/40 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
+      <nav className=" bg-black/30 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
         <div className="relative max-w-screen-3xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
           {/* Logo */}
-          <a href={logo.url} className="flex items-center gap-2 z-10 flex-row">
+          <a href="/" className="flex items-center gap-2 z-10 flex-row">
             <span className="text-3xl font-garamond tracking-tighter text-[#FFD868]">
               <img
                 src="/images/icons/WhiteLogoHorizontal.svg"
                 alt={t("navbar_logo_alt")}
-                className="w-auto h-72"
+                className="w-36 h-auto"
               />
             </span>
           </a>
