@@ -14,7 +14,7 @@ export default function VisaMain() {
   }
 
   return (
-    <section className="bg-[#FFF9EE] min-h-screen py-8 sm:py-12 px-2 sm:px-4 flex flex-col items-center">
+    <section className="bg-[#FFF9EE] min-h-screen py-8 sm:py-12 px-2 sm:px-4 flex flex-col items-center max-sm:px-8">
       <div className="max-w-4xl w-full mx-auto">
         {/* Image */}
         <div className="rounded-xl overflow-hidden mb-6 sm:mb-8">
