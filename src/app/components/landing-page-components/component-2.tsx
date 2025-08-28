@@ -40,7 +40,7 @@ function Component2() {
   ];
 
   return (
-    <section className="relative py-24 max-sm:py-12 max-sm:px-8 px-2 sm:px-6 lg:px-12  overflow-hidden">
+    <section className="relative py-24 max-sm:py-12 max-sm:px-4 px-2 sm:px-6 lg:px-18 overflow-hidden">
       {/* Decorative background pattern */}
       <Image
         src="/images/background/BackgroundPattern.png"
@@ -50,7 +50,7 @@ function Component2() {
         style={{ zIndex: 0 }}
         priority
       />
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-7xl px-18 max-sm:px-8 mx-auto">
         <h2 className="text-center font-garamond text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-10">
           {t("travel_offers_title")}
         </h2>
