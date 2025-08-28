@@ -12,7 +12,7 @@ export default function Component7() {
 
   return (
     <section
-      className="relative w-full h-[600px] md:h-[500px] flex items-center justify-start overflow-hidden max-sm:py-12 max-sm:px-4"
+      className="relative w-full h-[600px] md:h-[500px] flex items-center justify-start overflow-hidden max-sm:py-12 max-sm:px-8 md:px-14 "
       style={{ minHeight: "400px" }}
     >
       {/* Background Image */}

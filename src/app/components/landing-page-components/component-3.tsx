@@ -11,8 +11,8 @@ export default function Component3() {
   }
 
   return (
-    <section className="bg-[#F7ECD8] px-4 md:px-12 max-sm:py-12 max-sm:px-8 py-16 flex items-center justify-center">
-      <div className="md:max-w-[85rem] mx-auto flex flex-col md:flex-row gap-10 items-center w-full">
+    <section className="bg-[#F7ECD8] px-4 md:px-18 max-sm:py-12 py-16 flex items-center justify-center">
+      <div className="md:max-w-[78rem] md:px-18 mx-auto flex flex-col md:flex-row gap-10 items-center w-full max-sm:px-8">
         <div className="flex-1 w-full">
           <h2 className="font-garamond text-2xl md:text-4xl lg:text-5xl text-[#4B2323] mb-4 leading-tight">
             {t("restaurant_title")} <br /> {t("restaurant_subtitle")}

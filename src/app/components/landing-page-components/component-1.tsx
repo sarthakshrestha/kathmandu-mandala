@@ -12,20 +12,20 @@ export default function Component1() {
   }
 
   return (
-    <section className="bg-[#F7ECD8]  px-4 md:px-12 py-16 max-sm:py-12 max-sm:px-8  items-center justify-center flex">
-      <div className="md:max-w-[85rem] mx-auto flex flex-col md:flex-row gap-10 items-center w-full">
+    <section className="bg-[#F7ECD8] px-18 py-16 max-sm:py-12  items-center justify-center flex max-sm:px-4">
+      <div className="mx-auto flex flex-col md:flex-row gap-10 items-center w-full px-12">
         {/* Left: Text */}
         <div className="flex-1 w-full">
-          <h2 className="font-garamond text-2xl md:text-4xl lg:text-5xl text-[#4B2323] mb-4 leading-tight">
+          <h2 className="font-garamond text-2xl md:text-3xl lg:text-3xl text-[#4B2323] mb-4 leading-tight">
             {t("welcome")}
             <br />
             <span className="font-garamond">{t("partner")}</span>
           </h2>
-          <p className="text-[#4B2323] font-links text-base md:text-lg mb-6">
+          <p className="text-[#4B2323] font-links text-base md:text-base mb-6">
             {t("visa_paragraph")}
           </p>
           <div className="mb-6">
-            <h3 className="font-garamond text-xl text-[#4B2323] mb-4">
+            <h3 className="font-garamond text-base text-[#4B2323] mb-4">
               {t("important_notes")}
             </h3>
             <ul className="space-y-4">

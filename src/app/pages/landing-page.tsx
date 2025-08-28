@@ -11,7 +11,7 @@ import Component7 from "../components/landing-page-components/component-7";
 import Footer from "../components/reusable/footer";
 export default function LandingPage() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-transparent">
       <Navbar />
       <Hero />
       <Component1 />

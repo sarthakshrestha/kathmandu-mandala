@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useTranslation } from "@/app/hooks/use-translation";
-
+import { Pickaxe } from "lucide-react";
 const products = [
   {
     img: "https://placehold.co/600x400",
@@ -43,7 +43,7 @@ export default function Component6() {
   }
 
   return (
-    <section className="relative bg-[#4B2323] py-20 px-2 sm:px-6 lg:px-12 overflow-hidden max-sm:px-4">
+    <section className="relative bg-[#4B2323] py-20 px-2 sm:px-6  overflow-hidden max-sm:px-8">
       {/* Decorative Mandala Patterns */}
       <Image
         src="/images/background/BackgroundPattern.png"
@@ -53,7 +53,7 @@ export default function Component6() {
         style={{ zIndex: 0 }}
         priority
       />
-      <div className="relative z-10 md:max-w-[85rem] mx-auto flex flex-col gap-8">
+      <div className="relative z-10 lg:px-18 mx-auto flex flex-col gap-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
           <div>
@@ -79,14 +79,11 @@ export default function Component6() {
               key={idx}
               className="bg-[#FFF9EE] rounded-xl overflow-hidden flex flex-col shadow-md"
             >
-              <div className="w-full h-[220px] relative">
-                <Image
-                  src={product.img}
-                  alt={product.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 220px"
-                />
+              <div className="w-full h-[220px] relative flex flex-col items-center justify-center">
+                <Pickaxe size={64} className="text-[#B94B4B] mb-2" />
+                <span className="text-[#B94B4B] font-links font-semibold">
+                  Work in progress
+                </span>
               </div>
               <div className="p-4 flex flex-col flex-1 justify-between">
                 <div className="font-links text-[#23233B] text-base font-medium mb-2">

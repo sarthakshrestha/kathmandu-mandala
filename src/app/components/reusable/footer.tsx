@@ -14,9 +14,13 @@ export default function Footer() {
       <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row justify-between gap-10">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0">
-          <h2 className="text-2xl font-garamond text-[#D6A346] mb-2">
-            {t("footer_brand")}
-          </h2>
+          <div className="flex items-center max-sm:justify-center gap-4 mb-2">
+            <img
+              src="/images/icons/LogoHorizontal.svg"
+              alt={t("navbar_logo_alt")}
+              className="w-auto h-36 max-sm:w-auto max-sm:h-44"
+            />
+          </div>
           <p className="text-[#23233B] font-links text-base mb-6 max-w-md">
             {t("footer_description")}
           </p>

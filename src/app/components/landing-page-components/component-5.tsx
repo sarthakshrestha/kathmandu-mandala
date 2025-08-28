@@ -11,8 +11,8 @@ export default function Component5() {
   }
 
   return (
-    <section className="bg-[#F7ECD8] px-4 md:px-12 py-16 flex items-center justify-center max-sm:px-8">
-      <div className="md:md:max-w-[85rem] mx-auto flex flex-col md:flex-row gap-12 items-center w-full">
+    <section className="bg-[#F7ECD8] px-4 md:px-12 max-sm:py-12 py-16 flex items-center justify-center max-sm:px-8">
+      <div className="md:md:max-w-[85rem] max-sm:px-2 px-18 mx-auto flex flex-col md:flex-row gap-12 items-center w-full">
         {/* Left: Text & Services */}
         <div className="flex-1 w-full">
           <h2 className="font-garamond text-2xl md:text-4xl lg:text-5xl text-[#23233B] mb-6 leading-tight">
