@@ -62,7 +62,7 @@ export default function DownloadFormDialog() {
             href="https://wa.me/97798123456789"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 border-2  rounded-lg py-3 font-links  text-[#23233B] bg-white hover:bg-[#FFF3E6] transition"
+            className="flex-1 flex items-center justify-center gap-2 border-2 text-center  rounded-lg py-3 font-links  text-[#23233B] bg-white hover:bg-[#FFF3E6] transition"
           >
             <img
               src="/images/icons/WhatsApp.svg"
@@ -74,7 +74,7 @@ export default function DownloadFormDialog() {
           <a
             href="/visa-form.pdf"
             download
-            className="flex-1 flex items-center justify-center gap-2 rounded-lg py-3 font-links font-semibold text-white bg-[#D6A346] hover:bg-[#c9a13e] transition"
+            className="flex-1 flex items-center justify-center gap-2 rounded-lg py-3 font-links font-semibold text-white bg-[#D6A346] hover:bg-[#c9a13e] transition text-center"
           >
             {t("download_form_button") || "Download Form"}
           </a>
