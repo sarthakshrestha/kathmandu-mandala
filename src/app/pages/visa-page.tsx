@@ -9,7 +9,6 @@ function VisaPage() {
     <div>
       <Navbar />
       <VisaMain />
-      <VisaFAQ />
       <Footer />
     </div>
   );
