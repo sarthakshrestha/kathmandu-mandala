@@ -10,6 +10,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { FileText } from "lucide-react";
+
 import { useTranslation } from "@/app/hooks/use-translation";
 
 export default function DownloadFormDialog() {
@@ -72,7 +73,7 @@ export default function DownloadFormDialog() {
             {t("open_whatsapp_button") || "Open Whatsapp"}
           </a>
           <a
-            href="/visa-form.pdf"
+            href="/files/VisaOnlineForm.pdf"
             download
             className="flex-1 flex items-center justify-center gap-2 rounded-lg py-3 font-links font-semibold text-white bg-[#D6A346] hover:bg-[#c9a13e] transition text-center"
           >
