@@ -139,7 +139,7 @@ const Navbar = ({
           <a href="/" className="flex items-center gap-2 z-10 flex-row">
             <span className="text-3xl font-garamond tracking-tighter text-[#FFD868]">
               <img
-                src="/images/icons/WhiteLogoHorizontal.svg"
+                src="/images/icons/NewLogoHorizontal.svg"
                 alt={t("navbar_logo_alt")}
                 className="w-36 h-auto"
               />
