@@ -18,7 +18,7 @@ export default function Footer() {
             <img
               src="/images/icons/LogoHorizontal.svg"
               alt={t("navbar_logo_alt")}
-              className="w-auto h-36 max-sm:w-auto max-sm:h-44"
+              className="w-auto h-12 max-sm:w-auto max-sm:h-44"
             />
           </div>
           <p className="text-[#23233B] font-links text-base mb-6 max-w-md">
