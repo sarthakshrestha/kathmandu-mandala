@@ -15,7 +15,7 @@ const garamond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Mandala",
+  title: "Kathmandu Mandala",
   description: "Destination for Travel",
 };
 
