@@ -8,14 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: remote-command
-        uses: fifsky/ssh-action@master
+    -  name: remote-command
+        uses: appleboy/ssh-action@v0.1.10
         with:
-          command: |
-            cd /www/wwwroot/dev.kathmandumandala.com/de.kathmandumandala-front
-            git pull origin develop
-            npm run build
-            pm2 restart dev
-          user: root
-          host: ${{ secrets.HOST }}
-          key: ${{ secrets.PRIVATE_KEY}}
+            host: ${{ secrets.HOST }}
+            username: root
+            key: ${{ secrets.PRIVATE_KEY }}
+            port: 22
+            command_timeout: 30m
+            script: | 
+                cd /www/wwwroot/dev.kathmandumandala.com/de.kathmandumandala-front
+                git pull origin develop
+                npm run build
+                pm2 restart dev
