@@ -8,16 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    -  name: remote-command
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-            host: ${{ secrets.HOST }}
-            username: root
-            key: ${{ secrets.PRIVATE_KEY }}
-            port: 22
-            command_timeout: 30m
-            script: | 
-                cd /www/wwwroot/dev.kathmandumandala.com/de.kathmandumandala-front
-                git pull origin develop
-                npm run build
-                pm2 restart dev
+    - name: remote-command
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.HOST }}
+        username: root
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        command_timeout: 30m
+        script: | 
+          cd /www/wwwroot/dev.kathmandumandala.com/de.kathmandumandala-front
+          git pull origin develop
+          npm run build
+          pm2 restart dev
