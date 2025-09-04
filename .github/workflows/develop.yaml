@@ -1,0 +1,21 @@
+name: Deploy Develop
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: remote-command
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd /www/wwwroot/dev.kathmandumandala.com/de.kathmandumandala-front
+            git pull origin develop
+            npm run build
+            pm2 restart dev
+          user: root
+          host: ${{ secrets.HOST }}
+          key: ${{ secrets.PRIVATE_KEY}}
