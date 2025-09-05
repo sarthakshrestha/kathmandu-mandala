@@ -132,7 +132,7 @@ const Navbar = ({
     },
   ];
   return (
-    <section className="sticky top-0 left-0 w-full z-30 max-sm:px-6">
+    <section className="sticky top-0 left-0 w-full z-30">
       <nav className=" bg-black/60 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
         <div className="relative max-w-screen-3xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
           {/* Logo */}
