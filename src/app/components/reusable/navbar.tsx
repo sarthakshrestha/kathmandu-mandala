@@ -127,7 +127,7 @@ const Navbar = ({
     },
     {
       title: t("navbar_menu_contact_us"),
-      url: "#",
+      url: "/contact",
       icon: <Phone className="size-5 shrink-0" />, // Contact Us
     },
   ];
