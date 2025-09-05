@@ -55,8 +55,8 @@ export default function AboutPeople() {
   if (!isLoaded) return null;
 
   return (
-    <section className="bg-[#FFF9EE] py-12 px-2 max-sm:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-[#FFF9EE] py-12 sm:px-8 max-sm:px-8 ">
+      <div className="max-w-5xl mx-auto">
         <div className="text-[#9A2731] font-links text-base font-semibold mb-2 text-center">
           {t("about_people_subtitle") || "We're hiring!"}
         </div>

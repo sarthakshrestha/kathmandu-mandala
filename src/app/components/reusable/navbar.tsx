@@ -154,17 +154,17 @@ const Navbar = ({
             </NavigationMenu>
           </div>
           {/* Right Side */}
-          <div className="flex items-center space-x-4 z-10">
+          <div className="flex items-center space-x-2 z-10">
             <div className="mx-4">
               <LanguageSelector />
             </div>
-            <div className="bg-[#4B2323] text-white rounded-lg px-4 py-2 flex items-center space-x-3 max-sm:hidden">
+            <div className="bg-[#4B2323] text-white rounded-lg py-2 px-1 flex items-center space-x-3 max-sm:hidden">
               <Phone className="w-6 h-6" />
               <div>
                 <div className="font-links text-xs">
                   {t("navbar_questions")}
                 </div>
-                <div className="font-links font-semibold ">
+                <div className="font-links font-semibold text-sm">
                   {t("navbar_phone")}
                 </div>
               </div>
