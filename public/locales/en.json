@@ -68,6 +68,19 @@
   "navbar_menu_travel_services": "Travel & Services",
   "navbar_menu_blog": "Blog",
   "navbar_menu_blog_desc": "The latest industry news, updates, and info",
+  "navbar_menu_visa_service": "Visa Service",
+  "navbar_menu_visa_service_desc": "Apply for your Nepal visa quickly and easily.",
+  "navbar_menu_travel_offers": "Travel Offers",
+  "navbar_menu_travel_offers_desc": "Discover exclusive travel packages and experiences.",
+  "navbar_menu_courier_service": "Courier Service",
+  "navbar_menu_courier_service_desc": "Fast and reliable courier solutions in Nepal.",
+  "navbar_menu_food_dining": "Food & Dining",
+  "navbar_menu_restaurant": "Restaurant",
+  "navbar_menu_restaurant_desc": "Enjoy authentic Nepalese cuisine at our restaurant.",
+  "navbar_menu_about_nepal": "About Nepal",
+  "navbar_menu_about_nepal_desc": "Learn more about Nepal's culture, history, and attractions.",
+  "navbar_menu_product_showcase": "Product Showcase",
+  "navbar_menu_product_showcase_desc": "Explore unique Nepali products and handicrafts.",
   "navbar_menu_company": "Company",
   "navbar_menu_company_desc": "Our mission is to innovate and empower the world",
   "navbar_menu_information_promotion": "Information & Promotion",
@@ -122,5 +135,7 @@
   "faq_q9": "Can I track the status of my visa application?",
   "faq_a9": "Yes. Once your application is submitted, you will receive a tracking ID to check the status of your visa online.",
   "faq_q10": "Who can I contact for assistance?",
-  "faq_a10": "You can reach us through the Contact Us form on the website, via email, or through our dedicated WhatsApp number for quick support."
+  "faq_a10": "You can reach us through the Contact Us form on the website, via email, or through our dedicated WhatsApp number for quick support.",
+  "privacy_title": "Privacy Policy & Terms of Use",
+  "privacy_content": "Privacy\nWe take the protection of your personal data very seriously. Your data is treated confidentially and in accordance with legal data protection regulations (GDPR) and this privacy policy.\n\nCollection and Processing of Personal Data\nWe collect personal data (e.g. name, email address, phone number, passport information) exclusively for processing your visa application and providing our services.\n\nDisclosure of Data\nYour data will only be shared with third parties if necessary for contract fulfillment (e.g. authorities for visa processing) or if we are legally obliged to do so.\n\nData Storage\nYour data will only be stored as long as necessary for processing and as required by legal retention periods.\n\nYour Rights\nYou have the right at any time to information, correction, deletion, or restriction of the processing of your data. Please contact us by email for this.\n\nTerms of Use\nTerms of use for the Kathmandu Mandala website\n\nGeneral\nBy using our website, you agree to the following terms.\n\nServices\nOur website provides information about visa services, travel offers, restaurant services, and courier services.\n\nLiability\nThe contents of our pages have been created with the greatest care. Nevertheless, we do not guarantee the accuracy, completeness, or timeliness of the content.\n\nCopyright\nAll content on this website (texts, images, logos) is subject to copyright. Duplication or use without our consent is not permitted.\n\nPayments\nPayments are made manually by bank transfer. After the transfer, a payment receipt (screenshot) must be uploaded.\n\nChanges\nWe reserve the right to change these terms of use at any time."
 }

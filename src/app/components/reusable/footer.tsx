@@ -14,18 +14,18 @@ export default function Footer() {
       <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row justify-between gap-10">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0">
-          <div className="flex items-center max-sm:justify-center gap-4 mb-2">
+          <div className="flex items-center max-sm:items-start gap-4 mb-2">
             <img
               src="/images/icons/LogoHorizontal.svg"
               alt={t("navbar_logo_alt")}
-              className="w-auto h-12 max-sm:w-auto max-sm:h-44"
+              className="w-auto h-12 max-sm:w-auto max-sm:h-16 max-sm:my-4"
             />
           </div>
           <p className="text-[#23233B] font-links text-base mb-6 max-w-md">
             {t("footer_description")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-links font-semibold text-[#23233B] mb-8">
-            <a href="#" className="hover:underline">
+            <a href="/privacy" className="hover:underline">
               {t("footer_privacy")}
             </a>
             <a href="#" className="hover:underline">

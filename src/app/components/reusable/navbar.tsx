@@ -26,8 +26,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Plane, Send, Utensils, Globe, Gift } from "lucide-react";
 import LanguageSelector from "./language-selector";
-
 interface MenuItem {
   title: string;
   url: string;
@@ -76,15 +76,33 @@ const Navbar = ({
       url: "#",
       items: [
         {
-          title: t("navbar_menu_blog"),
-          description: t("navbar_menu_blog_desc"),
-          icon: <Book className="size-5 shrink-0" />,
+          title: t("navbar_menu_visa_service"),
+          description: t("navbar_menu_visa_service_desc"),
+          icon: <Book className="size-5 shrink-0" />, // Visa Service
           url: "#",
         },
         {
-          title: t("navbar_menu_company"),
-          description: t("navbar_menu_company_desc"),
-          icon: <Trees className="size-5 shrink-0" />,
+          title: t("navbar_menu_travel_offers"),
+          description: t("navbar_menu_travel_offers_desc"),
+          icon: <Plane className="size-5 shrink-0" />, // Travel Offers
+          url: "#",
+        },
+        {
+          title: t("navbar_menu_courier_service"),
+          description: t("navbar_menu_courier_service_desc"),
+          icon: <Send className="size-5 shrink-0" />, // Courier Service
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: t("navbar_menu_food_dining"),
+      url: "#",
+      items: [
+        {
+          title: t("navbar_menu_restaurant"),
+          description: t("navbar_menu_restaurant_desc"),
+          icon: <Utensils className="size-5 shrink-0" />, // Restaurant
           url: "#",
         },
       ],
@@ -94,33 +112,15 @@ const Navbar = ({
       url: "#",
       items: [
         {
-          title: t("navbar_menu_help_center"),
-          description: t("navbar_menu_help_center_desc"),
-          icon: <Zap className="size-5 shrink-0" />,
+          title: t("navbar_menu_about_nepal"),
+          description: t("navbar_menu_about_nepal_desc"),
+          icon: <Globe className="size-5 shrink-0" />, // About Nepal
           url: "#",
         },
         {
-          title: t("navbar_menu_contact_us"),
-          description: t("navbar_menu_contact_us_desc"),
-          icon: <Sunset className="size-5 shrink-0" />,
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: t("navbar_menu_our_shop"),
-      url: "#",
-      items: [
-        {
-          title: t("navbar_menu_help_center"),
-          description: t("navbar_menu_help_center_desc"),
-          icon: <Zap className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: t("navbar_menu_contact_us"),
-          description: t("navbar_menu_contact_us_desc"),
-          icon: <Sunset className="size-5 shrink-0" />,
+          title: t("navbar_menu_product_showcase"),
+          description: t("navbar_menu_product_showcase_desc"),
+          icon: <Gift className="size-5 shrink-0" />, // Product Showcase
           url: "#",
         },
       ],
@@ -128,12 +128,12 @@ const Navbar = ({
     {
       title: t("navbar_menu_contact_us"),
       url: "#",
+      icon: <Phone className="size-5 shrink-0" />, // Contact Us
     },
   ];
-
   return (
     <section className="sticky top-0 left-0 w-full z-30">
-      <nav className=" bg-black/30 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
+      <nav className=" bg-black/60 backdrop-blur-[24px] max-sm:backdrop-blur-[24px] sticky">
         <div className="relative max-w-screen-3xl mx-auto flex items-center justify-between h-20 px-4 lg:px-12 max-lg:hidden">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 z-10 flex-row">
