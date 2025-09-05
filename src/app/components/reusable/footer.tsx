@@ -34,6 +34,9 @@ export default function Footer() {
             <a href="#" className="hover:underline">
               {t("footer_terms")}
             </a>
+            <a href="/about" className="hover:underline">
+              {t("footer_about")}
+            </a>
           </div>
         </div>
         {/* Right Section */}
