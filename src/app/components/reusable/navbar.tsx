@@ -187,11 +187,13 @@ const Navbar = ({
               <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
                   <SheetTitle className="font-garamond text-3xl">
-                    <img
-                      src="/images/icons/DarkLogoHorizontal.svg"
-                      alt={t("navbar_logo_alt")}
-                      className="w-36 h-auto"
-                    />
+                    <a href="/" className="block">
+                      <img
+                        src="/images/icons/DarkLogoHorizontal.svg"
+                        alt={t("navbar_logo_alt")}
+                        className="w-36 h-auto"
+                      />
+                    </a>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -284,7 +286,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md ">
+    <a key={item.title} href={item.url} className="text-md font-medium  ">
       {item.title}
     </a>
   );

@@ -28,7 +28,7 @@ export default function Component7() {
       <div className="absolute inset-0 bg-black/60 z-10" />
       {/* Content */}
       <div className="relative z-20 px-4 md:px-8 text-left justify-start w-full">
-        <div className="max-w-[85rem] mx-auto">
+        <div className="max-w-[85rem] mx-auto lg:px-18">
           <h1 className="font-garamond text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight">
             {t("hero_title")} <br /> {t("hero_subtitle")}
           </h1>
