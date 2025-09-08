@@ -13,9 +13,9 @@ interface TranslationState {
 
 function getInitialLocale(): string {
   if (typeof window !== "undefined") {
-    return localStorage.getItem("locale") || "gb";
+    return localStorage.getItem("locale") || "de";
   }
-  return "gb";
+  return "de";
 }
 
 export const useTranslationStore = create<TranslationState>((set, get) => ({
@@ -33,7 +33,3 @@ export const useTranslationStore = create<TranslationState>((set, get) => ({
   },
   t: (key: string) => get().translations[key] || key,
 }));
-
-if (typeof window !== "undefined") {
-  useTranslationStore.getState().setLocale(getInitialLocale());
-}

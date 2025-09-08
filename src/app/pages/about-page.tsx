@@ -9,12 +9,10 @@ import AboutPeople from "../components/about/about-people";
 function AboutPage() {
   return (
     <div>
-      <Navbar />
       <AboutHeader />
       <Component5 />
       <AboutStats />
       <AboutPeople />
-      <Footer />
     </div>
   );
 }

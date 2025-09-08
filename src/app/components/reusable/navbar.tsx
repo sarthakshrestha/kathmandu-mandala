@@ -205,14 +205,16 @@ const Navbar = ({
                   {/* Language Switcher Buttons for mobile */}
                   <div className="flex flex-col items-end gap-2 mt-8 absolute bottom-5">
                     <Button
+                      type="button"
                       onClick={() =>
-                        useTranslationStore.getState().setLocale("gb")
+                        useTranslationStore.getState().setLocale("de")
                       }
                       className="px-3 py-1 rounded bg-transparent shadow-none text-[#23233B] font-links text-sm focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
                     >
                       🇩🇪 Deutsch
                     </Button>
                     <Button
+                      type="button"
                       onClick={() =>
                         useTranslationStore.getState().setLocale("en")
                       }
