@@ -43,7 +43,7 @@ export default function Component6() {
   }
 
   return (
-    <section className="relative bg-[#4B2323] py-20 px-2 sm:px-6 overflow-hidden max-sm:px-8">
+    <section className="relative bg-[#4B2323] py-20 px-2 sm:px-6 overflow-hidden max-sm:px-8 ">
       {/* Decorative Mandala Patterns */}
       <Image
         src="/images/background/BackgroundPattern.png"
@@ -53,7 +53,7 @@ export default function Component6() {
         style={{ zIndex: 0 }}
         priority
       />
-      <div className="relative z-10 lg:px-18 mx-auto flex flex-col gap-8">
+      <div className="relative z-10 lg:px-18 mx-auto flex flex-col gap-8 max-w-[85rem]">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
           <div>

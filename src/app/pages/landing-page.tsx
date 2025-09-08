@@ -12,7 +12,6 @@ import Footer from "../components/reusable/footer";
 export default function LandingPage() {
   return (
     <div className="w-full bg-transparent">
-      <Navbar />
       <Hero />
       <Component1 />
       <Component2 />
@@ -21,7 +20,6 @@ export default function LandingPage() {
       <Component5 />
       <Component6 />
       <Component7 />
-      <Footer />
     </div>
   );
 }

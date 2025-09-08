@@ -4,13 +4,7 @@ import Footer from "../components/reusable/footer";
 import PrivacyContent from "../components/privacy/privacy-main";
 
 function PrivacyPage() {
-  return (
-    <div>
-      <Navbar />
-      <PrivacyContent />
-      <Footer />
-    </div>
-  );
+  return <PrivacyContent />;
 }
 
 export default PrivacyPage;

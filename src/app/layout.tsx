@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Raleway, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-
+import { Navbar } from "./components/reusable/navbar";
+import Footer from "./components/reusable/footer";
+import AppClientWrapper from "./wrappers/app-client-wrapper";
 const raleway = Raleway({
   subsets: ["latin"],
   variable: "--font-raleway",
@@ -29,7 +31,11 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${garamond.variable} antialiased font-links`}
       >
-        {children}
+        <AppClientWrapper>
+          <Navbar />
+          {children}
+          <Footer />
+        </AppClientWrapper>
       </body>
     </html>
   );

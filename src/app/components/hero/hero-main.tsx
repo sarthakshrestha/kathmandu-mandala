@@ -24,10 +24,10 @@ function Hero() {
       {/* Overlay init*/}
       <div className="absolute inset-0 bg-black/30" />
       {/* Content */}
-      <div className="relative z-20 flex flex-row items-center justify-between h-full w-full px-4 lg:px-12 ">
+      <div className="relative z-20 flex flex-row items-center justify-between h-full w-full px-4 lg:px-12 max-sm:px-5">
         {/* First column: Text and buttons */}
         <div className="flex flex-col items-start justify-center max-w-5xl w-full space-y-4 md:space-y-6 md:pl-6 lg:pl-12 max-sm:px-4">
-          <h1 className="text-[#F7ECD8] font-garamond text-xl max-sm:text-2xl md:text-3xl lg:text-5xl text-left drop-shadow-lg leading-tight">
+          <h1 className="text-[#F7ECD8] font-garamond text-xl max-sm:text-2xl md:text-xl lg:text-5xl text-left drop-shadow-lg leading-tight">
             {t("welcome")} <br />
             {t("partner")}
           </h1>

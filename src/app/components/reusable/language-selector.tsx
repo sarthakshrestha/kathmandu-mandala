@@ -16,7 +16,7 @@ const LanguageSelector = () => {
     <Select value={locale} onValueChange={setLocale}>
       <SelectTrigger className="w-[140px] bg-transparent text-white font-links text-base border-none outline-none ">
         <SelectValue>
-          {locale === "gb" ? (
+          {locale === "de" ? (
             <span>
               <span className="mr-2">🇩🇪</span> Deutsch
             </span>
@@ -28,7 +28,7 @@ const LanguageSelector = () => {
         </SelectValue>
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="gb">
+        <SelectItem value="de">
           <span className="mr-2">🇩🇪</span> Deutsch
         </SelectItem>
         <SelectItem value="en">

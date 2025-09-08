@@ -4,13 +4,7 @@ import ContactMain from "../components/contact/contact-main";
 import Footer from "../components/reusable/footer";
 
 function ContactPage() {
-  return (
-    <div>
-      <Navbar />
-      <ContactMain />
-      <Footer />
-    </div>
-  );
+  return <ContactMain />;
 }
 
 export default ContactPage;

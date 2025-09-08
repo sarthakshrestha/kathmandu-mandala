@@ -37,6 +37,9 @@ export default function Footer() {
             <a href="/about" className="hover:underline">
               {t("footer_about")}
             </a>
+            <a href="/faq" className="hover:underline">
+              FAQ
+            </a>
           </div>
         </div>
         {/* Right Section */}
@@ -59,8 +62,22 @@ export default function Footer() {
           </form>
         </div>
       </div>
+      <div className="max-w-[85rem] mx-auto mt-10 mb-1 items-end flex justify-end">
+        <a
+          href="https://share.google/aszykUjjcBVyT1NJz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-links text-base text-[#23233B] hover:underline flex items-center gap-2"
+        >
+          <span>
+            {" "}
+            Wilmersdorfer Str. 163, 10585 Berlin, Deutschland – Kathmandu
+            Mandala
+          </span>
+        </a>
+      </div>
       {/* Divider */}
-      <div className="max-w-[85rem] mx-auto mt-10 mb-6 border-t border-gray-300"></div>
+      <div className="max-w-[85rem] mx-auto  mb-6 border-t border-gray-300"></div>
       {/* Bottom Section */}
       <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <span className="text-[#23233B] font-links text-sm mb-4 md:mb-0 text-center w-full md:w-auto">
@@ -75,15 +92,6 @@ export default function Footer() {
           </a>
           <a href="#" aria-label="Facebook">
             <Facebook className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
-          </a>
-          <a href="#" aria-label="GitHub">
-            <Github className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
-          </a>
-          <a href="#" aria-label="HandPeace">
-            <Hand className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
-          </a>
-          <a href="#" aria-label="Dribbble">
-            <Dribbble className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
           </a>
         </div>
       </div>
