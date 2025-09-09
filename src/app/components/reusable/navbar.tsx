@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { useTranslationStore } from "@/app/store/translation-store";
-
+import { MailIcon, PhoneCallIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -154,7 +154,22 @@ const Navbar = ({
             </NavigationMenu>
           </div>
           {/* Right Side */}
+
           <div className="flex items-center space-x-2 z-10">
+            <a
+              href="/contact"
+              aria-label={t("contact_tab_contact")}
+              className="rounded-lg border border-[#e5e5e5] bg-white text-[#23233B] hover:bg-[#9A2731] hover:text-white transition flex items-center justify-center p-2"
+            >
+              <MailIcon className="size-6" />
+            </a>
+            <a
+              href="/contact?schedule=1"
+              aria-label={t("contact_tab_schedule")}
+              className="rounded-lg border border-[#e5e5e5] bg-white text-[#23233B] hover:bg-[#9A2731] hover:text-white transition flex items-center justify-center p-2"
+            >
+              <PhoneCallIcon className="size-6" />
+            </a>
             <div className="mx-4">
               <LanguageSelector />
             </div>
@@ -171,9 +186,26 @@ const Navbar = ({
             </div>
           </div>
         </div>
-        {/* Mobile Menu */}
         <div className="block lg:hidden">
-          <div className="flex items-center justify-end px-4 py-2">
+          <div className="flex items-center justify-between px-4 py-2">
+            {/* Left: Contact & Schedule Buttons */}
+            <div className="flex items-center">
+              <a
+                href="/contact"
+                aria-label={t("contact_tab_contact")}
+                className="rounded-lg border border-[#e5e5e5] bg-white text-[#23233B] hover:bg-[#9A2731] hover:text-white transition flex items-center justify-center p-2 mr-2"
+              >
+                <MailIcon className="size-4" />
+              </a>
+              <a
+                href="/contact?schedule=1"
+                aria-label={t("contact_tab_schedule")}
+                className="rounded-lg border border-[#e5e5e5] bg-white text-[#23233B] hover:bg-[#9A2731] hover:text-white transition flex items-center justify-center p-2 mr-2"
+              >
+                <PhoneCallIcon className="size-4" />
+              </a>
+            </div>
+            {/* Right: Hamburger Menu */}
             <Sheet>
               <SheetTrigger asChild>
                 <Button

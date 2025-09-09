@@ -175,5 +175,16 @@
   "contact_error_phone": "Telefonnummer ist erforderlich",
   "contact_error_message": "Nachricht ist erforderlich",
   "contact_error_agree": "Sie müssen der Datenschutzerklärung zustimmen",
-  "contact_success_message": "Nachricht gesendet!"
+  "contact_success_message": "Nachricht gesendet!",
+  "contact_tab_contact": "Kontakt",
+  "contact_tab_schedule": "Rückrufservice",
+  "schedule_title": "Rückrufservice",
+  "schedule_subtitle": "Wählen Sie ein Datum und eine Uhrzeit für Ihren Rückruf.",
+  "schedule_date": "Datum",
+  "schedule_time": "Uhrzeit",
+  "schedule_time_placeholder": "Uhrzeit auswählen",
+  "schedule_error_date": "Datum ist erforderlich",
+  "schedule_error_time": "Uhrzeit ist erforderlich",
+  "schedule_send_button": "Rückruf vereinbaren",
+  "schedule_success_message": "Rückruf vereinbart!"
 }

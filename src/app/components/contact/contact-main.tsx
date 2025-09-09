@@ -2,9 +2,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "@/app/hooks/use-translation";
+import { Calendar } from "@/components/ui/calendar";
+import { MailIcon, PhoneCallIcon } from "lucide-react";
 
 export default function ContactMain() {
   const { t, isLoaded } = useTranslation();
+  const [mode, setMode] = useState<"contact" | "schedule">("contact");
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -12,6 +15,8 @@ export default function ContactMain() {
     phone: "",
     message: "",
     agree: false,
+    date: undefined as Date | undefined,
+    time: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -22,7 +27,12 @@ export default function ContactMain() {
     if (!form.email || !/\S+@\S+\.\S+/.test(form.email))
       newErrors.email = t("contact_error_email");
     if (!form.phone) newErrors.phone = t("contact_error_phone");
-    if (!form.message) newErrors.message = t("contact_error_message");
+    if (mode === "contact") {
+      if (!form.message) newErrors.message = t("contact_error_message");
+    } else {
+      if (!form.date) newErrors.date = t("schedule_error_date");
+      if (!form.time) newErrors.time = t("schedule_error_time");
+    }
     if (!form.agree) newErrors.agree = t("contact_error_agree");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -45,10 +55,21 @@ export default function ContactMain() {
     }
   };
 
+  const handleDateChange = (date?: Date) => {
+    setForm((prev) => ({
+      ...prev,
+      date,
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      alert(t("contact_success_message"));
+      alert(
+        mode === "contact"
+          ? t("contact_success_message")
+          : t("schedule_success_message")
+      );
       setForm({
         firstName: "",
         lastName: "",
@@ -56,6 +77,8 @@ export default function ContactMain() {
         phone: "",
         message: "",
         agree: false,
+        date: undefined,
+        time: "",
       });
       setErrors({});
     }
@@ -65,7 +88,34 @@ export default function ContactMain() {
 
   return (
     <section className="bg-[#FAF6F0] py-12 px-2 max-sm:px-8">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-center">
+      <div className=" mx-auto flex flex-col md:flex-row gap-10 items-center max-w-7xl">
+        {/* Mode Switch Buttons */}
+        <div className="flex flex-row gap-4 mb-8 max-sm:mb-2 w-full max-w-xs sm:flex-col sm:w-16 max-sm:items-end max-sm:justify-end">
+          <button
+            type="button"
+            className={`flex items-center justify-center py-4 max-sm:px-4 rounded-lg transition border ${
+              mode === "contact"
+                ? "bg-[#9A2731] text-white border-[#9A2731] shadow"
+                : "bg-white text-[#23233B] border-[#e5e5e5]"
+            }`}
+            onClick={() => setMode("contact")}
+            aria-label={t("contact_tab_contact")}
+          >
+            <MailIcon className="size-7" />
+          </button>
+          <button
+            type="button"
+            className={`flex items-center justify-center py-4 max-sm:px-4 rounded-lg transition border ${
+              mode === "schedule"
+                ? "bg-[#9A2731] text-white border-[#9A2731] shadow"
+                : "bg-white text-[#23233B] border-[#e5e5e5]"
+            }`}
+            onClick={() => setMode("schedule")}
+            aria-label={t("contact_tab_schedule")}
+          >
+            <PhoneCallIcon className="size-7" />
+          </button>
+        </div>
         {/* Form */}
         <form
           className="flex-1 max-w-lg w-full"
@@ -73,10 +123,12 @@ export default function ContactMain() {
           noValidate
         >
           <h2 className="font-garamond text-3xl mb-2 text-[#23233B]">
-            {t("contact_title")}
+            {mode === "contact" ? t("contact_title") : t("schedule_title")}
           </h2>
           <p className="font-links text-[#23233B]/70 text-base mb-8">
-            {t("contact_subtitle")}
+            {mode === "contact"
+              ? t("contact_subtitle")
+              : t("schedule_subtitle")}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
@@ -156,23 +208,62 @@ export default function ContactMain() {
               <span className="text-[#9A2731] text-xs">{errors.phone}</span>
             )}
           </div>
-          <div className="mb-4">
-            <label className="block font-links mb-1">
-              {t("contact_message")}
-            </label>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links min-h-[80px] ${
-                errors.message ? "border-[#9A2731]" : ""
-              }`}
-              placeholder={t("contact_message_placeholder")}
-            />
-            {errors.message && (
-              <span className="text-[#9A2731] text-xs">{errors.message}</span>
-            )}
-          </div>
+          {mode === "contact" ? (
+            <div className="mb-4">
+              <label className="block font-links mb-1">
+                {t("contact_message")}
+              </label>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links min-h-[80px] ${
+                  errors.message ? "border-[#9A2731]" : ""
+                }`}
+                placeholder={t("contact_message_placeholder")}
+              />
+              {errors.message && (
+                <span className="text-[#9A2731] text-xs">{errors.message}</span>
+              )}
+            </div>
+          ) : (
+            <>
+              <div className="mb-4">
+                <label className="block font-links mb-1">
+                  {t("schedule_date")}
+                </label>
+                <Calendar
+                  selected={form.date}
+                  onSelect={handleDateChange}
+                  mode="single"
+                  className={`mb-2 ${
+                    errors.date ? "border-[#9A2731] border rounded-md" : ""
+                  }`}
+                />
+                {errors.date && (
+                  <span className="text-[#9A2731] text-xs">{errors.date}</span>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block font-links mb-1">
+                  {t("schedule_time")}
+                </label>
+                <input
+                  name="time"
+                  type="time"
+                  value={form.time}
+                  onChange={handleChange}
+                  className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links ${
+                    errors.time ? "border-[#9A2731]" : ""
+                  }`}
+                  placeholder={t("schedule_time_placeholder")}
+                />
+                {errors.time && (
+                  <span className="text-[#9A2731] text-xs">{errors.time}</span>
+                )}
+              </div>
+            </>
+          )}
           <div className="flex items-center mb-6">
             <input
               name="agree"
@@ -203,7 +294,9 @@ export default function ContactMain() {
             type="submit"
             className="w-full bg-[#9A2731] hover:bg-[#7a1e28] text-white font-links font-semibold py-3 rounded-md transition text-base"
           >
-            {t("contact_send_button")}
+            {mode === "contact"
+              ? t("contact_send_button")
+              : t("schedule_send_button")}
           </button>
         </form>
         {/* Image */}

@@ -175,5 +175,16 @@
   "contact_error_phone": "Phone number is required",
   "contact_error_message": "Message is required",
   "contact_error_agree": "You must agree to the privacy policy",
-  "contact_success_message": "Message sent!"
+  "contact_success_message": "Message sent!",
+  "contact_tab_contact": "Contact",
+  "contact_tab_schedule": "Schedule a Call",
+  "schedule_title": "Schedule a Call",
+  "schedule_subtitle": "Pick a date and time to schedule a call with our team.",
+  "schedule_date": "Date",
+  "schedule_time": "Time",
+  "schedule_time_placeholder": "Select time",
+  "schedule_error_date": "Date is required",
+  "schedule_error_time": "Time is required",
+  "schedule_send_button": "Schedule Call",
+  "schedule_success_message": "Call scheduled!"
 }
