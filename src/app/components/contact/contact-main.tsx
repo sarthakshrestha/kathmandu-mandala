@@ -90,10 +90,10 @@ export default function ContactMain() {
     <section className="bg-[#FAF6F0] py-12 px-2 max-sm:px-8">
       <div className=" mx-auto flex flex-col md:flex-row gap-10 items-center max-w-7xl">
         {/* Mode Switch Buttons */}
-        <div className="flex flex-col gap-4 mb-8 w-16">
+        <div className="flex flex-row gap-4 mb-8 max-sm:mb-2 w-full max-w-xs sm:flex-col sm:w-16 max-sm:items-end max-sm:justify-end">
           <button
             type="button"
-            className={`flex items-center justify-center py-4 rounded-lg transition border ${
+            className={`flex items-center justify-center py-4 max-sm:px-4 rounded-lg transition border ${
               mode === "contact"
                 ? "bg-[#9A2731] text-white border-[#9A2731] shadow"
                 : "bg-white text-[#23233B] border-[#e5e5e5]"
@@ -105,7 +105,7 @@ export default function ContactMain() {
           </button>
           <button
             type="button"
-            className={`flex items-center justify-center py-4 rounded-lg transition border ${
+            className={`flex items-center justify-center py-4 max-sm:px-4 rounded-lg transition border ${
               mode === "schedule"
                 ? "bg-[#9A2731] text-white border-[#9A2731] shadow"
                 : "bg-white text-[#23233B] border-[#e5e5e5]"
