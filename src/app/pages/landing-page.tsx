@@ -9,6 +9,7 @@ import Component5 from "../components/landing-page-components/component-5";
 import Component6 from "../components/landing-page-components/component-6";
 import Component7 from "../components/landing-page-components/component-7";
 import Footer from "../components/reusable/footer";
+import PaymentComponent from "../components/landing-page-components/payment-component";
 export default function LandingPage() {
   return (
     <div className="w-full bg-transparent">
@@ -19,6 +20,7 @@ export default function LandingPage() {
       <Component4 />
       <Component5 />
       <Component6 />
+      <PaymentComponent />
       <Component7 />
     </div>
   );
