@@ -4,9 +4,15 @@ import Image from "next/image";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { Calendar } from "@/components/ui/calendar";
 import { MailIcon, PhoneCallIcon } from "lucide-react";
-
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 export default function ContactMain() {
   const { t, isLoaded } = useTranslation();
+  const searchParams =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : null;
+
   const [mode, setMode] = useState<"contact" | "schedule">("contact");
   const [form, setForm] = useState({
     firstName: "",
@@ -19,6 +25,12 @@ export default function ContactMain() {
     time: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    if (searchParams?.get("schedule") === "1") {
+      setMode("schedule");
+    }
+  }, [searchParams]);
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
