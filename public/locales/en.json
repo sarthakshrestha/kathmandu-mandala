@@ -186,5 +186,13 @@
   "schedule_error_date": "Date is required",
   "schedule_error_time": "Time is required",
   "schedule_send_button": "Schedule Call",
-  "schedule_success_message": "Call scheduled!"
+  "schedule_success_message": "Call scheduled!",
+  "payment_options_title": "Available Payment Options",
+  "payment_options_subtitle": "We support multiple secure payment methods to make the process simple and convenient for you.",
+  "payment_visa_title": "Visa Card",
+  "payment_visa_desc": "Pay quickly and securely using your Visa credit or debit card.",
+  "payment_bank_title": "Bank Transfer",
+  "payment_bank_desc": "Transfer the payment directly to our bank account.",
+  "payment_paypal_title": "PayPal",
+  "payment_paypal_desc": "Use your PayPal account for a fast and safe checkout experience."
 }

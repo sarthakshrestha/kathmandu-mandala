@@ -186,5 +186,13 @@
   "schedule_error_date": "Datum ist erforderlich",
   "schedule_error_time": "Uhrzeit ist erforderlich",
   "schedule_send_button": "Rückruf vereinbaren",
-  "schedule_success_message": "Rückruf vereinbart!"
+  "schedule_success_message": "Rückruf vereinbart!",
+  "payment_options_title": "Verfügbare Zahlungsmöglichkeiten",
+  "payment_options_subtitle": "Wir unterstützen mehrere sichere Zahlungsmethoden, um den Prozess einfach und bequem für Sie zu gestalten.",
+  "payment_visa_title": "Visa Karte",
+  "payment_visa_desc": "Schnell und sicher mit Ihrer Visa Kredit- oder Debitkarte bezahlen.",
+  "payment_bank_title": "Banküberweisung",
+  "payment_bank_desc": "Überweisen Sie die Zahlung direkt auf unser Bankkonto.",
+  "payment_paypal_title": "PayPal",
+  "payment_paypal_desc": "Nutzen Sie Ihr PayPal-Konto für einen schnellen und sicheren Checkout."
 }
