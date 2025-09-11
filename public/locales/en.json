@@ -117,6 +117,7 @@
   "authentic_treasures_desc": "Discover handcrafted products from Nepal, blending tradition, culture, and artistry into everyday life.",
   "view_all": "View all",
   "work_in_progress": "Work in progress",
+  "coming_soon": "Coming Soon",
   "enquiry": "Enquiry",
   "faq_q1": "Who can apply for a visa through this service?",
   "faq_a1": "This service is primarily designed for German citizens who wish to apply for a visa to Nepal.",
@@ -194,5 +195,19 @@
   "payment_bank_title": "Bank Transfer",
   "payment_bank_desc": "Transfer the payment directly to our bank account.",
   "payment_paypal_title": "PayPal",
-  "payment_paypal_desc": "Use your PayPal account for a fast and safe checkout experience."
+  "payment_paypal_desc": "Use your PayPal account for a fast and safe checkout experience.",
+  "trek_tab_detail": "Trip detail",
+  "trek_tab_overview": "Overview",
+  "trek_tab_plan": "Tour Plan",
+  "trek_tab_include": "Included/Exclude",
+  "trek_tab_more": "More Tours",
+  "trek_tab_faq": "FAQ",
+  "trek_detail_tour_type": "Tour Type",
+  "trek_detail_max_group_size": "Max Group Size",
+  "trek_detail_age_requirement": "Age Requirement",
+  "trek_detail_operated_in": "Operated In",
+  "trek_detail_overview_title": "Trekking in the Himalayas Overview",
+  "trek_detail_duration": "Duration",
+  "trek_detail_from": "From",
+  "trek_detail_send_inquiry": "Send Inquiry"
 }

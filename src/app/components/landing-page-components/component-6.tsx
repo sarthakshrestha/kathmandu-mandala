@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { Pickaxe } from "lucide-react";
+import { Hourglass } from "lucide-react";
+
 const products = [
   {
     img: "https://placehold.co/600x400",
@@ -80,9 +82,9 @@ export default function Component6() {
               className="bg-[#FFF9EE] rounded-xl overflow-hidden flex flex-col shadow-md"
             >
               <div className="w-full h-[220px] relative flex flex-col items-center justify-center">
-                <Pickaxe size={64} className="text-[#B94B4B] mb-2" />
+                <Hourglass size={64} className="text-[#B94B4B] mb-2" />
                 <span className="text-[#B94B4B] font-links font-semibold">
-                  {t("work_in_progress") || "Work in progress"}
+                  {t("coming_soon") || "Coming Soon"}
                 </span>
               </div>
               <div className="p-4 flex flex-col flex-1 justify-between">

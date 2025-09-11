@@ -7,9 +7,7 @@ import VisaFAQ from "../components/visa-page-components/visa-faq";
 function VisaPage() {
   return (
     <div>
-      <Navbar />
       <VisaMain />
-      <Footer />
     </div>
   );
 }
