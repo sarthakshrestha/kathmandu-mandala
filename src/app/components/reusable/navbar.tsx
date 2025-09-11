@@ -79,7 +79,7 @@ const Navbar = ({
           title: t("navbar_menu_visa_service"),
           description: t("navbar_menu_visa_service_desc"),
           icon: <Book className="size-5 shrink-0" />, // Visa Service
-          url: "#",
+          url: "/visa",
         },
         {
           title: t("navbar_menu_travel_offers"),

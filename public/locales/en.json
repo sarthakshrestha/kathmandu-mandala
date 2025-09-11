@@ -195,5 +195,11 @@
   "payment_bank_title": "Bank Transfer",
   "payment_bank_desc": "Transfer the payment directly to our bank account.",
   "payment_paypal_title": "PayPal",
-  "payment_paypal_desc": "Use your PayPal account for a fast and safe checkout experience."
+  "payment_paypal_desc": "Use your PayPal account for a fast and safe checkout experience.",
+  "trek_tab_detail": "Trip detail",
+  "trek_tab_overview": "Overview",
+  "trek_tab_plan": "Tour Plan",
+  "trek_tab_include": "Included/Exclude",
+  "trek_tab_more": "More Tours",
+  "trek_tab_faq": "FAQ"
 }

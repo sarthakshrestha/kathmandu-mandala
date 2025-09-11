@@ -195,5 +195,11 @@
   "payment_bank_title": "Banküberweisung",
   "payment_bank_desc": "Überweisen Sie die Zahlung direkt auf unser Bankkonto.",
   "payment_paypal_title": "PayPal",
-  "payment_paypal_desc": "Nutzen Sie Ihr PayPal-Konto für einen schnellen und sicheren Checkout."
+  "payment_paypal_desc": "Nutzen Sie Ihr PayPal-Konto für einen schnellen und sicheren Checkout.",
+  "trek_tab_detail": "Reisedetails",
+  "trek_tab_overview": "Übersicht",
+  "trek_tab_plan": "Reiseplan",
+  "trek_tab_include": "Inklusive/Ausschlüsse",
+  "trek_tab_more": "Weitere Touren",
+  "trek_tab_faq": "FAQ"
 }
