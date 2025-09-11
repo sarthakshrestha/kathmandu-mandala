@@ -30,12 +30,47 @@ export default function GalleryPortal({
   const [open, setOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
 
+  const renderMobileLayout = () => (
+    <div className="max-sm:block hidden w-full h-full">
+      <Carousel
+        opts={{ loop: true }}
+        className="w-full h-full"
+        setApi={(api) => {
+          if (api) {
+            api.on("select", () => setActiveIdx(api.selectedScrollSnap()));
+          }
+        }}
+      >
+        <CarouselContent>
+          {images.map((img, idx) => (
+            <CarouselItem key={`${img}-${idx}`}>
+              <div
+                className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden"
+                onClick={() => {
+                  setActiveIdx(idx);
+                  setOpen(true);
+                }}
+              >
+                <Image
+                  src={img}
+                  alt={`${alt} ${idx + 1}`}
+                  fill
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
+  );
+
   // Handle different layouts based on image count
   const renderImageLayout = () => {
     if (images.length === 0) return null;
 
     return (
-      <div className="grid grid-cols-4 grid-rows-2 gap-2 w-full h-full">
+      <div className="grid grid-cols-4 grid-rows-2 gap-2 w-full h-full max-sm:hidden">
         {/* Large main image - takes 2 columns and 2 rows */}
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
@@ -191,12 +226,14 @@ export default function GalleryPortal({
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div
-        className="bg-transparent rounded-2xl p-3 md:p-6 border border-slate-200/50"
-        style={{ height: "60vh", minHeight: "400px" }}
-      >
+      <div className="bg-transparent rounded-2xl p-3 md:p-6 border border-slate-200/50 lg:h-[60vh] lg:min-h-[400px]">
         {images.length > 0 ? (
-          renderImageLayout()
+          <>
+            {renderMobileLayout()}
+            <div className="max-sm:hidden w-full h-full">
+              {renderImageLayout()}
+            </div>
+          </>
         ) : (
           <div className="flex items-center justify-center h-full text-slate-500">
             No images to display
