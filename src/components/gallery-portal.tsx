@@ -17,6 +17,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+
 interface GalleryPortalProps {
   images: string[];
   alt?: string;
@@ -29,100 +30,148 @@ export default function GalleryPortal({
   const [open, setOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
 
-  return (
-    <div
-      className="w-full max-w-7xl mx-auto"
-      style={{ height: "80vh", maxHeight: "40vh" }}
-    >
-      <div className="bg-[#FCF8F2] rounded-2xl p-2 md:p-4 flex flex-col items-center justify-center h-full">
-        <div className="grid grid-cols-2 grid-rows-2 md:grid-cols-3 md:grid-rows-2 gap-2 md:gap-4 w-full h-full">
-          <Dialog open={open} onOpenChange={setOpen}>
+  // Handle different layouts based on image count
+  const renderImageLayout = () => {
+    if (images.length === 0) return null;
+
+    return (
+      <div className="grid grid-cols-4 grid-rows-2 gap-2 w-full h-full">
+        {/* Large main image - takes 2 columns and 2 rows */}
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <div
+              className="col-span-2 row-span-2 rounded-xl overflow-hidden cursor-pointer relative group"
+              onClick={() => {
+                setActiveIdx(0);
+                setOpen(true);
+              }}
+            >
+              <Image
+                src={images[0]}
+                alt={alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
+            </div>
+          </DialogTrigger>
+
+          <DialogContent className="max-w-4xl w-full p-0 bg-zinc-950 border-none">
+            <VisuallyHidden>
+              <DialogTitle>{alt}</DialogTitle>
+            </VisuallyHidden>
+            <Carousel
+              opts={{ startIndex: activeIdx, loop: true }}
+              className="w-full"
+              setApi={(api) => {
+                if (api) {
+                  api.on("select", () =>
+                    setActiveIdx(api.selectedScrollSnap())
+                  );
+                }
+              }}
+            >
+              <CarouselContent>
+                {images.map((img, idx) => (
+                  <CarouselItem key={`${img}-${idx}`}>
+                    <div className="relative w-full h-[70vh] flex items-center justify-center">
+                      <Image
+                        src={img}
+                        alt={`${alt} ${idx + 1}`}
+                        fill
+                        className="object-contain rounded-xl"
+                        sizes="90vw"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+          </DialogContent>
+        </Dialog>
+
+        {/* Top right images */}
+        {images.slice(1, 3).map((img, idx) => (
+          <Dialog key={`top-${idx + 1}`} open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <div
-                className="col-span-2 row-span-2 md:col-span-2 md:row-span-2 rounded-xl overflow-hidden cursor-pointer relative h-full"
+                className="col-span-1 row-span-1 rounded-xl overflow-hidden cursor-pointer relative group"
                 onClick={() => {
-                  setActiveIdx(0);
+                  setActiveIdx(idx + 1);
                   setOpen(true);
                 }}
               >
                 <Image
-                  src={images[0]}
-                  alt={alt}
+                  src={img}
+                  alt={`${alt} ${idx + 2}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 600px"
-                  className="object-cover w-full h-full"
-                  priority
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             </DialogTrigger>
-            <DialogContent className="max-w-3xl p-0 bg-transparent flex items-center justify-center">
-              {/* Accessible DialogTitle */}
-              <VisuallyHidden>
-                <DialogTitle>{alt}</DialogTitle>
-              </VisuallyHidden>
-              {/* Carousel for images */}
-              <Carousel
-                opts={{ startIndex: activeIdx, loop: true }}
-                className="w-full"
-                setApi={(api) => {
-                  if (api) {
-                    api.on("select", () =>
-                      setActiveIdx(api.selectedScrollSnap())
-                    );
-                  }
-                }}
-              >
-                <CarouselContent>
-                  {images.map((img, idx) => (
-                    <CarouselItem key={img}>
-                      <div className="relative w-full h-[60vh] flex items-center justify-center">
-                        <Image
-                          src={img}
-                          alt={alt}
-                          fill
-                          className="object-contain rounded-xl bg-black"
-                        />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </DialogContent>
           </Dialog>
-          {/* Small images right */}
-          {images.slice(1, 5).map((img, idx) => (
+        ))}
+
+        {/* Bottom right images */}
+        {images.slice(3, 5).map((img, idx) => {
+          const imageIndex = idx + 3;
+          const isLastVisible = imageIndex === 4 && images.length > 5;
+
+          return (
             <Dialog
-              key={idx + 1}
-              open={open && activeIdx === idx + 1}
+              key={`bottom-${imageIndex}`}
+              open={open}
               onOpenChange={setOpen}
             >
               <DialogTrigger asChild>
                 <div
-                  className="rounded-xl overflow-hidden cursor-pointer relative aspect-square h-full"
+                  className="col-span-1 row-span-1 rounded-xl overflow-hidden cursor-pointer relative group"
                   onClick={() => {
-                    setActiveIdx(idx + 1);
+                    setActiveIdx(imageIndex);
                     setOpen(true);
                   }}
                 >
                   <Image
                     src={img}
-                    alt={alt}
+                    alt={`${alt} ${imageIndex + 1}`}
                     fill
-                    sizes="(max-width: 768px) 50vw, 300px"
-                    className="object-contain w-full h-full"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                   />
-                  {/* Show all photos button on last image */}
-                  {idx === 3 && images.length > 5 && (
-                    <div className="absolute bottom-2 right-2 z-10">
+
+                  {/* Show all photos overlay on last visible image */}
+                  {isLastVisible && (
+                    <div className="absolute inset-0 bg-black/50 flex items-end justify-end p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <Button
-                        variant="ghost"
+                        variant="secondary"
                         size="sm"
-                        className="flex items-center gap-2 bg-white/80 text-[#23233B] shadow"
+                        className="flex items-center gap-2 bg-white/90 hover:bg-white text-black backdrop-blur-sm"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setActiveIdx(4);
+                          setActiveIdx(5);
+                          setOpen(true);
+                        }}
+                      >
+                        <Grid2x2 className="w-4 h-4" />
+                        Show all photos
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Always show button if there are more photos */}
+                  {isLastVisible && (
+                    <div className="absolute bottom-3 right-3 z-10">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="flex items-center gap-2 bg-white/90 hover:bg-white text-black backdrop-blur-sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveIdx(5);
                           setOpen(true);
                         }}
                       >
@@ -134,8 +183,25 @@ export default function GalleryPortal({
                 </div>
               </DialogTrigger>
             </Dialog>
-          ))}
-        </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  return (
+    <div className="w-full max-w-7xl mx-auto">
+      <div
+        className="bg-transparent rounded-2xl p-3 md:p-6 border border-slate-200/50"
+        style={{ height: "60vh", minHeight: "400px" }}
+      >
+        {images.length > 0 ? (
+          renderImageLayout()
+        ) : (
+          <div className="flex items-center justify-center h-full text-slate-500">
+            No images to display
+          </div>
+        )}
       </div>
     </div>
   );

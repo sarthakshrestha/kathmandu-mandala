@@ -201,5 +201,13 @@
   "trek_tab_plan": "Reiseplan",
   "trek_tab_include": "Inklusive/Ausschlüsse",
   "trek_tab_more": "Weitere Touren",
-  "trek_tab_faq": "FAQ"
+  "trek_tab_faq": "FAQ",
+  "trek_detail_tour_type": "Reiseart",
+  "trek_detail_max_group_size": "Maximale Gruppengröße",
+  "trek_detail_age_requirement": "Altersvoraussetzung",
+  "trek_detail_operated_in": "Durchgeführt in",
+  "trek_detail_overview_title": "Trekking im Himalaya Übersicht",
+  "trek_detail_duration": "Dauer",
+  "trek_detail_from": "Ab",
+  "trek_detail_send_inquiry": "Anfrage senden"
 }
