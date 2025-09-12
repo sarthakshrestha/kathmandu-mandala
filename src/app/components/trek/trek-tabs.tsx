@@ -4,6 +4,7 @@ import TrekDetailComponent from "./trek-detail";
 import TrekDetailSidebar from "./trek-detail-sidebar";
 import TabsPortal from "@/components/tabs-portal";
 import type { TabItem } from "@/components/tabs-portal";
+import TrekHimalayaAccordion from "./trek-accordion";
 export default function TrekTabs() {
   const { t, isLoaded } = useTranslation();
   if (!isLoaded) return null;
@@ -28,6 +29,7 @@ export default function TrekTabs() {
             ]}
           />
           <TrekDetailSidebar duration="14 Days" price="1,800 EUR" />
+          <TrekHimalayaAccordion />
         </div>
       ),
     },

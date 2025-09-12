@@ -226,7 +226,7 @@ export default function GalleryPortal({
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div className="bg-transparent rounded-2xl p-3 md:p-6 border border-slate-200/50 lg:h-[60vh] lg:min-h-[400px]">
+      <div className="bg-transparent rounded-2xl p-3 md:p-6  lg:h-[60vh] lg:min-h-[400px]">
         {images.length > 0 ? (
           <>
             {renderMobileLayout()}

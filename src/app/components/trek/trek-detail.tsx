@@ -60,7 +60,7 @@ export default function TrekDetailComponent({
           </span>
         </div>
       </div>
-      <h3 className="font-links font-semibold text-lg md:text-xl mb-2">
+      <h3 className="font-links font-semibold text-lg md:text-3xl mb-2 font-garamond">
         {t("trek_detail_overview_title") ||
           "Trekking in the Himalayas Overview"}
       </h3>
