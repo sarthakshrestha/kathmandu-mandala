@@ -44,22 +44,24 @@ export default function Footer() {
         </div>
         {/* Right Section */}
         <div className="flex-1 flex flex-col items-start md:items-end">
-          <span className="text-[#D6A346] font-links font-semibold mb-3">
-            {t("footer_newsletter_title")}
-          </span>
-          <form className="flex flex-col sm:flex-row gap-3 w-full max-w-md md:justify-end">
-            <input
-              type="email"
-              placeholder={t("footer_newsletter_placeholder")}
-              className="border border-gray-300 rounded-lg px-4 py-2 w-full font-links text-[#23233B] focus:outline-none focus:ring-2 focus:ring-[#D6A346] bg-white"
-            />
-            <button
-              type="submit"
-              className="bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links font-semibold px-6 py-2 rounded-lg shadow transition"
-            >
-              {t("footer_newsletter_button")}
-            </button>
-          </form>
+          <div className="flex-1 flex flex-col items-start md:items-start">
+            <span className="text-[#D6A346] font-links md:items-start md:justify-end md:flex-row-reverse font-semibold mb-3">
+              {t("footer_newsletter_title")}
+            </span>
+            <form className="flex flex-col sm:flex-row gap-3 w-full max-w-md md:justify-end">
+              <input
+                type="email"
+                placeholder={t("footer_newsletter_placeholder")}
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full font-links text-[#23233B] focus:outline-none focus:ring-2 focus:ring-[#D6A346] bg-white"
+              />
+              <button
+                type="submit"
+                className="bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links font-semibold px-6 py-2 rounded-lg shadow transition"
+              >
+                {t("footer_newsletter_button")}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div className="max-w-[85rem] mx-auto mt-10 mb-1 items-end flex justify-end">

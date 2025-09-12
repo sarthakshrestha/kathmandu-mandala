@@ -18,7 +18,7 @@ function TrekMain() {
             ]}
           />
         </div>
-        <div className="max-w-5xl items-start flex flex-col justify-start">
+        <div className="max-w-7xl items-start flex flex-col justify-start">
           <TrekTabs />
         </div>
       </div>

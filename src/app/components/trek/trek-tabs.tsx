@@ -5,6 +5,7 @@ import TrekDetailSidebar from "./trek-detail-sidebar";
 import TabsPortal from "@/components/tabs-portal";
 import type { TabItem } from "@/components/tabs-portal";
 import TrekHimalayaAccordion from "./trek-accordion";
+import IncludeExcludePortal from "@/components/include-exclude-portal";
 export default function TrekTabs() {
   const { t, isLoaded } = useTranslation();
   if (!isLoaded) return null;
@@ -14,7 +15,7 @@ export default function TrekTabs() {
       value: "detail",
       label: t("trek_tab_detail") || "Trip detail",
       content: (
-        <div className="w-full flex flex-col-reverse md:grid md:grid-cols-[2fr_1fr] gap-8 items-start">
+        <div className="w-full flex flex-col-reverse md:grid md:grid-cols-[2fr_1fr] gap-8 items-start max-sm:px-2">
           <TrekDetailComponent
             title="Trekking in the Himalayas (14 Days)"
             description="The Manaslu Circuit Trek is one of those undiscovered trekking journeys that, despite not being so popular, has quite a bit of potential. It would not be an exaggeration to say that it’s a hidden gem."
@@ -28,7 +29,9 @@ export default function TrekTabs() {
               "The Everest Base Camp trek combines the convenience of well-maintained paths with the raw beauty of the Himalayas. The Everest region, located in the lap of the mighty Himalayas, is recognized for its beautiful scenery and welcoming Sherpa people. This adventure not only brings you to the base of the world’s highest peak but also immerses you in the rich culture and traditions of Nepal.",
             ]}
           />
-          <TrekDetailSidebar duration="14 Days" price="1,800 EUR" />
+          <div className="max-sm:px-4 flex flex-row w-full">
+            <TrekDetailSidebar duration="14 Days" price="1,800 EUR" />
+          </div>
           <TrekHimalayaAccordion />
         </div>
       ),
