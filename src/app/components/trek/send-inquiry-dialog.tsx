@@ -9,6 +9,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Calendar } from "@/components/ui/calendar";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Popover,
@@ -19,10 +20,15 @@ import { CalendarDays } from "lucide-react";
 import { useState } from "react";
 
 export default function SendInquiryDialog() {
+  function parseDDMMYYYY(str: string) {
+    const [day, month, year] = str.split("-");
+    return new Date(Number(year), Number(month) - 1, Number(day));
+  }
+
   const methods = useForm();
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState<string>("");
-
+  const [popoverOpen, setPopoverOpen] = useState(false);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -100,11 +106,11 @@ export default function SendInquiryDialog() {
                 <label className="block font-links font-semibold mb-1">
                   Preferred Start Date*
                 </label>
-                <Popover>
+                <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
                   <PopoverTrigger asChild>
                     <button
                       type="button"
-                      className="flex items-center w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-left"
+                      className="flex items-center w-full border border-gray-300 rounded-md px-3 py-2  text-left"
                     >
                       <CalendarDays className="mr-2 text-[#D6A346]" />
                       <span className="text-muted-foreground">
@@ -112,14 +118,27 @@ export default function SendInquiryDialog() {
                       </span>
                     </button>
                   </PopoverTrigger>
-                  <PopoverContent>
-                    <input
-                      type="date"
-                      className="border rounded-md px-2 py-1 w-full"
-                      onChange={(e) => {
-                        setDate(e.target.value);
-                        methods.setValue("startDate", e.target.value);
+                  <PopoverContent className="w-auto p-0">
+                    <Calendar
+                      mode="single"
+                      selected={date ? parseDDMMYYYY(date) : undefined}
+                      onSelect={(selectedDate) => {
+                        if (selectedDate) {
+                          const day = String(selectedDate.getDate()).padStart(
+                            2,
+                            "0"
+                          );
+                          const month = String(
+                            selectedDate.getMonth() + 1
+                          ).padStart(2, "0");
+                          const year = selectedDate.getFullYear();
+                          const formatted = `${day}-${month}-${year}`;
+                          setDate(formatted);
+                          methods.setValue("startDate", formatted);
+                          setPopoverOpen(false);
+                        }
                       }}
+                      initialFocus
                     />
                   </PopoverContent>
                 </Popover>
