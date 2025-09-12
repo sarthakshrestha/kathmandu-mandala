@@ -56,7 +56,10 @@ function TrekMain() {
         <div className="max-w-[85rem] items-start flex flex-col justify-start">
           <TrekTabs />
         </div>
-        <div className="w-full flex flex-col-reverse md:grid md:grid-cols-[2fr_1fr] gap-8 items-start max-sm:px-2">
+        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start max-sm:px-2 ">
+          <div className="max-sm:px-4 flex flex-row w-full md:hidden max-sm:mt-4">
+            <TrekDetailSidebar duration="14 Days" price="1,800 EUR" />
+          </div>
           <TrekDetailComponent
             title="Trekking in the Himalayas (14 Days)"
             description="The Manaslu Circuit Trek is one of those undiscovered trekking journeys that, despite not being so popular, has quite a bit of potential. It would not be an exaggeration to say that it’s a hidden gem."
