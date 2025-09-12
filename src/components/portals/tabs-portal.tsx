@@ -5,6 +5,7 @@ export interface TabItem {
   value: string;
   label: string;
   content: React.ReactNode;
+  sectionId?: string; // <-- Add this
 }
 
 interface TabsPortalProps {
@@ -38,6 +39,14 @@ export default function TabsPortal({
                 data-[state=active]:bg-transparent
                 transition-none
               "
+              onClick={() => {
+                if (tab.sectionId) {
+                  const el = document.getElementById(tab.sectionId);
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }
+              }}
             >
               {tab.label}
             </TabsTrigger>

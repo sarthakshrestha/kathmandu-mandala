@@ -1,5 +1,6 @@
 "use client";
 import { useTranslation } from "@/app/hooks/use-translation";
+import SendInquiryDialog from "./send-inquiry-dialog";
 
 interface TrekDetailSidebarProps {
   duration: string;
@@ -15,7 +16,7 @@ export default function TrekDetailSidebar({
   const { t } = useTranslation();
 
   return (
-    <aside className="bg-[#FFF9EE] border border-[#E5E5E5] rounded-xl p-6 flex flex-col gap-6 items-center w-full max-w-xs mx-auto md:mx-0 md:mt-5">
+    <aside className="bg-[#FFF9EE] max-sm:p-4 max-sm:w-full max-sm:px-4 border border-[#E5E5E5] rounded-xl p-6 flex flex-col gap-6 items-center w-full md:max-w-lg mx-auto md:mx-0 md:mt-5">
       <div className="flex w-full justify-between items-start mb-2">
         <div>
           <span className="block text-base text-muted-foreground mb-1">
@@ -32,12 +33,7 @@ export default function TrekDetailSidebar({
           </span>
         </div>
       </div>
-      <button
-        className="w-full rounded-xl bg-[#E3B7B7] text-[#761E25] py-4 font-links font-medium text-lg transition hover:bg-[#d6a3a3]"
-        onClick={onInquiry}
-      >
-        {t("trek_detail_send_inquiry") || "Send Inquiry"}
-      </button>
+      <SendInquiryDialog />
     </aside>
   );
 }

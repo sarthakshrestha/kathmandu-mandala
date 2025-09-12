@@ -84,8 +84,8 @@ const Navbar = ({
         {
           title: t("navbar_menu_travel_offers"),
           description: t("navbar_menu_travel_offers_desc"),
-          icon: <Plane className="size-5 shrink-0" />, // Travel Offers
-          url: "#",
+          icon: <Plane className="size-5 shrink-0" />,
+          url: "/trek",
         },
         {
           title: t("navbar_menu_courier_service"),

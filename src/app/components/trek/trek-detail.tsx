@@ -23,7 +23,7 @@ export default function TrekDetailComponent({
   const { t } = useTranslation();
 
   return (
-    <section className="w-full bg-transparent rounded-xl p-4 md:p-8 max-sm:mt-0">
+    <section className="w-full bg-transparent rounded-xl p-4 md:p-8 max-sm:mt-0 max-sm:px-4">
       <h2 className="font-links font-semibold text-lg md:text-xl mb-2">
         {title}
       </h2>
@@ -60,7 +60,7 @@ export default function TrekDetailComponent({
           </span>
         </div>
       </div>
-      <h3 className="font-links font-semibold text-lg md:text-xl mb-2">
+      <h3 className="font-links font-semibold text-lg md:text-3xl mb-2 font-garamond">
         {t("trek_detail_overview_title") ||
           "Trekking in the Himalayas Overview"}
       </h3>
