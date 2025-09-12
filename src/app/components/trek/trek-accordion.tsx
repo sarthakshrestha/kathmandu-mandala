@@ -1,7 +1,10 @@
 "use client";
-import TourPlanPortal from "@/components/tour-plan-portal";
-import IncludeExcludePortal from "@/components/include-exclude-portal";
-import MoreToursPortal from "@/components/more-tours-portal";
+import TourPlanPortal from "@/components/portals/tour-plan-portal";
+import IncludeExcludePortal from "@/components/portals/include-exclude-portal";
+import MoreToursPortal from "@/components/portals/more-tours-portal";
+import FAQPortal from "@/components/portals/faq-portal";
+import TrekFAQ from "./trek-faq";
+
 const tourPlanItems = [
   {
     key: "day1",
@@ -34,40 +37,48 @@ const tourPlanItems = [
 export default function TrekHimalayaAccordion() {
   return (
     <div className="flex flex-col">
-      <TourPlanPortal items={tourPlanItems} sectionTitle="Tour Plan" />
-      <IncludeExcludePortal
-        include={[
-          "Pick and Drop Services",
-          "1 Meal Per Day",
-          "Cruise Dinner & Music Event",
-          "Visit 7 Best Places in the City With Group",
-          "Guided City Tours with Local Experts",
-        ]}
-        exclude={[
-          "Additional Services",
-          "Insurance",
-          "Food & Drinks",
-          "Tickets",
-        ]}
-      />
-
-      <MoreToursPortal
-        tours={[
-          {
-            image: "/images/trek/Trek2.png",
-            title: "Trekking in the Himalayas (14 Days)",
-            description: "Hike on the most beautiful trails of the Himalayas",
-            price: "Price: from 1,800 EUR",
-          },
-          {
-            image: "/images/trek/Trek3.png",
-            title: "City trip to Kathmandu (5 Days)",
-            description:
-              "Discover the historic old town and UNESCO World Heritage sites",
-            price: "Price: from 600 EUR",
-          },
-        ]}
-      />
+      <section id="tour-plan">
+        <TourPlanPortal items={tourPlanItems} sectionTitle="Tour Plan" />
+      </section>
+      <section id="include-exclude">
+        <IncludeExcludePortal
+          include={[
+            "Pick and Drop Services",
+            "1 Meal Per Day",
+            "Cruise Dinner & Music Event",
+            "Visit 7 Best Places in the City With Group",
+            "Guided City Tours with Local Experts",
+          ]}
+          exclude={[
+            "Additional Services",
+            "Insurance",
+            "Food & Drinks",
+            "Tickets",
+          ]}
+        />
+      </section>
+      <section id="more-tours">
+        <MoreToursPortal
+          tours={[
+            {
+              image: "/images/trek/Trek2.png",
+              title: "Trekking in the Himalayas (14 Days)",
+              description: "Hike on the most beautiful trails of the Himalayas",
+              price: "Price: from 1,800 EUR",
+            },
+            {
+              image: "/images/trek/Trek3.png",
+              title: "City trip to Kathmandu (5 Days)",
+              description:
+                "Discover the historic old town and UNESCO World Heritage sites",
+              price: "Price: from 600 EUR",
+            },
+          ]}
+        />
+      </section>
+      <section id="faq">
+        <TrekFAQ />
+      </section>
     </div>
   );
 }

@@ -225,7 +225,7 @@ export default function GalleryPortal({
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full max-w-[85rem] mx-auto">
       <div className="bg-transparent rounded-2xl p-3 md:p-6  lg:h-[60vh] lg:min-h-[400px]">
         {images.length > 0 ? (
           <>

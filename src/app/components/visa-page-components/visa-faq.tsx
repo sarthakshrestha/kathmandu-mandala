@@ -11,7 +11,6 @@ export default function VisaFAQ() {
   const { t, isLoaded } = useTranslation();
   if (!isLoaded) return null;
 
-  // FAQ keys for translation
   const faqKeys = [
     "faq_q1",
     "faq_q2",
