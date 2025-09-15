@@ -70,6 +70,53 @@ export default function VisaMain() {
                 </span>
               </div>
             </div>
+            <div className="bg-transparent rounded-xl w-full mx-auto my-4">
+              <h2 className="font-garamond text-lg sm:text-xl mb-3 text-[#23233B]">
+                {t("visa_fees_heading") || "Visa Fees (including Service Fees)"}
+              </h2>
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b">
+                    <th className="py-2 px-2 font-semibold text-[#23233B]">
+                      {t("validity") ||
+                        (t("validity_value")
+                          ? t("validity_value")
+                          : "Validity")}
+                    </th>
+                    <th className="py-2 px-2 font-semibold text-[#23233B]">
+                      {t("visa_fee") || "Fee"}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="py-2 px-2">
+                      15 {t("validity_days") || "Days"}
+                    </td>
+                    <td className="py-2 px-2">30 Euro</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 px-2">
+                      30 {t("validity_days") || "Days"}
+                    </td>
+                    <td className="py-2 px-2">50 Euro</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 px-2">
+                      90 {t("validity_days") || "Days"}
+                    </td>
+                    <td className="py-2 px-2">125 Euro</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p className="mt-3 text-sm text-[#A89C8E]">
+                {t("visa_fees_note") ||
+                  (t("language") === "de"
+                    ? "Alle Gebühren verstehen sich inklusive Servicegebühr."
+                    : "All fees include service charges.")}
+              </p>
+            </div>
+
             <p className="text-[#23233B] text-sm sm:text-base mb-4 sm:mb-6">
               {t("visa_paragraph")}
             </p>

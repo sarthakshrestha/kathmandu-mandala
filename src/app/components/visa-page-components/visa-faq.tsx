@@ -51,16 +51,17 @@ export default function VisaFAQ() {
   ];
 
   return (
-    <section className="py-6 md:w-2/3 mt-2">
+    <section className="py-4 md:w-2/3 mt-2 lg:py-4">
       {pathname === "/faq" ? (
-        <div className="flex flex-row w-full gap-10">
-          <div className="min-w-[180px] max-w-[220px] lg:mt-64 max-sm:hidden">
+        <div className="grid grid-cols-5 w-full items-start justify-center">
+          {/* Tabs column (left) */}
+          <div className="col-span-1 flex flex-col items-start min-w-[180px] max-w-[220px] lg:mt-96 max-sm:hidden flex-shrink-0">
             <Tabs
               value={activeTab}
               onValueChange={setActiveTab}
-              className="w-full"
+              className="w-full text-left"
             >
-              <TabsList className="flex flex-col gap-4 bg-transparent p-0 w-full">
+              <TabsList className="flex flex-col gap-4 bg-transparent p-0 w-full text-left items-start">
                 {tabItems.map((tab) => (
                   <TabsTrigger
                     key={tab.value}
@@ -73,45 +74,45 @@ export default function VisaFAQ() {
               </TabsList>
             </Tabs>
           </div>
-          <div className="flex-1">
-            {pathname === "/faq" && (
-              <div className="flex flex-col items-center mb-4">
-                <span className="text-[#7B2D2D] text-sm font-links mb-2">
-                  {t("faq_label")}
-                </span>
-                <h1 className="font-garamond text-3xl sm:text-5xl font-medium text-[#23233B] mb-2">
-                  {t("faq_heading")}
-                </h1>
-                <span className="text-[#6B6B7B] text-base">
-                  {t("faq_subheading")}
-                </span>
-              </div>
-            )}
-            {pathname === "/faq" && (
-              <div className="block sm:hidden w-[400px] gap-5 mb-6 overflow-x-auto">
-                <Tabs
-                  value={activeTab}
-                  onValueChange={setActiveTab}
-                  className="w-full "
-                >
-                  <TabsList className="flex flex-row gap-4 bg-transparent p-0 min-w-max">
-                    {tabItems.map((tab) => (
-                      <TabsTrigger
-                        key={tab.value}
-                        value={tab.value}
-                        className="text-left px-0 py-2 font-links text-lg font-medium data-[state=active]:text-[#B94B4B] text-[#23233B] hover:text-[#B94B4B] transition-colors bg-transparent border-none data-[state=active]:bg-transparent data-[state=active]:border-none data-[state=active]:shadow-none"
-                      >
-                        {tab.label}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </Tabs>
-              </div>
-            )}
-            <h2 className="font-garamond font-semibold text-2xl sm:text-3xl mb-6 text-[#23233B]">
+          {/* FAQ content column (right, centered) */}
+          <div className="col-span-3 flex flex-col items-center justify-center w-full mx-auto">
+            <div className="flex flex-col items-center mb-4 py-12">
+              <span className="text-[#7B2D2D] text-sm font-links mb-2">
+                {t("faq_label")}
+              </span>
+              <h1 className="font-garamond text-3xl sm:text-5xl font-medium text-[#23233B] mb-2 text-center">
+                {t("faq_heading")}
+              </h1>
+              <span className="text-[#6B6B7B] text-base text-center">
+                {t("faq_subheading")}
+              </span>
+            </div>
+            <div className="block sm:hidden w-[400px] gap-5 mb-6 overflow-x-auto">
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
+                className="w-full "
+              >
+                <TabsList className="flex flex-row gap-4 bg-transparent p-0 min-w-max">
+                  {tabItems.map((tab) => (
+                    <TabsTrigger
+                      key={tab.value}
+                      value={tab.value}
+                      className="text-left px-0 py-2 font-links text-lg font-medium data-[state=active]:text-[#B94B4B] text-[#23233B] hover:text-[#B94B4B] transition-colors bg-transparent border-none data-[state=active]:bg-transparent data-[state=active]:border-none data-[state=active]:shadow-none"
+                    >
+                      {tab.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+            <h2 className="font-garamond font-semibold text-2xl sm:text-3xl mb-6 text-[#23233B] text-center">
               FAQ
             </h2>
-            <Accordion type="multiple" className="flex flex-col gap-4">
+            <Accordion
+              type="multiple"
+              className="flex flex-col gap-4 w-full max-w-2xl"
+            >
               {faqKeys.map((key, idx) => (
                 <AccordionItem
                   key={key}

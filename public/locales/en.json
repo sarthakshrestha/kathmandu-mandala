@@ -258,5 +258,9 @@
   "faq_tab_restaurant": "Restaurant",
   "faq_tab_shop": "Shop",
   "faq_tab_courier": "Courier",
-  "navbar_menu_home": "Home"
+  "navbar_menu_home": "Home",
+  "visa_fees_heading": "Visa Fees (including Service Fees)",
+  "visa_fee": "Fee",
+  "validity_days": "Days",
+  "visa_fees_note": "All fees include service charges."
 }

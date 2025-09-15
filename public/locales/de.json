@@ -258,5 +258,9 @@
   "faq_tab_restaurant": "Restaurant",
   "faq_tab_shop": "Shop",
   "faq_tab_courier": "Kurier",
-  "navbar_menu_home": "Startseite"
+  "navbar_menu_home": "Startseite",
+  "visa_fees_heading": "Visagebühren (inklusive Servicegebühr)",
+  "visa_fee": "Gebühr",
+  "validity_days": "Tage",
+  "visa_fees_note": "Alle Gebühren verstehen sich inklusive Servicegebühr."
 }
