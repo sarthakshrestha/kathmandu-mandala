@@ -1,0 +1,528 @@
+"use client";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useForm, FormProvider } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useTranslation } from "@/app/hooks/use-translation";
+import { FileText } from "lucide-react";
+import { CheckCircle, Circle } from "lucide-react";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const registerSchema = z.object({
+  fullName: z.string().min(1, "Required"),
+  gender: z.string().min(1, "Required"),
+  dateOfBirth: z.string().min(1, "Required"),
+  nationality: z.string().min(1, "Required"),
+  passportNumber: z.string().min(1, "Required"),
+  passportValidUntil: z.string().min(1, "Required"),
+  typeOfPassport: z.string().min(1, "Required"),
+  address: z.string().min(1, "Required"),
+  phoneNumber: z.string().min(1, "Required"),
+  email: z.string().email("Invalid email"),
+  occupation: z.string().min(1, "Required"),
+  travelDate: z.string().min(1, "Required"),
+  nepalAddress: z.string().min(1, "Required"),
+  entryAirport: z.string().min(1, "Required"),
+  visaType: z.string().min(1, "Required"),
+  visaDays: z.string().min(1, "Required"),
+});
+
+type RegisterFormValues = z.infer<typeof registerSchema>;
+
+export default function RegisterFormDialog() {
+  const { t } = useTranslation();
+  const [step, setStep] = useState(0);
+
+  const occupationOptions = [
+    { value: "student", label: t("occupation_student") || "Student" },
+    { value: "business", label: t("occupation_business") || "Business" },
+    { value: "tourist", label: t("occupation_tourist") || "Tourist" },
+    { value: "other", label: t("occupation_other") || "Other" },
+  ];
+
+  const steps = [
+    t("step_personal_information") || "Personal Information",
+    t("step_travel_information") || "Travel Information",
+    t("step_visa_details") || "Visa Details",
+  ];
+
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    mode: "onTouched",
+    defaultValues: {
+      fullName: "",
+      gender: "",
+      dateOfBirth: "",
+      nationality: "",
+      passportNumber: "",
+      passportValidUntil: "",
+      typeOfPassport: "",
+      address: "",
+      phoneNumber: "",
+      email: "",
+      occupation: "",
+      travelDate: "",
+      nepalAddress: "",
+      entryAirport: "",
+      visaType: "",
+      visaDays: "",
+    },
+  });
+
+  function onSubmit(data: RegisterFormValues) {
+    // Handle final submission
+    console.log(data);
+  }
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-2 sm:py-3 rounded-lg transition text-sm sm:text-base w-full">
+          {t("start_application_button") || "Start Application"}
+        </button>
+      </DialogTrigger>
+      <DialogContent className="bg-[#FAF6F0] p-0 sm:p-0 rounded-xl border-none sm:max-w-3xl">
+        <DialogHeader className="px-6 pt-6 pb-2">
+          <div className="flex items-center gap-2">
+            <FileText className="w-6 h-6 text-[#23233B]" />
+            <DialogTitle className="font-garamond text-2xl text-[#23233B]">
+              {t("pre_registration_heading") || "Visa Pre-Registration"}
+            </DialogTitle>
+          </div>
+          <div className="flex gap-4 mt-2 flex-wrap">
+            {steps.map((label, idx) => (
+              <div
+                key={label}
+                className={`flex items-center gap-2 ${
+                  idx < step
+                    ? "text-[#7B2D2D] font-semibold"
+                    : step === idx
+                    ? "text-[#23233B] font-semibold"
+                    : "text-[#A89C8E]"
+                }`}
+              >
+                {idx < step ? (
+                  <CheckCircle className="w-6 h-6" strokeWidth={2} />
+                ) : (
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full border border-[#A89C8E] text-xs">
+                    {idx + 1}
+                  </span>
+                )}
+                <span className="font-garamond text-lg">{label}</span>
+                {idx < steps.length - 1 && (
+                  <span className="mx-2 h-px w-12 bg-[#E5E1DC] hidden sm:inline-block" />
+                )}
+              </div>
+            ))}
+          </div>
+        </DialogHeader>
+        <FormProvider {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="px-6 pb-6">
+            {step === 0 && (
+              <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2">
+                <FormField
+                  name="fullName"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_full_name") || "Full name"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder={t("form_full_name")} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="gender"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_gender") || "Gender"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <SelectTrigger className="w-full">
+                            {field.value
+                              ? {
+                                  male: t("gender_male"),
+                                  female: t("gender_female"),
+                                  other: t("gender_other"),
+                                }[field.value] || field.value
+                              : t("form_select_gender") || "Select gender"}
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="male">
+                              {t("gender_male") || "Male"}
+                            </SelectItem>
+                            <SelectItem value="female">
+                              {t("gender_female") || "Female"}
+                            </SelectItem>
+                            <SelectItem value="other">
+                              {t("gender_other") || "Other"}
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="dateOfBirth"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_date_of_birth") || "Date of Birth"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input {...field} type="date" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="nationality"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_nationality") || "Nationality"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder={t("form_nationality")} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="passportNumber"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_passport_number") || "Passport Number"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_passport_number")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="passportValidUntil"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_passport_valid_until") ||
+                            "Passport Valid Until"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input {...field} type="date" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="typeOfPassport"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_type_of_passport") || "Type of Passport"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_type_of_passport")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="address"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_address") || "Address"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder={t("form_address")} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="phoneNumber"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_phone_number") || "Phone Number"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_phone_number")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="email"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_email") || "Email Address"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="email"
+                          placeholder={t("form_email")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="mt-4 col-span-2">
+                  <FormField
+                    name="occupation"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel asChild>
+                          <Label>{t("form_occupation") || "Occupation"}</Label>
+                        </FormLabel>
+                        <FormControl>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
+                            <SelectTrigger className="w-full">
+                              {field.value
+                                ? occupationOptions.find(
+                                    (opt) => opt.value === field.value
+                                  )?.label
+                                : t("form_select_occupation") ||
+                                  "Select your occupation"}
+                            </SelectTrigger>
+                            <SelectContent>
+                              {occupationOptions.map((opt) => (
+                                <SelectItem key={opt.value} value={opt.value}>
+                                  {opt.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+            )}
+            {step === 1 && (
+              <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2">
+                <FormField
+                  name="travelDate"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_travel_date") ||
+                            "Planned Travel Date (approximate)"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="date"
+                          placeholder={t("form_travel_date_placeholder")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="nepalAddress"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_nepal_address") || "Address in Nepal"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_nepal_address_placeholder")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="entryAirport"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>
+                          {t("form_entry_airport") ||
+                            "Point of Entry into Nepal (Airport)"}
+                        </Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_entry_airport_placeholder")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+
+            {step === 2 && (
+              <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2">
+                <FormField
+                  name="visaType"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_visa_type") || "Visa Type"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_visa_type_placeholder")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="visaDays"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_visa_days") || "Visa for Days"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder={t("form_visa_days_placeholder")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+            <DialogFooter className="mt-6 flex flex-col sm:flex-row justify-between gap-2">
+              {step !== 0 && (
+                <button
+                  type="button"
+                  className="bg-gray-200 px-4 py-2 rounded"
+                  onClick={() => setStep((s) => Math.max(0, s - 1))}
+                >
+                  {t("form_back") || "Back"}
+                </button>
+              )}
+              {step < steps.length - 1 ? (
+                <button
+                  type="button"
+                  className="bg-[#B94B4B] text-white px-4 py-2 rounded"
+                  onClick={() =>
+                    setStep((s) => Math.min(steps.length - 1, s + 1))
+                  }
+                >
+                  {t("form_next") || "Next"}: {steps[step + 1]}
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-[#B94B4B] text-white px-4 py-2 rounded"
+                >
+                  {t("form_submit") || "Submit"}
+                </button>
+              )}
+            </DialogFooter>
+          </form>
+        </FormProvider>
+      </DialogContent>
+    </Dialog>
+  );
+}

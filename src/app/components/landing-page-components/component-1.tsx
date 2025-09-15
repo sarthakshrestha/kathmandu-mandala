@@ -64,7 +64,7 @@ export default function Component1() {
             </ul>
           </div>
           <a
-            href="/visa"
+            href="/register"
             className="inline-block bg-[#D6A346] hover:bg-[#c9a13e] text-zinc-900 font-links font-semibold px-6 py-3 rounded-lg shadow transition text-base mt-2"
           >
             {t("download")}

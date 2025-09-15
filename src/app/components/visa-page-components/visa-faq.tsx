@@ -6,9 +6,11 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { useTranslation } from "@/app/hooks/use-translation";
+import { usePathname } from "next/navigation";
 
 export default function VisaFAQ() {
   const { t, isLoaded } = useTranslation();
+  const pathname = usePathname();
   if (!isLoaded) return null;
 
   const faqKeys = [
@@ -37,7 +39,20 @@ export default function VisaFAQ() {
   ];
 
   return (
-    <section className="bg-[#FAF6F0] py-6 md:w-2/3 mt-2">
+    <section className="py-6 md:w-2/3 mt-2">
+      {pathname === "/faq" && (
+        <div className="flex flex-col items-center mb-4 py-12 max-sm:py-2">
+          <span className="text-[#7B2D2D] text-sm font-links mb-2">
+            {t("faq_label")}
+          </span>
+          <h1 className="font-garamond text-3xl sm:text-5xl font-medium text-[#23233B] mb-2">
+            {t("faq_heading")}
+          </h1>
+          <span className="text-[#6B6B7B] text-base">
+            {t("faq_subheading")}
+          </span>
+        </div>
+      )}
       <h2 className="font-garamond font-semibold text-2xl sm:text-3xl mb-6 text-[#23233B]">
         FAQ
       </h2>

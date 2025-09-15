@@ -10,7 +10,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#FFF9EE] w-full pt-12 pb-6 sm:px-8">
+    <footer className="bg-[#FFF9EE] w-full pt-12 pb-6 max-sm:px-8">
       <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row justify-between gap-10">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0">
