@@ -26,7 +26,7 @@ export default function Footer() {
             {t("footer_description")}
           </p>
           <div className="flex flex-row flex-wrap gap-8 font-links font-semibold text-[#23233B] mb-2 text-sm max-sm:flex-col max-sm:-mb-5 max-sm:gap-5">
-            <a href="/" className="hover:underline">
+            {/* <a href="/" className="hover:underline">
               {t("navbar_menu_home") || "Home"}
             </a>
             <a href="/visa" className="hover:underline">
@@ -43,6 +43,21 @@ export default function Footer() {
             </a>
             <a href="/about-nepal" className="hover:underline">
               {t("navbar_menu_about_nepal") || "About Nepal"}
+            </a> */}
+            <a href="/privacy" className="hover:underline">
+              {t("footer_privacy")}
+            </a>
+            <a href="#" className="hover:underline">
+              {t("footer_imprint")}
+            </a>
+            <a href="#" className="hover:underline">
+              {t("footer_terms")}
+            </a>
+            <a href="/about" className="hover:underline">
+              {t("footer_about")}
+            </a>
+            <a href="/faq" className="hover:underline">
+              FAQ
             </a>
           </div>
         </div>

@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "./components/reusable/navbar";
 import Footer from "./components/reusable/footer";
 import AppClientWrapper from "./wrappers/app-client-wrapper";
+import { Toaster } from "sonner";
+
 const raleway = Raleway({
   subsets: ["latin"],
   variable: "--font-raleway",
@@ -34,6 +36,7 @@ export default function RootLayout({
         <AppClientWrapper>
           <Navbar />
           {children}
+          <Toaster richColors position="top-center" />
           <Footer />
         </AppClientWrapper>
       </body>

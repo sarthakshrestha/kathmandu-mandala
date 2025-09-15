@@ -1,11 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { Calendar } from "@/components/ui/calendar";
 import { MailIcon, PhoneCallIcon } from "lucide-react";
-import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { contactService } from "@/api/services/contactService";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactSchema, scheduleSchema } from "@/app/schema/Schemas";
+import { toast } from "sonner";
+
 export default function ContactMain() {
   const { t, isLoaded } = useTranslation();
   const searchParams =
@@ -14,17 +18,6 @@ export default function ContactMain() {
       : null;
 
   const [mode, setMode] = useState<"contact" | "schedule">("contact");
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    message: "",
-    agree: false,
-    date: undefined as Date | undefined,
-    time: "",
-  });
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     if (searchParams?.get("schedule") === "1") {
@@ -32,67 +25,48 @@ export default function ContactMain() {
     }
   }, [searchParams]);
 
-  const validate = () => {
-    const newErrors: { [key: string]: string } = {};
-    if (!form.firstName) newErrors.firstName = t("contact_error_first_name");
-    if (!form.lastName) newErrors.lastName = t("contact_error_last_name");
-    if (!form.email || !/\S+@\S+\.\S+/.test(form.email))
-      newErrors.email = t("contact_error_email");
-    if (!form.phone) newErrors.phone = t("contact_error_phone");
+  // Setup react-hook-form with Zod schema
+  const formMethods = useForm({
+    resolver: zodResolver(mode === "contact" ? contactSchema : scheduleSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: "",
+      agree: false,
+      date: undefined,
+      time: "",
+    },
+  });
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+    watch,
+  } = formMethods;
+
+  const onSubmit = async (data: any) => {
     if (mode === "contact") {
-      if (!form.message) newErrors.message = t("contact_error_message");
+      try {
+        await contactService.sendContact({
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone_number: data.phone,
+          message: data.message,
+        });
+        toast.success(t("contact_success_message"));
+        reset();
+      } catch (error) {
+        alert(t("contact_error_api") || "Failed to send message.");
+      }
     } else {
-      if (!form.date) newErrors.date = t("schedule_error_date");
-      if (!form.time) newErrors.time = t("schedule_error_time");
-    }
-    if (!form.agree) newErrors.agree = t("contact_error_agree");
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value, type } = e.target;
-    if (type === "checkbox") {
-      setForm((prev) => ({
-        ...prev,
-        [name]: (e.target as HTMLInputElement).checked,
-      }));
-    } else {
-      setForm((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
-  };
-
-  const handleDateChange = (date?: Date) => {
-    setForm((prev) => ({
-      ...prev,
-      date,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validate()) {
-      alert(
-        mode === "contact"
-          ? t("contact_success_message")
-          : t("schedule_success_message")
-      );
-      setForm({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-        agree: false,
-        date: undefined,
-        time: "",
-      });
-      setErrors({});
+      alert(t("schedule_success_message"));
+      reset();
     }
   };
 
@@ -100,12 +74,12 @@ export default function ContactMain() {
 
   return (
     <section className="bg-[#FAF6F0] py-12 px-2 max-sm:px-8">
-      <div className=" mx-auto flex flex-col md:flex-row gap-10 items-center max-w-7xl">
+      <div className="mx-auto flex flex-col md:flex-row lg:gap-10  items-center max-w-7xl">
         {/* Mode Switch Buttons */}
-        <div className="flex flex-row gap-4 mb-8 max-sm:mb-2 w-full max-w-xs sm:flex-col sm:w-16 max-sm:items-end max-sm:justify-end">
+        <div className="flex flex-row gap-4 mb-8 w-full max-w-xs md:flex-row lg:flex-col lg:w-16 lg:items-end lg:justify-end">
           <button
             type="button"
-            className={`flex items-center justify-center py-4 max-sm:px-4 rounded-lg transition border ${
+            className={`flex items-center justify-center py-4 px-4 rounded-lg transition border ${
               mode === "contact"
                 ? "bg-[#9A2731] text-white border-[#9A2731] shadow"
                 : "bg-white text-[#23233B] border-[#e5e5e5]"
@@ -117,7 +91,7 @@ export default function ContactMain() {
           </button>
           <button
             type="button"
-            className={`flex items-center justify-center py-4 max-sm:px-4 rounded-lg transition border ${
+            className={`flex items-center justify-center py-4 px-4 rounded-lg transition border ${
               mode === "schedule"
                 ? "bg-[#9A2731] text-white border-[#9A2731] shadow"
                 : "bg-white text-[#23233B] border-[#e5e5e5]"
@@ -131,7 +105,7 @@ export default function ContactMain() {
         {/* Form */}
         <form
           className="flex-1 max-w-lg w-full"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
           <h2 className="font-garamond text-3xl mb-2 text-[#23233B]">
@@ -148,10 +122,8 @@ export default function ContactMain() {
                 {t("contact_first_name")}
               </label>
               <input
-                name="firstName"
+                {...register("firstName")}
                 type="text"
-                value={form.firstName}
-                onChange={handleChange}
                 className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links ${
                   errors.firstName ? "border-[#9A2731]" : ""
                 }`}
@@ -159,7 +131,7 @@ export default function ContactMain() {
               />
               {errors.firstName && (
                 <span className="text-[#9A2731] text-xs">
-                  {errors.firstName}
+                  {errors.firstName.message as string}
                 </span>
               )}
             </div>
@@ -168,10 +140,8 @@ export default function ContactMain() {
                 {t("contact_last_name")}
               </label>
               <input
-                name="lastName"
+                {...register("lastName")}
                 type="text"
-                value={form.lastName}
-                onChange={handleChange}
                 className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links ${
                   errors.lastName ? "border-[#9A2731]" : ""
                 }`}
@@ -179,7 +149,7 @@ export default function ContactMain() {
               />
               {errors.lastName && (
                 <span className="text-[#9A2731] text-xs">
-                  {errors.lastName}
+                  {errors.lastName.message as string}
                 </span>
               )}
             </div>
@@ -189,17 +159,17 @@ export default function ContactMain() {
               {t("contact_email")}
             </label>
             <input
-              name="email"
+              {...register("email")}
               type="email"
-              value={form.email}
-              onChange={handleChange}
               className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links ${
                 errors.email ? "border-[#9A2731]" : ""
               }`}
               placeholder={t("contact_email_placeholder")}
             />
             {errors.email && (
-              <span className="text-[#9A2731] text-xs">{errors.email}</span>
+              <span className="text-[#9A2731] text-xs">
+                {errors.email.message as string}
+              </span>
             )}
           </div>
           <div className="mb-4">
@@ -207,17 +177,17 @@ export default function ContactMain() {
               {t("contact_phone")}
             </label>
             <input
-              name="phone"
+              {...register("phone")}
               type="tel"
-              value={form.phone}
-              onChange={handleChange}
               className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links ${
                 errors.phone ? "border-[#9A2731]" : ""
               }`}
               placeholder={t("contact_phone_placeholder")}
             />
             {errors.phone && (
-              <span className="text-[#9A2731] text-xs">{errors.phone}</span>
+              <span className="text-[#9A2731] text-xs">
+                {errors.phone.message as string}
+              </span>
             )}
           </div>
           {mode === "contact" ? (
@@ -226,16 +196,18 @@ export default function ContactMain() {
                 {t("contact_message")}
               </label>
               <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
+                {...register("message")}
                 className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links min-h-[80px] ${
-                  errors.message ? "border-[#9A2731]" : ""
+                  "message" in errors && errors.message
+                    ? "border-[#9A2731]"
+                    : ""
                 }`}
                 placeholder={t("contact_message_placeholder")}
               />
-              {errors.message && (
-                <span className="text-[#9A2731] text-xs">{errors.message}</span>
+              {"message" in errors && errors.message && (
+                <span className="text-[#9A2731] text-xs">
+                  {errors.message?.message as string}
+                </span>
               )}
             </div>
           ) : (
@@ -245,15 +217,19 @@ export default function ContactMain() {
                   {t("schedule_date")}
                 </label>
                 <Calendar
-                  selected={form.date}
-                  onSelect={handleDateChange}
+                  selected={watch("date") as Date | undefined}
+                  onSelect={(date) => setValue("date", date)}
                   mode="single"
                   className={`mb-2 ${
-                    errors.date ? "border-[#9A2731] border rounded-md" : ""
+                    "date" in errors && errors.date
+                      ? "border-[#9A2731] border rounded-md"
+                      : ""
                   }`}
                 />
-                {errors.date && (
-                  <span className="text-[#9A2731] text-xs">{errors.date}</span>
+                {"date" in errors && errors.date && (
+                  <span className="text-[#9A2731] text-xs">
+                    {errors.date?.message as string}
+                  </span>
                 )}
               </div>
               <div className="mb-4">
@@ -261,27 +237,25 @@ export default function ContactMain() {
                   {t("schedule_time")}
                 </label>
                 <input
-                  name="time"
+                  {...register("time")}
                   type="time"
-                  value={form.time}
-                  onChange={handleChange}
                   className={`w-full rounded-md border border-[#e5e5e5] px-4 py-2 bg-white font-links ${
-                    errors.time ? "border-[#9A2731]" : ""
+                    "time" in errors && errors.time ? "border-[#9A2731]" : ""
                   }`}
                   placeholder={t("schedule_time_placeholder")}
                 />
-                {errors.time && (
-                  <span className="text-[#9A2731] text-xs">{errors.time}</span>
+                {"time" in errors && errors.time && (
+                  <span className="text-[#9A2731] text-xs">
+                    {errors.time?.message as string}
+                  </span>
                 )}
               </div>
             </>
           )}
           <div className="flex items-center mb-6">
             <input
-              name="agree"
+              {...register("agree")}
               type="checkbox"
-              checked={form.agree}
-              onChange={handleChange}
               className="mr-2 accent-[#9A2731]"
             />
             <label className="font-links text-sm">
@@ -299,7 +273,7 @@ export default function ContactMain() {
           </div>
           {errors.agree && (
             <span className="text-[#9A2731] text-xs block mb-2">
-              {errors.agree}
+              {errors.agree.message as string}
             </span>
           )}
           <button
@@ -312,7 +286,7 @@ export default function ContactMain() {
           </button>
         </form>
         {/* Image */}
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex-1 flex justify-center items-center max-md:mt-10">
           <Image
             src="/images/Contact.png"
             alt={t("contact_image_alt")}

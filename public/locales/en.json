@@ -166,7 +166,7 @@
   "contact_phone_placeholder": "+1 (555) 000-0000",
   "contact_message": "Message",
   "contact_message_placeholder": "Your message",
-  "contact_agree_prefix": "You agree to our friendly",
+  "contact_agree_prefix": "By submitting this form you agree to our ",
   "contact_privacy_policy": "privacy policy",
   "contact_send_button": "Send message",
   "contact_image_alt": "Contact team member",
