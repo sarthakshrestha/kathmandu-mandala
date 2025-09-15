@@ -67,15 +67,15 @@ export default function Component6() {
                 "Discover handcrafted products from Nepal, blending tradition, culture, and artistry into everyday life."}
             </p>
           </div>
-          <a
+          {/* <a
             href="#"
             className="text-white font-links font-semibold text-base hover:underline self-end md:self-center"
           >
             {t("view_all") || "View all"}
-          </a>
+          </a> */}
         </div>
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {products.map((product, idx) => (
             <div
               key={idx}
@@ -99,6 +99,13 @@ export default function Component6() {
               </div>
             </div>
           ))}
+        </div> */}
+        <div className="flex items-center justify-center w-full py-16">
+          <div className="bg-[#4B2323] rounded-xl px-8 py-6 flex items-center justify-center">
+            <span className="text-white font-garamond text-2xl sm:text-3xl md:text-5xl font-semibold tracking-wide">
+              {t("coming_soon") || "COMING SOON"}
+            </span>
+          </div>
         </div>
       </div>
     </section>

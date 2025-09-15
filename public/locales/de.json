@@ -251,5 +251,12 @@
   "form_select_gender": "Geschlecht auswählen",
   "faq_heading": "Häufig gestellte Fragen",
   "faq_subheading": "Ihre Fragen beantwortet",
-  "faq_label": "FAQs"
+  "faq_label": "FAQs",
+  "faq_tab_general": "Allgemein",
+  "faq_tab_visa": "Visumantrag",
+  "faq_tab_tour": "Reisepakete",
+  "faq_tab_restaurant": "Restaurant",
+  "faq_tab_shop": "Shop",
+  "faq_tab_courier": "Kurier",
+  "navbar_menu_home": "Startseite"
 }

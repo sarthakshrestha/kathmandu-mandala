@@ -41,7 +41,8 @@ export default function Component3() {
             </li>
           </ul>
           <a
-            href="#"
+            href="/files/Menu.pdf"
+            download
             className="inline-block bg-[#D6A346] hover:bg-[#c9a13e] text-zinc-900 font-links font-semibold px-6 py-3 rounded-lg shadow transition text-base mt-2"
           >
             {t("download_menu")}

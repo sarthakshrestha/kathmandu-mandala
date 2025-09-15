@@ -10,11 +10,11 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#FFF9EE] w-full pt-12 pb-6 max-sm:px-8">
-      <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row justify-between gap-10">
+    <footer className="bg-[#FFF9EE]  pt-12 pb-6 max-sm:px-8 ">
+      <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row justify-between gap-10 ">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0">
-          <div className="flex items-center max-sm:items-start gap-4 mb-2">
+          <div className="flex items-center max-sm:items-start gap-4 mb-5">
             <img
               src="/images/icons/LogoHorizontal.svg"
               alt={t("navbar_logo_alt")}
@@ -24,21 +24,24 @@ export default function Footer() {
           <p className="text-[#23233B] font-links text-base mb-6 max-w-md">
             {t("footer_description")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-links font-semibold text-[#23233B] mb-8">
-            <a href="/privacy" className="hover:underline">
-              {t("footer_privacy")}
+          <div className="flex flex-row flex-wrap gap-8 font-links font-semibold text-[#23233B] mb-2 text-sm max-sm:flex-col max-sm:-mb-5 max-sm:gap-5">
+            <a href="/" className="hover:underline">
+              {t("navbar_menu_home") || "Home"}
             </a>
-            <a href="#" className="hover:underline">
-              {t("footer_imprint")}
+            <a href="/visa" className="hover:underline">
+              {t("navbar_menu_visa_service") || "Visa service"}
             </a>
-            <a href="#" className="hover:underline">
-              {t("footer_terms")}
+            <a href="/travel" className="hover:underline">
+              {t("navbar_menu_travel_offers") || "Travel offers"}
             </a>
-            <a href="/about" className="hover:underline">
-              {t("footer_about")}
+            <a href="/restaurant" className="hover:underline">
+              {t("navbar_menu_restaurant") || "Restaurant"}
             </a>
-            <a href="/faq" className="hover:underline">
-              FAQ
+            <a href="/courier" className="hover:underline">
+              {t("navbar_menu_courier_service") || "Courier service"}
+            </a>
+            <a href="/about-nepal" className="hover:underline">
+              {t("navbar_menu_about_nepal") || "About Nepal"}
             </a>
           </div>
         </div>
@@ -48,7 +51,7 @@ export default function Footer() {
             <span className="text-[#D6A346] font-links md:items-start md:justify-end md:flex-row-reverse font-semibold mb-3">
               {t("footer_newsletter_title")}
             </span>
-            <form className="flex flex-col sm:flex-row gap-3 w-full max-w-md md:justify-end">
+            <form className="flex flex-col sm:flex-row gap-3 w-full max-w-2xl md:justify-end">
               <input
                 type="email"
                 placeholder={t("footer_newsletter_placeholder")}
@@ -64,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="max-w-[85rem] mx-auto mt-10 mb-1 items-end flex justify-end">
+      <div className="max-w-[85rem] mx-auto mt-10 mb-1 items-end flex justify-end ">
         <a
           href="https://share.google/aszykUjjcBVyT1NJz"
           target="_blank"
