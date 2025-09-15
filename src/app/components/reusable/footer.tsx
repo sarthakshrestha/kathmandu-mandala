@@ -1,6 +1,7 @@
 "use client";
 import { Facebook, Github, Linkedin, X, Hand, Dribbble } from "lucide-react";
 import { useTranslation } from "@/app/hooks/use-translation";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   const { t, locale, isLoaded } = useTranslation();
@@ -90,7 +91,7 @@ export default function Footer() {
         </span>
         <div className="flex flex-wrap justify-center gap-6 mt-2 md:mt-0 w-full md:w-auto">
           <a href="#" aria-label="X">
-            <X className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
+            <FaXTwitter className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
           </a>
           <a href="#" aria-label="LinkedIn">
             <Linkedin className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
