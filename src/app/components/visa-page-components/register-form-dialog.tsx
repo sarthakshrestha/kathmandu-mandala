@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { visaService } from "@/api/services/visaService";
 import { Label } from "@/components/ui/label";
 import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
@@ -24,6 +25,7 @@ import { useState } from "react";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { FileText } from "lucide-react";
 import { CheckCircle, Circle } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   Select,
@@ -35,23 +37,49 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
 const registerSchema = z.object({
   fullName: z.string().min(1, "Required"),
   gender: z.string().min(1, "Required"),
-  dateOfBirth: z.string().min(1, "Required"),
+  dateOfBirth: z.string().refine(
+    (val) => {
+      if (!val) return false;
+      const date = new Date(val);
+      return date < today;
+    },
+    { message: "Date of birth must be before today." }
+  ),
   nationality: z.string().min(1, "Required"),
   passportNumber: z.string().min(1, "Required"),
   passportValidUntil: z.string().min(1, "Required"),
-  typeOfPassport: z.string().min(1, "Required"),
+  typeOfPassport: z.enum(
+    ["Ordinary", "Diplomatic", "Service", "Official", "Special"],
+    { message: "Select a valid passport type." }
+  ),
   address: z.string().min(1, "Required"),
   phoneNumber: z.string().min(1, "Required"),
   email: z.string().email("Invalid email"),
   occupation: z.string().min(1, "Required"),
   travelDate: z.string().min(1, "Required"),
-  nepalAddress: z.string().min(1, "Required"),
   entryAirport: z.string().min(1, "Required"),
-  visaType: z.string().min(1, "Required"),
+  visaType: z.enum(
+    [
+      "Tourist",
+      "Business",
+      "Student",
+      "Work",
+      "Diplomatic",
+      "Medical",
+      "Pilgrimage",
+      "Other",
+    ],
+    { message: "Select a valid visa type." }
+  ),
   visaDays: z.string().min(1, "Required"),
+  payment: z.any().optional(),
+  passport: z.any().optional(),
 });
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
@@ -83,40 +111,69 @@ export default function RegisterFormDialog() {
       nationality: "",
       passportNumber: "",
       passportValidUntil: "",
-      typeOfPassport: "",
+      typeOfPassport: undefined,
       address: "",
       phoneNumber: "",
       email: "",
       occupation: "",
       travelDate: "",
-      nepalAddress: "",
       entryAirport: "",
-      visaType: "",
+      visaType: undefined,
       visaDays: "",
+      payment: undefined,
+      passport: undefined,
     },
   });
 
-  function onSubmit(data: RegisterFormValues) {
-    // Handle final submission
-    console.log(data);
-  }
+  async function onSubmit(data: RegisterFormValues) {
+    console.log("Submitting visa form data:", data);
 
+    try {
+      await visaService.sendVisa({
+        name: data.fullName,
+        gender: data.gender,
+        dob: data.dateOfBirth,
+        nationality: data.nationality,
+        passport_number: data.passportNumber,
+        passport_expiry: data.passportValidUntil,
+        passport_type: data.typeOfPassport,
+        arrival_date: data.travelDate,
+        visa_type: data.visaType,
+        duration_of_stay: Number(data.visaDays),
+        purpose_of_visit: data.occupation,
+        address_in_destination: null,
+        point_of_entry: data.entryAirport,
+        payment: data.payment ?? "",
+        passport: data.passport ?? "",
+      });
+      toast.success(t("visa_submit_success") || "Visa application submitted!");
+      form.reset();
+      setStep(0);
+    } catch (error: any) {
+      toast.error(
+        t("visa_submit_error") ||
+          error?.response?.data?.message ||
+          "Failed to submit visa application."
+      );
+    }
+  }
+  console.log("Form errors:", form.formState.errors);
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-2 sm:py-3 rounded-lg transition text-sm sm:text-base w-full">
+        <button className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-3 sm:py-3 rounded-lg transition text-sm sm:text-base w-full">
           {t("start_application_button") || "Start Application"}
         </button>
       </DialogTrigger>
       <DialogContent className="bg-[#FAF6F0] p-0 sm:p-0 rounded-xl border-none sm:max-w-3xl">
-        <DialogHeader className="px-6 pt-6 pb-2">
+        <DialogHeader className="px-6 pt-4 pb-2">
           <div className="flex items-center gap-2">
             <FileText className="w-6 h-6 text-[#23233B]" />
             <DialogTitle className="font-garamond text-2xl text-[#23233B]">
               {t("pre_registration_heading") || "Visa Pre-Registration"}
             </DialogTitle>
           </div>
-          <div className="flex gap-4 mt-2 flex-wrap">
+          <div className="flex gap-4 flex-wrap">
             {steps.map((label, idx) => (
               <div
                 key={label}
@@ -282,10 +339,26 @@ export default function RegisterFormDialog() {
                         </Label>
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          {...field}
-                          placeholder={t("form_type_of_passport")}
-                        />
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <SelectTrigger className="w-full">
+                            {field.value
+                              ? field.value
+                              : t("form_select_type_of_passport") ||
+                                "Select type of passport"}
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Ordinary">Ordinary</SelectItem>
+                            <SelectItem value="Diplomatic">
+                              Diplomatic
+                            </SelectItem>
+                            <SelectItem value="Service">Service</SelectItem>
+                            <SelectItem value="Official">Official</SelectItem>
+                            <SelectItem value="Special">Special</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -407,7 +480,7 @@ export default function RegisterFormDialog() {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   name="nepalAddress"
                   control={form.control}
                   render={({ field }) => (
@@ -426,7 +499,7 @@ export default function RegisterFormDialog() {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
                 <FormField
                   name="entryAirport"
                   control={form.control}
@@ -462,10 +535,31 @@ export default function RegisterFormDialog() {
                         <Label>{t("form_visa_type") || "Visa Type"}</Label>
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          {...field}
-                          placeholder={t("form_visa_type_placeholder")}
-                        />
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <SelectTrigger className="w-full">
+                            {field.value
+                              ? field.value
+                              : t("form_select_visa_type") ||
+                                "Select visa type"}
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Tourist">Tourist</SelectItem>
+                            <SelectItem value="Business">Business</SelectItem>
+                            <SelectItem value="Student">Student</SelectItem>
+                            <SelectItem value="Work">Work</SelectItem>
+                            <SelectItem value="Diplomatic">
+                              Diplomatic
+                            </SelectItem>
+                            <SelectItem value="Medical">Medical</SelectItem>
+                            <SelectItem value="Pilgrimage">
+                              Pilgrimage
+                            </SelectItem>
+                            <SelectItem value="Other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -483,6 +577,63 @@ export default function RegisterFormDialog() {
                         <Input
                           {...field}
                           placeholder={t("form_visa_days_placeholder")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="payment"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_payment") || "Payment File"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="file"
+                          onChange={(e) => field.onChange(e.target.files?.[0])}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="passport"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel asChild>
+                        <Label>{t("form_passport") || "Passport File"}</Label>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="file"
+                          accept=".pdf,.jpg,.jpeg,.png"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (
+                              file &&
+                              ![
+                                "application/pdf",
+                                "image/jpeg",
+                                "image/png",
+                                "image/jpg",
+                              ].includes(file.type)
+                            ) {
+                              toast.error(
+                                t("passport_file_type_error") ||
+                                  "Passport file must be PDF, JPG, JPEG, or PNG."
+                              );
+                              e.target.value = "";
+                              field.onChange(undefined);
+                              return;
+                            }
+                            field.onChange(file);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
