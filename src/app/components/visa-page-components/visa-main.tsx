@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import DownloadFormDialog from "./download-form-dialog";
 import { useTranslation } from "@/app/hooks/use-translation";
 import VisaFAQ from "./visa-faq";
