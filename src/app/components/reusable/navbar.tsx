@@ -271,7 +271,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title} className="bg-transparent">
-        <NavigationMenuTrigger className=" bg-transparent text-white  flex items-center gap-2 hover:text-zinc-500">
+        <NavigationMenuTrigger className=" bg-transparent text-white  flex items-center gap-2 hover:text-zinc-900">
           {item.title}
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground flex gap-2 p-6">
@@ -293,7 +293,7 @@ const renderMenuItem = (item: MenuItem) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         href={item.url}
-        className="font-links bg-transparent text-white text-base hover:text-yellow-300 group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors"
+        className="font-links bg-transparent text-white hover:text-zinc-800 group inline-flex h-10 w-max items-center font-medium justify-center rounded-md px-4 py-2 transition-colors"
       >
         {item.title}
       </NavigationMenuLink>

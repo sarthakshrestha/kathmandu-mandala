@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import TrekTabs from "./trek-tabs";
 import GalleryPortal from "@/components/portals/gallery-portal";
@@ -8,37 +9,38 @@ import TourPlanPortal from "@/components/portals/tour-plan-portal";
 import IncludeExcludePortal from "@/components/portals/include-exclude-portal";
 import MoreToursPortal from "@/components/portals/more-tours-portal";
 import TrekFAQ from "./trek-faq";
-
-const tourPlanItems = [
-  {
-    key: "day1",
-    title: "Day 1: Arrive at Kathmandu and Transfer to hotel",
-    description:
-      "You will be welcomed by a Great Nepal Representative at the airport and be transferred to your hotel. Your Great Nepal Representative will explain briefly about the travel itinerary. There will be a welcome dinner tonight where you will enjoy local cuisine and folk dance.",
-  },
-  {
-    key: "day2-3",
-    title: "Day 2-3: Manaslu expedition preparation & Cultural tour, Hotel",
-    description: "Details for days 2-3...",
-  },
-  {
-    key: "day4-6",
-    title: "Day 4-6: Manaslu Base Camp Trek, Lodge",
-    description: "Details for days 4-6...",
-  },
-  {
-    key: "day7",
-    title: "Day 7: Summit Day, High Camp",
-    description: "Details for day 7...",
-  },
-  {
-    key: "day8-9",
-    title: "Day 8-9: Descent to Samagaon, Tea House",
-    description: "Details for days 8-9...",
-  },
-];
+import { useTranslation } from "@/app/hooks/use-translation";
 
 function TrekMain() {
+  const { t } = useTranslation();
+  const tourPlanItems = [
+    {
+      key: "day1",
+      title: t("tour_plan_day1_title"),
+      description: t("tour_plan_day1_desc"),
+    },
+    {
+      key: "day2-3",
+      title: t("tour_plan_day2_3_title"),
+      description: t("tour_plan_day2_3_desc"),
+    },
+    {
+      key: "day4-6",
+      title: t("tour_plan_day4_6_title"),
+      description: t("tour_plan_day4_6_desc"),
+    },
+    {
+      key: "day7",
+      title: t("tour_plan_day7_title"),
+      description: t("tour_plan_day7_desc"),
+    },
+    {
+      key: "day8-9",
+      title: t("tour_plan_day8_9_title"),
+      description: t("tour_plan_day8_9_desc"),
+    },
+  ];
+
   return (
     <div className="bg-[#FFF9EE] w-full">
       <div className="bg-[#FFF9EE] mx-auto max-w-[85rem]">
@@ -61,17 +63,13 @@ function TrekMain() {
             <TrekDetailSidebar duration="14 Days" price="1,800 EUR" />
           </div>
           <TrekDetailComponent
-            title="Trekking in the Himalayas (14 Days)"
-            description="The Manaslu Circuit Trek is one of those undiscovered trekking journeys that, despite not being so popular, has quite a bit of potential. It would not be an exaggeration to say that it’s a hidden gem."
-            tourType="Group"
+            title={t("trek_detail_title")}
+            description={t("trek_detail_description")}
+            tourType={t("trek_detail_tour_type")}
             maxGroupSize={50}
-            ageRequirement="15 - 99 yrs"
-            operatedIn="German/ English"
-            overview={[
-              "The Everest Base Camp trek combines the convenience of well-maintained paths with the raw beauty of the Himalayas. The Everest region, located in the lap of the mighty Himalayas, is recognized for its beautiful scenery and welcoming Sherpa people. This adventure not only brings you to the base of the world’s highest peak but also immerses you in the rich culture and traditions of Nepal.",
-              "The Everest Base Camp trek combines the convenience of well-maintained paths with the raw beauty of the Himalayas. The Everest region, located in the lap of the mighty Himalayas, is recognized for its beautiful scenery and welcoming Sherpa people. This adventure not only brings you to the base of the world’s highest peak but also immerses you in the rich culture and traditions of Nepal.",
-              "The Everest Base Camp trek combines the convenience of well-maintained paths with the raw beauty of the Himalayas. The Everest region, located in the lap of the mighty Himalayas, is recognized for its beautiful scenery and welcoming Sherpa people. This adventure not only brings you to the base of the world’s highest peak but also immerses you in the rich culture and traditions of Nepal.",
-            ]}
+            ageRequirement={t("trek_detail_age_requirement")}
+            operatedIn={t("trek_detail_operated_in")}
+            overview={[t("trek_detail_overview_1")]}
           />
           <div className="max-sm:px-4 flex flex-row w-full">
             <TrekDetailSidebar duration="14 Days" price="1,800 EUR" />
