@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
 import { visaService } from "@/api/services/visaService";
 import { Label } from "@/components/ui/label";
 import { useForm, FormProvider } from "react-hook-form";
@@ -213,15 +214,43 @@ export default function RegisterFormDialog() {
           {t("start_application_button") || "Start Application"}
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-[#FAF6F0] p-0 sm:p-0 rounded-xl border-none sm:max-w-3xl">
-        <DialogHeader className="px-6 pt-4 pb-2">
-          <div className="flex items-center gap-2">
+      <DialogContent className="bg-[#FAF6F0] p-0 sm:p-0 rounded-xl border-none sm:max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader className="px-4 pt-4 pb-2 sm:px-6">
+          <div className="flex items-center gap-2 mb-4">
             <FileText className="w-6 h-6 text-[#23233B]" />
-            <DialogTitle className="font-garamond text-2xl text-[#23233B]">
+            <DialogTitle className="font-garamond text-xl sm:text-2xl text-[#23233B]">
               {t("pre_registration_heading") || "Visa Pre-Registration"}
             </DialogTitle>
           </div>
-          <div className="flex gap-4 flex-wrap">
+
+          {/* Mobile View */}
+          <div className="sm:hidden space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="font-garamond text-lg font-semibold text-[#23233B]">
+                {steps[step]}
+              </span>
+              <span className="text-sm text-[#A89C8E]">
+                {step + 1} / {steps.length}
+              </span>
+            </div>
+            <Progress
+              value={((step + 1) / steps.length) * 100}
+              className="h-1.5 bg-[#E5E1DC]"
+            />
+            <div className="flex justify-between text-xs text-[#A89C8E] px-1 max-sm:hidden">
+              {steps.map((label, idx) => (
+                <span
+                  key={label}
+                  className={idx <= step ? "text-[#7B2D2D] font-medium" : ""}
+                >
+                  •
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop View */}
+          <div className="hidden sm:flex gap-4 flex-wrap">
             {steps.map((label, idx) => (
               <div
                 key={label}
@@ -242,7 +271,7 @@ export default function RegisterFormDialog() {
                 )}
                 <span className="font-garamond text-lg">{label}</span>
                 {idx < steps.length - 1 && (
-                  <span className="mx-2 h-px w-12 bg-[#E5E1DC] hidden sm:inline-block" />
+                  <span className="mx-2 h-px w-12 bg-[#E5E1DC] inline-block" />
                 )}
               </div>
             ))}
