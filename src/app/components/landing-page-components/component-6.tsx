@@ -51,6 +51,7 @@ export default function Component6() {
         src="/images/background/BackgroundPattern.png"
         alt={t("background_pattern_alt") || "Background Pattern"}
         fill
+        
         className="object-cover object-center pointer-events-none select-none"
         style={{ zIndex: 0 }}
         priority

@@ -15,6 +15,7 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { visaService } from "@/api/services/visaService";
 import { Label } from "@/components/ui/label";
@@ -24,8 +25,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { FileText } from "lucide-react";
+import { useEffect } from "react";
 import { CheckCircle, Circle } from "lucide-react";
 import { toast } from "sonner";
+import { PopoverCalendar } from "@/components/ui/popover-calendar";
+import { Loader2 } from "lucide-react";
+import { X } from "lucide-react";
 
 import {
   Select,
@@ -59,7 +64,10 @@ const registerSchema = z.object({
     { message: "Select a valid passport type." }
   ),
   address: z.string().min(1, "Required"),
-  phoneNumber: z.string().min(1, "Required"),
+  phoneNumber: z
+    .string()
+    .min(1, "Required")
+    .regex(/^\d+$/, "Only numbers allowed"),
   email: z.string().email("Invalid email"),
   occupation: z.string().min(1, "Required"),
   travelDate: z.string().min(1, "Required"),
@@ -87,18 +95,45 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 export default function RegisterFormDialog() {
   const { t } = useTranslation();
   const [step, setStep] = useState(0);
-
+  const [open, setOpen] = useState(false);
   const occupationOptions = [
     { value: "student", label: t("occupation_student") || "Student" },
     { value: "business", label: t("occupation_business") || "Business" },
     { value: "tourist", label: t("occupation_tourist") || "Tourist" },
     { value: "other", label: t("occupation_other") || "Other" },
   ];
+  const [loading, setLoading] = useState(false);
+
+  const [paymentFile, setPaymentFile] = useState<File | undefined>(undefined);
+  const [passportFile, setPassportFile] = useState<File | undefined>(undefined);
 
   const steps = [
     t("step_personal_information") || "Personal Information",
     t("step_travel_information") || "Travel Information",
     t("step_visa_details") || "Visa Details",
+  ];
+
+  useEffect(() => {
+    form.setValue("payment", paymentFile);
+    form.setValue("passport", passportFile);
+  }, [paymentFile, passportFile]);
+
+  const stepFields: Array<Array<keyof RegisterFormValues>> = [
+    [
+      "fullName",
+      "gender",
+      "dateOfBirth",
+      "nationality",
+      "passportNumber",
+      "passportValidUntil",
+      "typeOfPassport",
+      "address",
+      "phoneNumber",
+      "email",
+      "occupation",
+    ],
+    ["travelDate", "entryAirport"],
+    ["visaType", "visaDays", "payment", "passport"],
   ];
 
   const form = useForm<RegisterFormValues>({
@@ -125,9 +160,15 @@ export default function RegisterFormDialog() {
     },
   });
 
-  async function onSubmit(data: RegisterFormValues) {
-    console.log("Submitting visa form data:", data);
+  const handleNext = async () => {
+    const valid = await form.trigger(stepFields[step]);
+    if (valid) {
+      setStep((s) => Math.min(steps.length - 1, s + 1));
+    }
+  };
 
+  async function onSubmit(data: RegisterFormValues) {
+    setLoading(true);
     try {
       await visaService.sendVisa({
         name: data.fullName,
@@ -149,19 +190,26 @@ export default function RegisterFormDialog() {
       toast.success(t("visa_submit_success") || "Visa application submitted!");
       form.reset();
       setStep(0);
+      setOpen(false);
     } catch (error: any) {
       toast.error(
         t("visa_submit_error") ||
           error?.response?.data?.message ||
           "Failed to submit visa application."
       );
+    } finally {
+      setLoading(false);
     }
   }
+
   console.log("Form errors:", form.formState.errors);
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-3 sm:py-3 rounded-lg transition text-sm sm:text-base w-full">
+        <button
+          className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-3 sm:py-3 rounded-lg transition text-sm sm:text-base w-full"
+          onClick={() => setOpen(true)}
+        >
           {t("start_application_button") || "Start Application"}
         </button>
       </DialogTrigger>
@@ -263,13 +311,14 @@ export default function RegisterFormDialog() {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel asChild>
-                        <Label>
-                          {t("form_date_of_birth") || "Date of Birth"}
-                        </Label>
-                      </FormLabel>
                       <FormControl>
-                        <Input {...field} type="date" />
+                        <PopoverCalendar
+                          label={t("form_date_of_birth") || "Date of Birth"}
+                          value={field.value}
+                          onChange={field.onChange}
+                          max={new Date()}
+                          disabled={field.disabled}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -315,14 +364,24 @@ export default function RegisterFormDialog() {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel asChild>
-                        <Label>
-                          {t("form_passport_valid_until") ||
-                            "Passport Valid Until"}
-                        </Label>
-                      </FormLabel>
                       <FormControl>
-                        <Input {...field} type="date" />
+                        <PopoverCalendar
+                          label={
+                            t("form_passport_valid_until") ||
+                            "Passport Valid Until"
+                          }
+                          value={field.value}
+                          onChange={field.onChange}
+                          min={new Date()}
+                          max={
+                            new Date(
+                              new Date().getFullYear() + 100,
+                              new Date().getMonth(),
+                              new Date().getDate()
+                            )
+                          }
+                          disabled={field.disabled}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -393,6 +452,8 @@ export default function RegisterFormDialog() {
                         <Input
                           {...field}
                           placeholder={t("form_phone_number")}
+                          type="tel"
+                          inputMode="numeric"
                         />
                       </FormControl>
                       <FormMessage />
@@ -463,17 +524,16 @@ export default function RegisterFormDialog() {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel asChild>
-                        <Label>
-                          {t("form_travel_date") ||
-                            "Planned Travel Date (approximate)"}
-                        </Label>
-                      </FormLabel>
                       <FormControl>
-                        <Input
-                          {...field}
-                          type="date"
-                          placeholder={t("form_travel_date_placeholder")}
+                        <PopoverCalendar
+                          label={
+                            t("form_travel_date") ||
+                            "Planned Travel Date (approximate)"
+                          }
+                          value={field.value}
+                          onChange={field.onChange}
+                          min={new Date()} // Only allow today and future dates
+                          disabled={field.disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -589,86 +649,173 @@ export default function RegisterFormDialog() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel asChild>
-                        <Label>{t("form_payment") || "Payment File"}</Label>
+                        <Label>{t("form_payment") || "Payment File"} </Label>
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          type="file"
-                          onChange={(e) => field.onChange(e.target.files?.[0])}
-                        />
+                        <div>
+                          {!paymentFile ? (
+                            <Input
+                              type="file"
+                              accept=".pdf,.png,.jpg,.jpeg"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (
+                                  file &&
+                                  ![
+                                    "application/pdf",
+                                    "image/png",
+                                    "image/jpeg",
+                                    "image/jpg",
+                                  ].includes(file.type)
+                                ) {
+                                  toast.error(
+                                    t("file_type_error") ||
+                                      "File must be PDF, PNG, JPG, or JPEG."
+                                  );
+                                  e.target.value = "";
+                                  setPaymentFile(undefined);
+                                  field.onChange(undefined);
+                                  return;
+                                }
+                                setPaymentFile(file);
+                                field.onChange(file);
+                              }}
+                            />
+                          ) : (
+                            <div className="flex items-center mt-2 gap-2">
+                              <span className="text-xs text-[#23233B]">
+                                {paymentFile.name}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setPaymentFile(undefined);
+                                  field.onChange(undefined);
+                                }}
+                                className="text-red-500"
+                                aria-label="Remove file"
+                              >
+                                <X size={16} />
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage>
+                        {!paymentFile && (
+                          <span className="text-xs text-muted-foreground">
+                            (png, pdf, jpg)
+                          </span>
+                        )}
+                      </FormMessage>
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   name="passport"
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel asChild>
-                        <Label>{t("form_passport") || "Passport File"}</Label>
+                        <Label>{t("form_passport") || "Passport File"} </Label>
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          type="file"
-                          accept=".pdf,.jpg,.jpeg,.png"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (
-                              file &&
-                              ![
-                                "application/pdf",
-                                "image/jpeg",
-                                "image/png",
-                                "image/jpg",
-                              ].includes(file.type)
-                            ) {
-                              toast.error(
-                                t("passport_file_type_error") ||
-                                  "Passport file must be PDF, JPG, JPEG, or PNG."
-                              );
-                              e.target.value = "";
-                              field.onChange(undefined);
-                              return;
-                            }
-                            field.onChange(file);
-                          }}
-                        />
+                        <div>
+                          {!passportFile ? (
+                            <Input
+                              type="file"
+                              accept=".pdf,.png,.jpg,.jpeg"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (
+                                  file &&
+                                  ![
+                                    "application/pdf",
+                                    "image/png",
+                                    "image/jpeg",
+                                    "image/jpg",
+                                  ].includes(file.type)
+                                ) {
+                                  toast.error(
+                                    t("file_type_error") ||
+                                      "File must be PDF, PNG, JPG, or JPEG."
+                                  );
+                                  e.target.value = "";
+                                  setPassportFile(undefined);
+                                  field.onChange(undefined);
+                                  return;
+                                }
+                                setPassportFile(file);
+                                field.onChange(file);
+                              }}
+                            />
+                          ) : (
+                            <div className="flex items-center mt-2 gap-2">
+                              <span className="text-xs text-[#23233B]">
+                                {passportFile.name}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setPassportFile(undefined);
+                                  field.onChange(undefined);
+                                }}
+                                className="text-red-500"
+                                aria-label="Remove file"
+                              >
+                                <X size={16} />
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage>
+                        {!passportFile && (
+                          <span className="text-xs text-muted-foreground">
+                            (png, pdf, jpg)
+                          </span>
+                        )}
+                      </FormMessage>
                     </FormItem>
                   )}
                 />
               </div>
             )}
             <DialogFooter className="mt-6 flex flex-col sm:flex-row justify-between gap-2">
-              {step !== 0 && (
-                <button
+              {/* Previous button */}
+              <Button
+                type="button"
+                variant="outline"
+                className="bg-gray-200"
+                onClick={() => setStep((s) => Math.max(0, s - 1))}
+                disabled={loading || step === 0}
+              >
+                {t("form_back") || "Back"}
+              </Button>
+
+              {step < steps.length - 1 && (
+                <Button
                   type="button"
-                  className="bg-gray-200 px-4 py-2 rounded"
-                  onClick={() => setStep((s) => Math.max(0, s - 1))}
+                  variant="default"
+                  className="bg-[#B94B4B] text-white flex items-center justify-center"
+                  onClick={handleNext}
+                  disabled={loading}
                 >
-                  {t("form_back") || "Back"}
-                </button>
+                  {t("form_next") || "Next"}
+                </Button>
               )}
-              {step < steps.length - 1 ? (
-                <button
-                  type="button"
-                  className="bg-[#B94B4B] text-white px-4 py-2 rounded"
-                  onClick={() =>
-                    setStep((s) => Math.min(steps.length - 1, s + 1))
-                  }
-                >
-                  {t("form_next") || "Next"}: {steps[step + 1]}
-                </button>
-              ) : (
-                <button
+
+              {step === steps.length - 1 && (
+                <Button
                   type="submit"
-                  className="bg-[#B94B4B] text-white px-4 py-2 rounded"
+                  variant="default"
+                  className="bg-[#B94B4B] text-white"
+                  disabled={loading}
                 >
+                  {loading && <Loader2 className="animate-spin mr-2 w-5 h-5" />}
                   {t("form_submit") || "Submit"}
-                </button>
+                </Button>
               )}
             </DialogFooter>
           </form>

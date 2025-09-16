@@ -5,13 +5,16 @@ import DownloadFormDialog from "./download-form-dialog";
 import { useTranslation } from "@/app/hooks/use-translation";
 import VisaFAQ from "./visa-faq";
 import RegisterFormDialog from "./register-form-dialog";
+import { Loader2 } from "lucide-react";
 
 export default function VisaMain() {
   const { t, isLoaded } = useTranslation();
 
   if (!isLoaded) {
     return (
-      <div className="flex justify-center items-center h-64">Loading...</div>
+      <div className="flex justify-center items-center h-64">
+        <Loader2 className="animate-spin w-8 h-8 text-[#B94B4B]" />
+      </div>
     );
   }
 

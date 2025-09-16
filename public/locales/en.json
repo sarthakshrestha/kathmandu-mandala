@@ -295,5 +295,7 @@
   "exclude_tickets": "Tickets",
   "form_select_type_of_passport": "Select type of passport",
   "form_payment": "Upload proof of payment",
-  "form_passport": "Please upload a scan of your passport"
+  "form_passport": "Please upload a scan of your passport",
+  "visa_submit_success": "Visa application submitted successfully!",
+  "form_select_visa_type": "Select visa type"
 }
