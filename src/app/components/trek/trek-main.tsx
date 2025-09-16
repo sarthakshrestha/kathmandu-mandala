@@ -81,17 +81,17 @@ function TrekMain() {
             <section id="include-exclude">
               <IncludeExcludePortal
                 include={[
-                  "Pick and Drop Services",
-                  "1 Meal Per Day",
-                  "Cruise Dinner & Music Event",
-                  "Visit 7 Best Places in the City With Group",
-                  "Guided City Tours with Local Experts",
+                  t("include_pick_drop"),
+                  t("include_meal"),
+                  t("include_cruise_dinner"),
+                  t("include_visit_places"),
+                  t("include_guided_tours"),
                 ]}
                 exclude={[
-                  "Additional Services",
-                  "Insurance",
-                  "Food & Drinks",
-                  "Tickets",
+                  t("exclude_additional_services"),
+                  t("exclude_insurance"),
+                  t("exclude_food_drinks"),
+                  t("exclude_tickets"),
                 ]}
               />
             </section>
@@ -100,17 +100,15 @@ function TrekMain() {
                 tours={[
                   {
                     image: "/images/trek/Trek2.png",
-                    title: "Trekking in the Himalayas (14 Days)",
-                    description:
-                      "Hike on the most beautiful trails of the Himalayas",
-                    price: "Price: from 1,800 EUR",
+                    title: t("more_tours_trek_title"),
+                    description: t("more_tours_trek_desc"),
+                    price: t("more_tours_trek_price"),
                   },
                   {
                     image: "/images/trek/Trek3.png",
-                    title: "City trip to Kathmandu (5 Days)",
-                    description:
-                      "Discover the historic old town and UNESCO World Heritage sites",
-                    price: "Price: from 600 EUR",
+                    title: t("more_tours_city_title"),
+                    description: t("more_tours_city_desc"),
+                    price: t("more_tours_city_price"),
                   },
                 ]}
               />
