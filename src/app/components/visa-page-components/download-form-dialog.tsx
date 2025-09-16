@@ -19,7 +19,7 @@ export default function DownloadFormDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-2 sm:py-3 rounded-lg transition text-sm sm:text-base w-full">
+        <button className="bg-[#B94B4B] hover:bg-[#a13e3e] text-white font-links font-semibold py-3 sm:py-3 rounded-lg transition text-sm sm:text-base w-full">
           {t("download_form_button") || "Download Form"}
         </button>
       </DialogTrigger>
