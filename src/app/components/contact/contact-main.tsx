@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, scheduleSchema } from "@/app/schema/Schemas";
 import { toast } from "sonner";
+import { PopoverCalendar } from "@/components/ui/popover-calendar";
 
 export default function ContactMain() {
   const { t, isLoaded } = useTranslation();
@@ -65,11 +66,22 @@ export default function ContactMain() {
         alert(t("contact_error_api") || "Failed to send message.");
       }
     } else {
-      alert(t("schedule_success_message"));
-      reset();
+      try {
+        await contactService.sendCallSchedule({
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          date: data.date,
+          time: data.time,
+        });
+        toast.success(t("schedule_success_message"));
+        reset();
+      } catch (error) {
+        alert(t("schedule_error_api") || "Failed to schedule call.");
+      }
     }
   };
-
   if (!isLoaded) return null;
 
   return (
@@ -216,15 +228,10 @@ export default function ContactMain() {
                 <label className="block font-links mb-1">
                   {t("schedule_date")}
                 </label>
-                <Calendar
-                  selected={watch("date") as Date | undefined}
-                  onSelect={(date) => setValue("date", date)}
-                  mode="single"
-                  className={`mb-2 ${
-                    "date" in errors && errors.date
-                      ? "border-[#9A2731] border rounded-md"
-                      : ""
-                  }`}
+                <PopoverCalendar
+                  value={typeof watch("date") === "string" ? watch("date") : ""}
+                  onChange={(dateStr) => setValue("date", dateStr)}
+                  min={new Date()}
                 />
                 {"date" in errors && errors.date && (
                   <span className="text-[#9A2731] text-xs">

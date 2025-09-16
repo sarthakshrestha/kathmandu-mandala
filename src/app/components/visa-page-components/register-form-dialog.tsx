@@ -813,7 +813,7 @@ export default function RegisterFormDialog() {
                   className="bg-[#B94B4B] text-white"
                   disabled={loading}
                 >
-                  {loading && <Loader2 className="animate-spin mr-2 w-5 h-5" />}
+                  {loading && <Loader2 className="animate-spin mr-1 w-5 h-5" />}
                   {t("form_submit") || "Submit"}
                 </Button>
               )}

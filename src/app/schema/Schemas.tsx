@@ -16,16 +16,10 @@ export const scheduleSchema = z.object({
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(1, "Phone number is required"),
-  date: z.preprocess(
-    (val) => {
-      if (typeof val === "string" || typeof val === "number") {
-        const d = new Date(val);
-        return isNaN(d.getTime()) ? undefined : d;
-      }
-      return undefined;
-    },
-    z.date().refine((val) => !!val, { message: "Date is required" })
-  ),
+  date: z
+    .string()
+    .min(1, "Date is required")
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be in YYYY-MM-DD format"),
   time: z.string().min(1, "Time is required"),
   agree: z
     .boolean()

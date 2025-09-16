@@ -5,7 +5,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
-import { formatDate } from "@/app/helpers/helpers";
+import { formatDate, formatDateDisplay } from "@/app/helpers/helpers";
 import {
   Popover,
   PopoverContent,
@@ -22,8 +22,8 @@ type PopoverCalendarProps = {
 };
 
 export function PopoverCalendar({
-  label = "Date of birth",
-  value,
+  label = "",
+  value = "",
   onChange,
   min,
   max,
@@ -31,7 +31,8 @@ export function PopoverCalendar({
 }: PopoverCalendarProps) {
   const [open, setOpen] = React.useState(false);
 
-  const selectedDate = value ? new Date(value) : undefined;
+  const selectedDate =
+    typeof value === "string" && value.length > 0 ? new Date(value) : undefined;
   const minDate = min ?? undefined;
   const maxDate = max ?? undefined;
 
@@ -42,9 +43,11 @@ export function PopoverCalendar({
 
   return (
     <div className="flex flex-col gap-3">
-      <Label htmlFor="date" className="px-1">
-        {label}
-      </Label>
+      {label && (
+        <Label htmlFor="date" className="px-1">
+          {label}
+        </Label>
+      )}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -53,7 +56,7 @@ export function PopoverCalendar({
             className="w-full justify-between font-normal bg-transparent"
             disabled={disabled}
           >
-            {selectedDate ? formatDate(selectedDate) : "Select date"}
+            {selectedDate ? formatDateDisplay(selectedDate) : "Select date"}
             <ChevronDownIcon />
           </Button>
         </PopoverTrigger>
@@ -70,7 +73,7 @@ export function PopoverCalendar({
                 (!minDate || date >= minDate) &&
                 (!maxDate || date <= maxDate)
               ) {
-                onChange?.(formatDate(date));
+                onChange?.(formatDate(date)); // always store/send as yyyy-mm-dd
                 setOpen(false);
               }
             }}

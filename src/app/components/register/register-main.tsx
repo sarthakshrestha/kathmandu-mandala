@@ -4,6 +4,7 @@ import { CheckCircle, Clock, Loader2 } from "lucide-react";
 import { useTranslation } from "@/app/hooks/use-translation";
 import RegisterFormDialog from "../visa-page-components/register-form-dialog";
 import VisaFAQ from "../visa-page-components/visa-faq";
+import DownloadFormDialog from "../visa-page-components/download-form-dialog";
 
 export default function RegistrationMain() {
   const { t, isLoaded } = useTranslation();
@@ -97,7 +98,7 @@ export default function RegistrationMain() {
           </div>
           {/* Right: Card */}
           <div className="bg-white rounded-xl shadow p-4 sm:p-6 w-full md:w-[320px] flex flex-col gap-3 sm:gap-4 h-fit mt-4 md:mt-0">
-            {/* You can add more translated fields here if needed */}
+            <DownloadFormDialog />
             <RegisterFormDialog />
           </div>
         </div>

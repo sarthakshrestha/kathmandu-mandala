@@ -23,3 +23,12 @@ export interface VisaForm {
   payment: File | string;
   passport: File | string;
 }
+
+export interface CallScheduleForm {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  date: string;
+  time: string;
+}
