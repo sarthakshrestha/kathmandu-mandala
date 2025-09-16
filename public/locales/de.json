@@ -292,5 +292,8 @@
   "exclude_additional_services": "Zusätzliche Leistungen",
   "exclude_insurance": "Versicherung",
   "exclude_food_drinks": "Essen & Getränke",
-  "exclude_tickets": "Tickets"
+  "exclude_tickets": "Tickets",
+  "form_select_type_of_passport": "Wählen Sie den Pass-Typ",
+  "form_payment": "Zahlungsnachweis hochladen",
+  "form_passport": "Bitte laden Sie einen Scan Ihres Reisepasses hoch"
 }

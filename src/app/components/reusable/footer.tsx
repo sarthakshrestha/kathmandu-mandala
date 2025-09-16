@@ -85,7 +85,7 @@ export default function Footer() {
       </div>
       <div className="max-w-[85rem] mx-auto mt-10 mb-1 items-end flex justify-end ">
         <a
-          href="https://share.google/aszykUjjcBVyT1NJz"
+          href="https://maps.app.goo.gl/DUDPAbTTmdvyo9bXA"
           target="_blank"
           rel="noopener noreferrer"
           className="font-links text-base text-[#23233B] hover:underline flex items-center gap-2"

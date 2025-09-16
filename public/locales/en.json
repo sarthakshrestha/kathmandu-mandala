@@ -292,5 +292,8 @@
   "exclude_additional_services": "Additional Services",
   "exclude_insurance": "Insurance",
   "exclude_food_drinks": "Food & Drinks",
-  "exclude_tickets": "Tickets"
+  "exclude_tickets": "Tickets",
+  "form_select_type_of_passport": "Select type of passport",
+  "form_payment": "Upload proof of payment",
+  "form_passport": "Please upload a scan of your passport"
 }

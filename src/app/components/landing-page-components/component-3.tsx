@@ -23,9 +23,15 @@ export default function Component3() {
           <ul className="space-y-4 mb-6">
             <li className="flex items-center gap-3">
               <MapPin className="w-6 h-6 text-[#4B2323]" />
-              <span className="font-links text-[#4B2323] font-semibold">
-                {t("restaurant_location")}
-              </span>
+              <a
+                href="https://maps.app.goo.gl/DUDPAbTTmdvyo9bXA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-links text-[#4B2323] font-semibold hover:underline"
+              >
+                Wilmersdorfer Str. 163, 10585 Berlin, Deutschland – Kathmandu
+                Mandala{" "}
+              </a>
             </li>
             <li className="flex items-center gap-3">
               <Clock className="w-6 h-6 text-[#4B2323]" />
