@@ -732,7 +732,7 @@ export default function RegisterFormDialog() {
                                   <img
                                     src="/images/ref/passport-ref.png"
                                     alt="Passport reference"
-                                    className="w-full h-full object-contain opacity-50"
+                                    className="w-full h-full object-contain opacity-60"
                                   />
                                 </div>
                                 <p className="text-[#666] mb-1">
@@ -775,8 +775,7 @@ export default function RegisterFormDialog() {
                                   />
                                   <Button
                                     type="button"
-                                    variant="outline"
-                                    className="bg-white hover:bg-gray-50"
+                                    variant="default"
                                     onClick={() =>
                                       document
                                         .getElementById("passport-upload")
