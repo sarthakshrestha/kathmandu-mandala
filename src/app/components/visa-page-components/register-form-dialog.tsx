@@ -16,11 +16,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Receipt } from "lucide-react";
-
+import { Receipt, CalendarDays, Upload } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { visaService } from "@/api/services/visaService";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
@@ -833,26 +834,136 @@ export default function RegisterFormDialog() {
               </div>
             )}
             {step === 4 && (
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-8">
+                {/* Visa Fee Section */}
+                <div>
+                  <h2 className="text-xl font-semibold text-[#23233B] mb-2">
+                    {t("pay_visa_fee") || "Pay your Visa Fee"}
+                  </h2>
+                  <p className="text-sm text-[#666] mb-6">
+                    {t("visa_fee_description") ||
+                      "Choose the days you wish to stay in Nepal based on your preferences; the fee includes a service charge."}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <Card className="bg-white hover:border-[#B94B4B] transition-colors cursor-pointer">
+                      <CardContent>
+                        <div className="flex flex-col mx-auto">
+                          <div className="flex items-center gap-2 mb-4 mx-auto">
+                            <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
+                            <span className="text-xl font-semibold text-[#23233B]">
+                              15 Days
+                            </span>
+                          </div>
+                          <Badge
+                            variant="outline"
+                            className="bg-[#D6A346] text-zinc-900 border-none rounded-full px-4 py-2 text-base mx-auto"
+                          >
+                            € 30
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="bg-white hover:border-[#B94B4B] transition-colors cursor-pointer">
+                      <CardContent>
+                        <div className="flex flex-col mx-auto">
+                          <div className="flex items-center gap-2 mb-4  mx-auto">
+                            <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
+                            <span className="text-xl font-semibold text-[#23233B]">
+                              30 Days
+                            </span>
+                          </div>
+                          <Badge
+                            variant="outline"
+                            className="bg-[#D6A346] text-zinc-900 border-none rounded-full px-4 py-2 text-base  mx-auto"
+                          >
+                            € 50
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="bg-white hover:border-[#B94B4B] transition-colors cursor-pointer">
+                      <CardContent>
+                        <div className="flex flex-col mx-auto">
+                          <div className="flex items-center gap-2 mb-4  mx-auto">
+                            <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
+                            <span className="text-xl font-semibold text-[#23233B]">
+                              90 Days
+                            </span>
+                          </div>
+                          <Badge
+                            variant="outline"
+                            className="bg-[#D6A346] text-zinc-900  border-none rounded-full px-4 py-2 text-base  mx-auto"
+                          >
+                            € 125
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Payment Details Section */}
+                <div className="max-w-6xl max-sm:w-full mx-auto">
+                  <h2 className="text-xl font-semibold text-[#23233B] mb-6 ">
+                    {t("payment_details") || "Payment Details"}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-[#666]">
+                          {t("bank_name") || "Bank Name"}
+                        </span>
+                        <span className="font-medium">Your Bank Name</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-[#666]">
+                          {t("account_number") || "Account Number"}
+                        </span>
+                        <span className="font-medium">30123 456 789 456</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-[#666]">
+                          {t("account_type") || "Account Type"}
+                        </span>
+                        <span className="font-medium">Savings</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-[#666]">IBAN</span>
+                        <span className="font-medium">XXXXXXXX</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="text-sm text-[#666] mb-2">
+                        {t("scan_to_pay") || "Scan to pay"}
+                      </span>
+                      <img
+                        src="/images/qr-code.png"
+                        alt="QR Code"
+                        className="w-32 h-32"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Upload Payment Proof Section */}
                 <FormField
                   name="payment"
                   control={form.control}
                   render={({ field }) => (
                     <FormItem className="col-span-2">
                       <FormLabel asChild>
-                        <Label className="text-lg font-semibold">
-                          {t("form_payment") || "Payment Details"}
+                        <Label className="text-xl font-semibold text-[#23233B]">
+                          {t("upload_payment_proof") ||
+                            "Upload Proof of Payment"}
                         </Label>
                       </FormLabel>
-                      <p className="text-sm text-[#666] mb-4">
-                        {t("form_payment_description") ||
-                          "Upload your proof of payment. This can be a screenshot or PDF of your payment confirmation."}
-                      </p>
                       <FormControl>
                         <div className="w-full">
                           {!paymentFile ? (
                             <div
-                              className="border-2 border-dashed border-[#E5E1DC] rounded-lg p-8 text-center bg-white"
+                              className="border-2 border-dashed border-[#E5E1DC] rounded-lg p-8 text-center bg-white mt-4"
                               onDragOver={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -881,14 +992,12 @@ export default function RegisterFormDialog() {
                               }}
                             >
                               <div className="flex flex-col items-center gap-4">
-                                <div className="relative w-24 h-24 mb-4 text-[#23233B]">
-                                  <Receipt size={96} strokeWidth={1.5} />
-                                </div>
-                                <p className="text-[#666] mb-1">
+                                <Upload className="w-12 h-12 text-[#23233B] opacity-50" />
+                                <p className="text-[#666]">
                                   {t("form_payment_drag") ||
-                                    "Drag and drop your payment proof here"}
+                                    "Drag and drop an image or PDF file to upload"}
                                 </p>
-                                <p className="text-xs text-[#A89C8E] mb-4">
+                                <p className="text-xs text-[#A89C8E]">
                                   {t("form_payment_formats") ||
                                     "JPG, PNG or PDF formats, no larger than 10 MB"}
                                 </p>

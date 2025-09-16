@@ -308,5 +308,13 @@
   "form_payment_drag": "Drag and drop your payment proof here",
   "form_payment_formats": "JPG, PNG or PDF formats, no larger than 10 MB",
   "form_choose_payment": "Choose payment proof",
-  "step_payment_details": "Payment"
+  "step_payment_details": "Payment",
+  "pay_visa_fee": "Pay your Visa Fee",
+  "visa_fee_description": "Choose the days you wish to stay in Nepal based on your preferences; the fee includes a service charge.",
+  "bank_name": "Bank Name",
+  "account_number": "Account Number",
+  "account_type": "Account Type",
+  "scan_to_pay": "Scan to pay",
+  "upload_payment_proof": "Upload Proof of Payment",
+  "payment_detail_title": "Payment Details"
 }

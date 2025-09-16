@@ -308,5 +308,13 @@
   "form_payment_drag": "Ziehen Sie Ihren Zahlungsnachweis hierher",
   "form_payment_formats": "JPG, PNG oder PDF Formate, nicht größer als 10 MB",
   "form_choose_payment": "Zahlungsnachweis auswählen",
-  "step_payment_details": "Zahlungsdetails"
+  "step_payment_details": "Zahlungsdetails",
+  "pay_visa_fee": "Zahlen Sie Ihre Visumgebühr",
+  "visa_fee_description": "Wählen Sie die Tage, die Sie in Nepal bleiben möchten; die Gebühr beinhaltet eine Servicegebühr.",
+  "payment_detail_title": "Zahlungsdetails",
+  "bank_name": "Bankname",
+  "account_number": "Kontonummer",
+  "account_type": "Kontotyp",
+  "scan_to_pay": "Zum Bezahlen scannen",
+  "upload_payment_proof": "Zahlungsnachweis hochladen"
 }
