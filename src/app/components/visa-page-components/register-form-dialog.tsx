@@ -16,6 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { Receipt } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { visaService } from "@/api/services/visaService";
@@ -112,6 +114,8 @@ export default function RegisterFormDialog() {
     t("step_personal_information") || "Personal Information",
     t("step_travel_information") || "Travel Information",
     t("step_visa_details") || "Visa Details",
+    t("step_passport_details") || "Passport Details",
+    t("step_payment_details") || "Payment Details",
   ];
 
   useEffect(() => {
@@ -214,7 +218,7 @@ export default function RegisterFormDialog() {
           {t("start_application_button") || "Start Application"}
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-[#FAF6F0] p-0 sm:p-0 rounded-xl border-none sm:max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="bg-[#FAF6F0] p-0 sm:p-0 rounded-xl border-none sm:max-w-7xl max-h-[90vh] overflow-y-auto">
         <DialogHeader className="px-4 pt-4 pb-2 sm:px-6">
           <div className="flex items-center gap-2 mb-4">
             <FileText className="w-6 h-6 text-[#23233B]" />
@@ -672,140 +676,308 @@ export default function RegisterFormDialog() {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  name="payment"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel asChild>
-                        <Label>{t("form_payment") || "Payment File"} </Label>
-                      </FormLabel>
-                      <FormControl>
-                        <div>
-                          {!paymentFile ? (
-                            <Input
-                              type="file"
-                              accept=".pdf,.png,.jpg,.jpeg"
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                if (
-                                  file &&
-                                  ![
-                                    "application/pdf",
-                                    "image/png",
-                                    "image/jpeg",
-                                    "image/jpg",
-                                  ].includes(file.type)
-                                ) {
-                                  toast.error(
-                                    t("file_type_error") ||
-                                      "File must be PDF, PNG, JPG, or JPEG."
-                                  );
-                                  e.target.value = "";
-                                  setPaymentFile(undefined);
-                                  field.onChange(undefined);
-                                  return;
-                                }
-                                setPaymentFile(file);
-                                field.onChange(file);
-                              }}
-                            />
-                          ) : (
-                            <div className="flex items-center mt-2 gap-2">
-                              <span className="text-xs text-[#23233B]">
-                                {paymentFile.name}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setPaymentFile(undefined);
-                                  field.onChange(undefined);
-                                }}
-                                className="text-red-500"
-                                aria-label="Remove file"
-                              >
-                                <X size={16} />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </FormControl>
-                      <FormMessage>
-                        {!paymentFile && (
-                          <span className="text-xs text-muted-foreground">
-                            (png, pdf, jpg)
-                          </span>
-                        )}
-                      </FormMessage>
-                    </FormItem>
-                  )}
-                />
-
+              </div>
+            )}
+            {step === 3 && (
+              <div className="flex flex-col gap-4">
                 <FormField
                   name="passport"
                   control={form.control}
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="col-span-2">
                       <FormLabel asChild>
-                        <Label>{t("form_passport") || "Passport File"} </Label>
+                        <Label className="text-lg font-semibold">
+                          {t("form_passport") || "Passport Details"}
+                        </Label>
                       </FormLabel>
+                      <p className="text-sm text-[#666] mb-4">
+                        {t("form_passport_description") ||
+                          "Take a photo of your passport bio page. This is the page with your photo."}
+                      </p>
                       <FormControl>
-                        <div>
+                        <div className="w-full">
                           {!passportFile ? (
-                            <Input
-                              type="file"
-                              accept=".pdf,.png,.jpg,.jpeg"
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
+                            <div
+                              className="border-2 border-dashed border-[#E5E1DC] rounded-lg p-8 text-center bg-white"
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                const file = e.dataTransfer.files?.[0];
                                 if (
                                   file &&
-                                  ![
+                                  [
                                     "application/pdf",
                                     "image/png",
                                     "image/jpeg",
                                     "image/jpg",
                                   ].includes(file.type)
                                 ) {
+                                  setPassportFile(file);
+                                  field.onChange(file);
+                                } else {
                                   toast.error(
                                     t("file_type_error") ||
                                       "File must be PDF, PNG, JPG, or JPEG."
                                   );
-                                  e.target.value = "";
-                                  setPassportFile(undefined);
-                                  field.onChange(undefined);
-                                  return;
                                 }
-                                setPassportFile(file);
-                                field.onChange(file);
                               }}
-                            />
+                            >
+                              <div className="flex flex-col items-center gap-4">
+                                <div className="relative w-full max-w-md aspect-[3/2] mb-4">
+                                  <img
+                                    src="/images/ref/passport-ref.png"
+                                    alt="Passport reference"
+                                    className="w-full h-full object-contain opacity-50"
+                                  />
+                                </div>
+                                <p className="text-[#666] mb-1">
+                                  {t("form_passport_drag") ||
+                                    "Drag and drop an image or PDF file to upload"}
+                                </p>
+                                <p className="text-xs text-[#A89C8E] mb-4">
+                                  {t("form_passport_formats") ||
+                                    "JPG, PNG or PDF formats, no larger than 10 MB"}
+                                </p>
+                                <div>
+                                  <input
+                                    type="file"
+                                    id="passport-upload"
+                                    accept=".pdf,.png,.jpg,.jpeg"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                      const file = e.target.files?.[0];
+                                      if (
+                                        file &&
+                                        ![
+                                          "application/pdf",
+                                          "image/png",
+                                          "image/jpeg",
+                                          "image/jpg",
+                                        ].includes(file.type)
+                                      ) {
+                                        toast.error(
+                                          t("file_type_error") ||
+                                            "File must be PDF, PNG, JPG, or JPEG."
+                                        );
+                                        e.target.value = "";
+                                        setPassportFile(undefined);
+                                        field.onChange(undefined);
+                                        return;
+                                      }
+                                      setPassportFile(file);
+                                      field.onChange(file);
+                                    }}
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="bg-white hover:bg-gray-50"
+                                    onClick={() =>
+                                      document
+                                        .getElementById("passport-upload")
+                                        ?.click()
+                                    }
+                                  >
+                                    {t("form_choose_photo") || "Choose a photo"}
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
                           ) : (
-                            <div className="flex items-center mt-2 gap-2">
-                              <span className="text-xs text-[#23233B]">
-                                {passportFile.name}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setPassportFile(undefined);
-                                  field.onChange(undefined);
-                                }}
-                                className="text-red-500"
-                                aria-label="Remove file"
-                              >
-                                <X size={16} />
-                              </button>
+                            <div className="border rounded-lg p-4 bg-white">
+                              <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center gap-2">
+                                  <FileText className="w-5 h-5 text-[#23233B]" />
+                                  <span className="text-sm text-[#23233B] font-medium">
+                                    {passportFile.name}
+                                  </span>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setPassportFile(undefined);
+                                    field.onChange(undefined);
+                                  }}
+                                  className="text-[#B94B4B] hover:text-[#a13e3e] transition-colors"
+                                  aria-label="Remove file"
+                                >
+                                  <X size={20} />
+                                </button>
+                              </div>
+                              {passportFile.type.startsWith("image/") && (
+                                <div className="relative w-full max-w-md aspect-[3/2] mt-4 mx-auto">
+                                  <img
+                                    src={URL.createObjectURL(passportFile)}
+                                    alt="Passport preview"
+                                    className="w-full h-full object-contain rounded-md"
+                                    onLoad={() =>
+                                      URL.revokeObjectURL(
+                                        URL.createObjectURL(passportFile)
+                                      )
+                                    }
+                                  />
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
                       </FormControl>
-                      <FormMessage>
-                        {!passportFile && (
-                          <span className="text-xs text-muted-foreground">
-                            (png, pdf, jpg)
-                          </span>
-                        )}
-                      </FormMessage>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+            {step === 4 && (
+              <div className="flex flex-col gap-4">
+                <FormField
+                  name="payment"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem className="col-span-2">
+                      <FormLabel asChild>
+                        <Label className="text-lg font-semibold">
+                          {t("form_payment") || "Payment Details"}
+                        </Label>
+                      </FormLabel>
+                      <p className="text-sm text-[#666] mb-4">
+                        {t("form_payment_description") ||
+                          "Upload your proof of payment. This can be a screenshot or PDF of your payment confirmation."}
+                      </p>
+                      <FormControl>
+                        <div className="w-full">
+                          {!paymentFile ? (
+                            <div
+                              className="border-2 border-dashed border-[#E5E1DC] rounded-lg p-8 text-center bg-white"
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                const file = e.dataTransfer.files?.[0];
+                                if (
+                                  file &&
+                                  [
+                                    "application/pdf",
+                                    "image/png",
+                                    "image/jpeg",
+                                    "image/jpg",
+                                  ].includes(file.type)
+                                ) {
+                                  setPaymentFile(file);
+                                  field.onChange(file);
+                                } else {
+                                  toast.error(
+                                    t("file_type_error") ||
+                                      "File must be PDF, PNG, JPG, or JPEG."
+                                  );
+                                }
+                              }}
+                            >
+                              <div className="flex flex-col items-center gap-4">
+                                <div className="relative w-24 h-24 mb-4 text-[#23233B]">
+                                  <Receipt size={96} strokeWidth={1.5} />
+                                </div>
+                                <p className="text-[#666] mb-1">
+                                  {t("form_payment_drag") ||
+                                    "Drag and drop your payment proof here"}
+                                </p>
+                                <p className="text-xs text-[#A89C8E] mb-4">
+                                  {t("form_payment_formats") ||
+                                    "JPG, PNG or PDF formats, no larger than 10 MB"}
+                                </p>
+                                <div>
+                                  <input
+                                    type="file"
+                                    id="payment-upload"
+                                    accept=".pdf,.png,.jpg,.jpeg"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                      const file = e.target.files?.[0];
+                                      if (
+                                        file &&
+                                        ![
+                                          "application/pdf",
+                                          "image/png",
+                                          "image/jpeg",
+                                          "image/jpg",
+                                        ].includes(file.type)
+                                      ) {
+                                        toast.error(
+                                          t("file_type_error") ||
+                                            "File must be PDF, PNG, JPG, or JPEG."
+                                        );
+                                        e.target.value = "";
+                                        setPaymentFile(undefined);
+                                        field.onChange(undefined);
+                                        return;
+                                      }
+                                      setPaymentFile(file);
+                                      field.onChange(file);
+                                    }}
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="bg-white hover:bg-gray-50"
+                                    onClick={() =>
+                                      document
+                                        .getElementById("payment-upload")
+                                        ?.click()
+                                    }
+                                  >
+                                    {t("form_choose_payment") ||
+                                      "Choose payment proof"}
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="border rounded-lg p-4 bg-white">
+                              <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center gap-2">
+                                  <Receipt className="w-5 h-5 text-[#23233B]" />
+                                  <span className="text-sm text-[#23233B] font-medium">
+                                    {paymentFile.name}
+                                  </span>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setPaymentFile(undefined);
+                                    field.onChange(undefined);
+                                  }}
+                                  className="text-[#B94B4B] hover:text-[#a13e3e] transition-colors"
+                                  aria-label="Remove file"
+                                >
+                                  <X size={20} />
+                                </button>
+                              </div>
+                              {paymentFile.type.startsWith("image/") && (
+                                <div className="relative w-full max-w-md aspect-[3/2] mt-4 mx-auto">
+                                  <img
+                                    src={URL.createObjectURL(paymentFile)}
+                                    alt="Payment preview"
+                                    className="w-full h-full object-contain rounded-md"
+                                    onLoad={() =>
+                                      URL.revokeObjectURL(
+                                        URL.createObjectURL(paymentFile)
+                                      )
+                                    }
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />

@@ -294,8 +294,19 @@
   "exclude_food_drinks": "Food & Drinks",
   "exclude_tickets": "Tickets",
   "form_select_type_of_passport": "Select type of passport",
-  "form_payment": "Upload proof of payment",
-  "form_passport": "Please upload a scan of your passport",
   "visa_submit_success": "Visa application submitted successfully!",
-  "form_select_visa_type": "Select visa type"
+  "form_select_visa_type": "Select visa type",
+  "step_passport_details": "Passport Details",
+  "form_passport": "Passport Details",
+  "form_passport_description": "Take a photo of your passport bio page. This is the page with your photo.",
+  "form_passport_drag": "Drag and drop an image or PDF file to upload",
+  "form_passport_formats": "JPG, PNG or PDF formats, no larger than 10 MB",
+  "form_choose_photo": "Choose a photo",
+  "file_type_error": "File must be PDF, PNG, JPG, or JPEG.",
+  "form_payment": "Payment",
+  "form_payment_description": "Upload your proof of payment. This can be a screenshot or PDF of your payment confirmation.",
+  "form_payment_drag": "Drag and drop your payment proof here",
+  "form_payment_formats": "JPG, PNG or PDF formats, no larger than 10 MB",
+  "form_choose_payment": "Choose payment proof",
+  "step_payment_details": "Payment"
 }

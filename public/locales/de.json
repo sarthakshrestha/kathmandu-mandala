@@ -295,7 +295,18 @@
   "exclude_tickets": "Tickets",
   "form_select_type_of_passport": "Wählen Sie den Pass-Typ",
   "form_payment": "Zahlungsnachweis hochladen",
-  "form_passport": "Bitte laden Sie einen Scan Ihres Reisepasses hoch",
   "visa_submit_success": "Ihr Visumantrag wurde erfolgreich eingereicht. Wir werden Sie in Kürze kontaktieren.",
-  "form_select_visa_type": "Visumtyp auswählen"
+  "form_select_visa_type": "Visumtyp auswählen",
+  "step_passport_details": "Reisepass Details",
+  "form_passport": "Reisepass Details",
+  "form_passport_description": "Fotografieren Sie die Bio-Seite Ihres Reisepasses. Dies ist die Seite mit Ihrem Foto.",
+  "form_passport_drag": "Ziehen Sie eine Bild- oder PDF-Datei zum Hochladen hierher",
+  "form_passport_formats": "JPG, PNG oder PDF Formate, nicht größer als 10 MB",
+  "form_choose_photo": "Foto auswählen",
+  "file_type_error": "Datei muss PDF, PNG, JPG oder JPEG sein.",
+  "form_payment_description": "Laden Sie Ihren Zahlungsnachweis hoch. Dies kann ein Screenshot oder PDF Ihrer Zahlungsbestätigung sein.",
+  "form_payment_drag": "Ziehen Sie Ihren Zahlungsnachweis hierher",
+  "form_payment_formats": "JPG, PNG oder PDF Formate, nicht größer als 10 MB",
+  "form_choose_payment": "Zahlungsnachweis auswählen",
+  "step_payment_details": "Zahlungsdetails"
 }
