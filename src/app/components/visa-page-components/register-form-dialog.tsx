@@ -350,6 +350,7 @@ export default function RegisterFormDialog() {
                           label={t("form_date_of_birth") || "Date of Birth"}
                           value={field.value}
                           onChange={field.onChange}
+                          min={new Date(1900, 0, 1)}
                           max={new Date()}
                           disabled={field.disabled}
                         />
