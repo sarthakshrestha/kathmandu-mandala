@@ -58,7 +58,7 @@ export default function Component3() {
         <div className="w-full md:w-[700px] md:h-[500px] flex items-center justify-center">
           <div className="w-full aspect-square md:h-full relative">
             <img
-              src="/images/Component3.png"
+              src="/images/restaurant.png"
               alt={t("restaurant_image_alt")}
               className="object-cover rounded w-full h-full"
             />
