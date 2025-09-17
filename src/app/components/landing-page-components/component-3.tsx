@@ -61,7 +61,6 @@ export default function Component3() {
               src="/images/component3.png"
               alt={t("restaurant_image_alt")}
               className="object-cover rounded w-full h-full"
-              style={{ objectFit: "cover" }}
             />
           </div>
         </div>
