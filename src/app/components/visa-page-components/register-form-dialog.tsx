@@ -176,6 +176,16 @@ export default function RegisterFormDialog() {
   async function onSubmit(data: RegisterFormValues) {
     setLoading(true);
     try {
+      // Prevent submission if payment or passport file is missing
+      if (!data.payment || !data.passport) {
+        toast.error(
+          t("form_upload_required") ||
+            "Please upload both passport and payment proof before submitting."
+        );
+        setLoading(false);
+        return;
+      }
+
       await visaService.sendVisa({
         name: data.fullName,
         gender: data.gender,
@@ -188,10 +198,10 @@ export default function RegisterFormDialog() {
         visa_type: data.visaType,
         duration_of_stay: Number(data.visaDays),
         purpose_of_visit: data.occupation,
-        address_in_destination: null,
+        address_in_destination: data.address,
         point_of_entry: data.entryAirport,
-        payment: data.payment ?? "",
-        passport: data.passport ?? "",
+        payment: data.payment,
+        passport: data.passport,
       });
       toast.success(t("visa_submit_success") || "Visa application submitted!");
       form.reset();
@@ -844,64 +854,51 @@ export default function RegisterFormDialog() {
                     {t("visa_fee_description") ||
                       "Choose the days you wish to stay in Nepal based on your preferences; the fee includes a service charge."}
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <Card className="bg-white hover:border-[#B94B4B] transition-colors cursor-pointer">
-                      <CardContent>
-                        <div className="flex flex-col mx-auto">
-                          <div className="flex items-center gap-2 mb-4 mx-auto">
-                            <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
-                            <span className="text-xl font-semibold text-[#23233B]">
-                              15 Days
-                            </span>
+                  <FormField
+                    name="visaDays"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {[
+                              { days: 15, price: 30 },
+                              { days: 30, price: 50 },
+                              { days: 90, price: 125 },
+                            ].map(({ days, price }) => (
+                              <Card
+                                key={days}
+                                className={`bg-white transition-colors cursor-pointer ${
+                                  field.value === String(days)
+                                    ? "border-2 border-[#B94B4B]"
+                                    : "hover:border-[#B94B4B]"
+                                }`}
+                                onClick={() => field.onChange(String(days))}
+                              >
+                                <CardContent>
+                                  <div className="flex flex-col mx-auto">
+                                    <div className="flex items-center gap-2 mb-4 mx-auto">
+                                      <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
+                                      <span className="text-xl font-semibold text-[#23233B]">
+                                        {days} Days
+                                      </span>
+                                    </div>
+                                    <Badge
+                                      variant="outline"
+                                      className="bg-[#D6A346] text-zinc-900 border-none rounded-full px-4 py-2 text-base mx-auto"
+                                    >
+                                      € {price}
+                                    </Badge>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            ))}
                           </div>
-                          <Badge
-                            variant="outline"
-                            className="bg-[#D6A346] text-zinc-900 border-none rounded-full px-4 py-2 text-base mx-auto"
-                          >
-                            € 30
-                          </Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="bg-white hover:border-[#B94B4B] transition-colors cursor-pointer">
-                      <CardContent>
-                        <div className="flex flex-col mx-auto">
-                          <div className="flex items-center gap-2 mb-4  mx-auto">
-                            <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
-                            <span className="text-xl font-semibold text-[#23233B]">
-                              30 Days
-                            </span>
-                          </div>
-                          <Badge
-                            variant="outline"
-                            className="bg-[#D6A346] text-zinc-900 border-none rounded-full px-4 py-2 text-base  mx-auto"
-                          >
-                            € 50
-                          </Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="bg-white hover:border-[#B94B4B] transition-colors cursor-pointer">
-                      <CardContent>
-                        <div className="flex flex-col mx-auto">
-                          <div className="flex items-center gap-2 mb-4  mx-auto">
-                            <CalendarDays className="w-5 h-5 text-[#B94B4B]" />
-                            <span className="text-xl font-semibold text-[#23233B]">
-                              90 Days
-                            </span>
-                          </div>
-                          <Badge
-                            variant="outline"
-                            className="bg-[#D6A346] text-zinc-900  border-none rounded-full px-4 py-2 text-base  mx-auto"
-                          >
-                            € 125
-                          </Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
                 {/* Payment Details Section */}
@@ -1092,6 +1089,7 @@ export default function RegisterFormDialog() {
                 />
               </div>
             )}
+
             <DialogFooter className="mt-6 flex flex-col sm:flex-row justify-between gap-2">
               {step > 0 && (
                 <Button
@@ -1111,7 +1109,11 @@ export default function RegisterFormDialog() {
                   variant="default"
                   className="bg-[#B94B4B] text-white flex items-center justify-center"
                   onClick={handleNext}
-                  disabled={loading}
+                  disabled={
+                    loading ||
+                    (step === 3 && !passportFile) ||
+                    (step === 4 && !paymentFile)
+                  }
                 >
                   {t("form_next") || "Next"}
                 </Button>
