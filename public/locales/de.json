@@ -318,5 +318,21 @@
   "scan_to_pay": "Zum Bezahlen scannen",
   "upload_payment_proof": "Zahlungsnachweis hochladen",
   "navbar_menu_about": "Über uns",
-  "navbar_menu_about_desc": "Erfahren Sie mehr über Kathmandu Mandala und unsere Geschichte."
+  "navbar_menu_about_desc": "Erfahren Sie mehr über Kathmandu Mandala und unsere Geschichte.",
+  "form_full_name_required": "Vollständiger Name ist erforderlich",
+  "form_gender_required": "Geschlecht ist erforderlich",
+  "form_date_of_birth_invalid": "Geburtsdatum muss vor heute liegen.",
+  "form_nationality_required": "Nationalität ist erforderlich",
+  "form_passport_number_required": "Reisepassnummer ist erforderlich",
+  "form_passport_valid_until_required": "Reisepass gültig bis ist erforderlich",
+  "form_type_of_passport_required": "Wählen Sie einen gültigen Pass-Typ.",
+  "form_address_required": "Adresse ist erforderlich",
+  "form_phone_number_required": "Telefonnummer ist erforderlich",
+  "form_phone_number_invalid": "Nur Zahlen erlaubt",
+  "form_email_invalid": "Ungültige E-Mail-Adresse",
+  "form_occupation_required": "Beruf ist erforderlich",
+  "form_travel_date_required": "Reisedatum ist erforderlich",
+  "form_entry_airport_required": "Einreisepunkt ist erforderlich",
+  "form_visa_type_required": "Wählen Sie einen gültigen Visumtyp.",
+  "form_visa_days_required": "Visumtage sind erforderlich"
 }

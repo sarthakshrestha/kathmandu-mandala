@@ -49,54 +49,9 @@ import {
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
-const registerSchema = z.object({
-  fullName: z.string().min(1, "Required"),
-  gender: z.string().min(1, "Required"),
-  dateOfBirth: z.string().refine(
-    (val) => {
-      if (!val) return false;
-      const date = new Date(val);
-      return date < today;
-    },
-    { message: "Date of birth must be before today." }
-  ),
-  nationality: z.string().min(1, "Required"),
-  passportNumber: z.string().min(1, "Required"),
-  passportValidUntil: z.string().min(1, "Required"),
-  typeOfPassport: z.enum(
-    ["Ordinary", "Diplomatic", "Service", "Official", "Special"],
-    { message: "Select a valid passport type." }
-  ),
-  address: z.string().min(1, "Required"),
-  phoneNumber: z
-    .string()
-    .min(1, "Required")
-    .regex(/^\d+$/, "Only numbers allowed"),
-  email: z.string().email("Invalid email"),
-  occupation: z.string().min(1, "Required"),
-  travelDate: z.string().min(1, "Required"),
-  entryAirport: z.string().min(1, "Required"),
-  visaType: z.enum(
-    [
-      "Tourist",
-      "Business",
-      "Student",
-      "Work",
-      "Diplomatic",
-      "Medical",
-      "Pilgrimage",
-      "Other",
-    ],
-    { message: "Select a valid visa type." }
-  ),
-  visaDays: z.string().min(1, "Required"),
-  payment: z.any().optional(),
-  passport: z.any().optional(),
-});
-
-type RegisterFormValues = z.infer<typeof registerSchema>;
-
 export default function RegisterFormDialog() {
+  type RegisterFormValues = z.infer<typeof registerSchema>;
+
   const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [open, setOpen] = useState(false);
@@ -123,6 +78,86 @@ export default function RegisterFormDialog() {
     form.setValue("payment", paymentFile);
     form.setValue("passport", passportFile);
   }, [paymentFile, passportFile]);
+
+  const registerSchema = z.object({
+    fullName: z
+      .string()
+      .min(1, t("form_full_name_required") || "Full name is required"),
+    gender: z
+      .string()
+      .min(1, t("form_gender_required") || "Gender is required"),
+    dateOfBirth: z.string().refine(
+      (val) => {
+        if (!val) return false;
+        const date = new Date(val);
+        return date < today;
+      },
+      {
+        message:
+          t("form_date_of_birth_invalid") ||
+          "Date of birth must be before today.",
+      }
+    ),
+    nationality: z
+      .string()
+      .min(1, t("form_nationality_required") || "Nationality is required"),
+    passportNumber: z
+      .string()
+      .min(
+        1,
+        t("form_passport_number_required") || "Passport number is required"
+      ),
+    passportValidUntil: z
+      .string()
+      .min(
+        1,
+        t("form_passport_valid_until_required") ||
+          "Passport valid until is required"
+      ),
+    typeOfPassport: z.enum(
+      ["Ordinary", "Diplomatic", "Service", "Official", "Special"],
+      {
+        message:
+          t("form_type_of_passport_required") ||
+          "Select a valid passport type.",
+      }
+    ),
+    address: z
+      .string()
+      .min(1, t("form_address_required") || "Address is required"),
+    phoneNumber: z
+      .string()
+      .min(1, t("form_phone_number_required") || "Phone number is required")
+      .regex(/^\d+$/, t("form_phone_number_invalid") || "Only numbers allowed"),
+    email: z.string().email(t("form_email_invalid") || "Invalid email"),
+    occupation: z
+      .string()
+      .min(1, t("form_occupation_required") || "Occupation is required"),
+    travelDate: z
+      .string()
+      .min(1, t("form_travel_date_required") || "Travel date is required"),
+    entryAirport: z
+      .string()
+      .min(1, t("form_entry_airport_required") || "Entry airport is required"),
+    visaType: z.enum(
+      [
+        "Tourist",
+        "Business",
+        "Student",
+        "Work",
+        "Diplomatic",
+        "Medical",
+        "Pilgrimage",
+        "Other",
+      ],
+      { message: t("form_visa_type_required") || "Select a valid visa type." }
+    ),
+    visaDays: z
+      .string()
+      .min(1, t("form_visa_days_required") || "Visa days is required"),
+    payment: z.any().optional(),
+    passport: z.any().optional(),
+  });
 
   const stepFields: Array<Array<keyof RegisterFormValues>> = [
     [

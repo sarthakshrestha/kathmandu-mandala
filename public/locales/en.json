@@ -318,5 +318,21 @@
   "upload_payment_proof": "Upload Proof of Payment",
   "payment_detail_title": "Payment Details",
   "navbar_menu_about": "About",
-  "navbar_menu_about_desc": "Learn more about Kathmandu Mandala and our story."
+  "navbar_menu_about_desc": "Learn more about Kathmandu Mandala and our story.",
+  "form_full_name_required": "Full name is required",
+  "form_gender_required": "Gender is required",
+  "form_date_of_birth_invalid": "Date of birth must be before today.",
+  "form_nationality_required": "Nationality is required",
+  "form_passport_number_required": "Passport number is required",
+  "form_passport_valid_until_required": "Passport valid until is required",
+  "form_type_of_passport_required": "Select a valid passport type.",
+  "form_address_required": "Address is required",
+  "form_phone_number_required": "Phone number is required",
+  "form_phone_number_invalid": "Only numbers allowed",
+  "form_email_invalid": "Invalid email address",
+  "form_occupation_required": "Occupation is required",
+  "form_travel_date_required": "Travel date is required",
+  "form_entry_airport_required": "Entry airport is required",
+  "form_visa_type_required": "Select a valid visa type.",
+  "form_visa_days_required": "Visa days is required"
 }
