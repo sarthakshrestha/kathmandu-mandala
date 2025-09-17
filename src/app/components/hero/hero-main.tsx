@@ -28,10 +28,9 @@ function Hero() {
         {/* First column: Text and buttons */}
         <div className="flex flex-col items-start justify-center max-w-5xl w-full space-y-4 md:space-y-6 md:pl-6 lg:pl-12 max-sm:px-4">
           <h1 className="text-[#F7ECD8] font-garamond text-xl max-sm:text-2xl md:text-xl lg:text-5xl text-left drop-shadow-lg leading-tight">
-            {t("welcome")} <br />
-            {t("partner")}
+            {t("welcome")}
           </h1>
-          <p className="text-[#F7ECD8] font-links text-sm sm:text-base text-left drop-shadow">
+          <p className="text-[#F7ECD8] font-links text-xl max-sm:text-base text-left drop-shadow">
             {t("visa_paragraph")}
           </p>
           <div className="flex flex-row items-center space-x-2 sm:space-x-4 mt-2">
