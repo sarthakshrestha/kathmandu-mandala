@@ -334,5 +334,7 @@
   "form_travel_date_required": "Reisedatum ist erforderlich",
   "form_entry_airport_required": "Einreisepunkt ist erforderlich",
   "form_visa_type_required": "Wählen Sie einen gültigen Visumtyp.",
-  "form_visa_days_required": "Visumtage sind erforderlich"
+  "form_visa_days_required": "Visumtage sind erforderlich",
+  "form_passport_required": "Bitte laden Sie Ihren Reisepass hoch, bevor Sie fortfahren.",
+  "form_payment_required": "Bitte laden Sie Ihren Zahlungsnachweis hoch, bevor Sie fortfahren."
 }

@@ -334,5 +334,7 @@
   "form_travel_date_required": "Travel date is required",
   "form_entry_airport_required": "Entry airport is required",
   "form_visa_type_required": "Select a valid visa type.",
-  "form_visa_days_required": "Visa days is required"
+  "form_visa_days_required": "Visa days is required",
+  "form_passport_required": "Please upload your passport before proceeding.",
+  "form_payment_required": "Please upload your payment proof before proceeding."
 }

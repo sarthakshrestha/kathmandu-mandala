@@ -202,12 +202,25 @@ export default function RegisterFormDialog() {
   });
 
   const handleNext = async () => {
+    if (step === 3 && !passportFile) {
+      toast.error(
+        t("form_passport_required") ||
+          "Please upload your passport before proceeding."
+      );
+      return;
+    }
+    if (step === 4 && !paymentFile) {
+      toast.error(
+        t("form_payment_required") ||
+          "Please upload your payment proof before proceeding."
+      );
+      return;
+    }
     const valid = await form.trigger(stepFields[step]);
     if (valid) {
       setStep((s) => Math.min(steps.length - 1, s + 1));
     }
   };
-
   async function onSubmit(data: RegisterFormValues) {
     setLoading(true);
     try {
@@ -356,8 +369,11 @@ export default function RegisterFormDialog() {
                       </FormLabel>
                       <FormControl>
                         <Select
-                          value={field.value}
-                          onValueChange={field.onChange}
+                          value={field.value || ""}
+                          onValueChange={(value) => {
+                            field.onChange(value);
+                            form.clearErrors("gender");
+                          }}
                         >
                           <SelectTrigger className="w-full">
                             {field.value
