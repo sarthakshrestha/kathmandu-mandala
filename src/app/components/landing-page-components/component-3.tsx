@@ -57,12 +57,11 @@ export default function Component3() {
         {/* Single Image */}
         <div className="w-full md:w-[700px] md:h-[500px] flex items-center justify-center">
           <div className="w-full aspect-square md:h-full relative">
-            <Image
+            <img
               src="/images/component3.png"
               alt={t("restaurant_image_alt")}
-              fill
-              className="object-cover rounded"
-              sizes="(max-width: 868px) 100vw, 500px"
+              className="object-cover rounded w-full h-full"
+              style={{ objectFit: "cover" }}
             />
           </div>
         </div>
