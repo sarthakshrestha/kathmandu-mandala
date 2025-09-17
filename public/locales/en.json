@@ -85,7 +85,7 @@
   "navbar_menu_product_showcase_desc": "Explore unique Nepali products and handicrafts.",
   "navbar_menu_company": "Company",
   "navbar_menu_company_desc": "Our mission is to innovate and empower the world",
-  "navbar_menu_information_promotion": "Information & Promotion",
+  "navbar_menu_information_promotion": "Information & Services",
   "navbar_menu_help_center": "Help Center",
   "navbar_menu_help_center_desc": "Get all the answers you need right here",
   "navbar_menu_contact_us": "Contact Us",
@@ -316,5 +316,7 @@
   "account_type": "Account Type",
   "scan_to_pay": "Scan to pay",
   "upload_payment_proof": "Upload Proof of Payment",
-  "payment_detail_title": "Payment Details"
+  "payment_detail_title": "Payment Details",
+  "navbar_menu_about": "About",
+  "navbar_menu_about_desc": "Learn more about Kathmandu Mandala and our story."
 }

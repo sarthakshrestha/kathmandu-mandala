@@ -112,6 +112,12 @@ const Navbar = ({
       url: "#",
       items: [
         {
+          title: t("navbar_menu_about"),
+          description: t("navbar_menu_about_desc"),
+          icon: <Book className="size-5 shrink-0" />, // About
+          url: "/about",
+        },
+        {
           title: t("navbar_menu_about_nepal"),
           description: t("navbar_menu_about_nepal_desc"),
           icon: <Globe className="size-5 shrink-0" />, // About Nepal
@@ -269,17 +275,22 @@ const Navbar = ({
 
 const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
+    const isSingle = item.items.length === 1;
     return (
       <NavigationMenuItem key={item.title} className="bg-transparent">
-        <NavigationMenuTrigger className=" bg-transparent text-white  flex items-center gap-2 hover:text-zinc-900">
+        <NavigationMenuTrigger className=" bg-transparent text-white   items-center gap-2 hover:text-zinc-900">
           {item.title}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground flex gap-2 p-6">
+        <NavigationMenuContent
+          className={`bg-popover flex text-popover-foreground gap-2 p-6 ${
+            isSingle ? "md:w-[320px]" : "md:w-[700px]"
+          }`}
+        >
           {item.items.map((subItem) => (
             <NavigationMenuLink
               asChild
               key={subItem.title}
-              className="sm:max-w-3xl"
+              className="sm:max-w-4xl"
             >
               <SubMenuLink item={subItem} />
             </NavigationMenuLink>

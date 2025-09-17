@@ -1092,16 +1092,17 @@ export default function RegisterFormDialog() {
               </div>
             )}
             <DialogFooter className="mt-6 flex flex-col sm:flex-row justify-between gap-2">
-              {/* Previous button */}
-              <Button
-                type="button"
-                variant="outline"
-                className="bg-gray-200"
-                onClick={() => setStep((s) => Math.max(0, s - 1))}
-                disabled={loading || step === 0}
-              >
-                {t("form_back") || "Back"}
-              </Button>
+              {step > 0 && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="bg-gray-200"
+                  onClick={() => setStep((s) => Math.max(0, s - 1))}
+                  disabled={loading}
+                >
+                  {t("form_back") || "Back"}
+                </Button>
+              )}
 
               {step < steps.length - 1 && (
                 <Button

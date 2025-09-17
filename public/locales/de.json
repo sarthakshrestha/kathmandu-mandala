@@ -82,10 +82,10 @@
   "navbar_menu_travel_offers_desc": "Entdecken Sie exklusive Reisepakete und Erlebnisse.",
   "navbar_menu_courier_service": "Kurierdienst",
   "navbar_menu_courier_service_desc": "Schnelle und zuverlässige Kurierlösungen in Nepal.",
-  "navbar_menu_food_dining": "Essen & Gastronomie",
+  "navbar_menu_food_dining": "Essen & Trinken",
   "navbar_menu_restaurant": "Restaurant",
   "navbar_menu_restaurant_desc": "Genießen Sie authentische nepalesische Küche in unserem Restaurant.",
-  "navbar_menu_information_promotion": "Information & Aktionen",
+  "navbar_menu_information_promotion": "Informationen & Dienstleistungen",
   "navbar_menu_about_nepal": "Über Nepal",
   "navbar_menu_about_nepal_desc": "Erfahren Sie mehr über Nepals Kultur, Geschichte und Sehenswürdigkeiten.",
   "navbar_menu_product_showcase": "Produktpräsentation",
@@ -316,5 +316,7 @@
   "account_number": "Kontonummer",
   "account_type": "Kontotyp",
   "scan_to_pay": "Zum Bezahlen scannen",
-  "upload_payment_proof": "Zahlungsnachweis hochladen"
+  "upload_payment_proof": "Zahlungsnachweis hochladen",
+  "navbar_menu_about": "Über uns",
+  "navbar_menu_about_desc": "Erfahren Sie mehr über Kathmandu Mandala und unsere Geschichte."
 }
