@@ -2,7 +2,7 @@ import React from "react";
 
 export default function RestaurantMain() {
   return (
-    <section className="bg-[#f8f3ea] px-4 md:px-12 py-8 flex items-center justify-center">
+    <section className="bg-[#f8f3ea] px-4 md:px-12 py-8 pb-24 md:pt-12 flex items-center justify-center max-sm:px-8">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center w-full">
         {/* Image */}
         <div className="flex-1 w-full">

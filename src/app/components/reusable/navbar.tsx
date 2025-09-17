@@ -103,7 +103,7 @@ const Navbar = ({
           title: t("navbar_menu_restaurant"),
           description: t("navbar_menu_restaurant_desc"),
           icon: <Utensils className="size-5 shrink-0" />, // Restaurant
-          url: "#",
+          url: "/restaurant",
         },
       ],
     },
