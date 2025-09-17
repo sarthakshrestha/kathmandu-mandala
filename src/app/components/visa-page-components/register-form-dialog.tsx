@@ -500,18 +500,28 @@ export default function RegisterFormDialog() {
                         >
                           <SelectTrigger className="w-full">
                             {field.value
-                              ? field.value
+                              ? t(
+                                  `passport_type_${field.value.toLowerCase()}`
+                                ) || field.value
                               : t("form_select_type_of_passport") ||
                                 "Select type of passport"}
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="Ordinary">Ordinary</SelectItem>
-                            <SelectItem value="Diplomatic">
-                              Diplomatic
+                            <SelectItem value="Ordinary">
+                              {t("passport_type_ordinary") || "Ordinary"}
                             </SelectItem>
-                            <SelectItem value="Service">Service</SelectItem>
-                            <SelectItem value="Official">Official</SelectItem>
-                            <SelectItem value="Special">Special</SelectItem>
+                            <SelectItem value="Diplomatic">
+                              {t("passport_type_diplomatic") || "Diplomatic"}
+                            </SelectItem>
+                            <SelectItem value="Service">
+                              {t("passport_type_service") || "Service"}
+                            </SelectItem>
+                            <SelectItem value="Official">
+                              {t("passport_type_official") || "Official"}
+                            </SelectItem>
+                            <SelectItem value="Special">
+                              {t("passport_type_special") || "Special"}
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
@@ -697,23 +707,36 @@ export default function RegisterFormDialog() {
                         >
                           <SelectTrigger className="w-full">
                             {field.value
-                              ? field.value
+                              ? t(`visa_type_${field.value.toLowerCase()}`) ||
+                                field.value
                               : t("form_select_visa_type") ||
                                 "Select visa type"}
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="Tourist">Tourist</SelectItem>
-                            <SelectItem value="Business">Business</SelectItem>
-                            <SelectItem value="Student">Student</SelectItem>
-                            <SelectItem value="Work">Work</SelectItem>
+                            <SelectItem value="Tourist">
+                              {t("visa_type_tourist") || "Tourist"}
+                            </SelectItem>
+                            <SelectItem value="Business">
+                              {t("visa_type_business") || "Business"}
+                            </SelectItem>
+                            <SelectItem value="Student">
+                              {t("visa_type_student") || "Student"}
+                            </SelectItem>
+                            <SelectItem value="Work">
+                              {t("visa_type_work") || "Work"}
+                            </SelectItem>
                             <SelectItem value="Diplomatic">
-                              Diplomatic
+                              {t("visa_type_diplomatic") || "Diplomatic"}
                             </SelectItem>
-                            <SelectItem value="Medical">Medical</SelectItem>
+                            <SelectItem value="Medical">
+                              {t("visa_type_medical") || "Medical"}
+                            </SelectItem>
                             <SelectItem value="Pilgrimage">
-                              Pilgrimage
+                              {t("visa_type_pilgrimage") || "Pilgrimage"}
                             </SelectItem>
-                            <SelectItem value="Other">Other</SelectItem>
+                            <SelectItem value="Other">
+                              {t("visa_type_other") || "Other"}
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>

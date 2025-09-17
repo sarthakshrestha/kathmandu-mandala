@@ -336,5 +336,18 @@
   "form_visa_type_required": "Select a valid visa type.",
   "form_visa_days_required": "Visa days is required",
   "form_passport_required": "Please upload your passport before proceeding.",
-  "form_payment_required": "Please upload your payment proof before proceeding."
+  "form_payment_required": "Please upload your payment proof before proceeding.",
+  "visa_type_tourist": "Tourist",
+  "visa_type_business": "Business",
+  "visa_type_student": "Student",
+  "visa_type_work": "Work",
+  "visa_type_diplomatic": "Diplomatic",
+  "visa_type_medical": "Medical",
+  "visa_type_pilgrimage": "Pilgrimage",
+  "visa_type_other": "Other",
+  "passport_type_ordinary": "Ordinary",
+  "passport_type_diplomatic": "Diplomatic",
+  "passport_type_service": "Service",
+  "passport_type_official": "Official",
+  "passport_type_special": "Special"
 }

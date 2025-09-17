@@ -336,5 +336,18 @@
   "form_visa_type_required": "Wählen Sie einen gültigen Visumtyp.",
   "form_visa_days_required": "Visumtage sind erforderlich",
   "form_passport_required": "Bitte laden Sie Ihren Reisepass hoch, bevor Sie fortfahren.",
-  "form_payment_required": "Bitte laden Sie Ihren Zahlungsnachweis hoch, bevor Sie fortfahren."
+  "form_payment_required": "Bitte laden Sie Ihren Zahlungsnachweis hoch, bevor Sie fortfahren.",
+  "visa_type_tourist": "Tourist",
+  "visa_type_business": "Geschäft",
+  "visa_type_student": "Student",
+  "visa_type_work": "Arbeit",
+  "visa_type_diplomatic": "Diplomatisch",
+  "visa_type_medical": "Medizinisch",
+  "visa_type_pilgrimage": "Pilgerreise",
+  "visa_type_other": "Andere",
+  "passport_type_ordinary": "Normal",
+  "passport_type_diplomatic": "Diplomatisch",
+  "passport_type_service": "Dienstpass",
+  "passport_type_official": "Amtlich",
+  "passport_type_special": "Sonderpass"
 }
