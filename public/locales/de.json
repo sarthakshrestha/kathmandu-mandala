@@ -349,5 +349,20 @@
   "passport_type_diplomatic": "Diplomatisch",
   "passport_type_service": "Dienstpass",
   "passport_type_official": "Amtlich",
-  "passport_type_special": "Sonderpass"
+  "passport_type_special": "Sonderpass",
+  "about_team_role_ceo": "Geschäftsführer",
+  "about_team_role_manager_nepal": "Manager aus Nepal",
+  "about_team_role_operations_manager": "Betriebsleiter",
+  "about_team_role_finance_analyst": "Finanzanalyst",
+  "about_team_role_product_designer": "Produktdesigner",
+  "about_team_ceo_desc": "Leitet den Vertrieb und die Visa-Prozesse aus Deutschland.",
+  "about_team_manager_nepal_desc": "Überprüft die Exportdetails und den Visaprozess für Nepal.",
+  "about_team_operations_manager_desc": "Koordiniert Logistik und Lieferketten in Südasien.",
+  "about_team_finance_analyst_desc": "Verantwortlich für Budgetierung und Finanzberichte in Nordamerika.",
+  "about_team_product_designer_desc": "Leitet das Designteam für benutzerzentrierte Produkte im asiatischen Markt.",
+  "about_team_location_germany": "Deutschland",
+  "about_team_location_nepal": "Nepal",
+  "about_team_location_south_asia": "Südasien",
+  "about_team_location_north_america": "Nordamerika",
+  "about_team_location_asia": "Asien"
 }

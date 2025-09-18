@@ -4,48 +4,44 @@ import { useTranslation } from "@/app/hooks/use-translation";
 const team = [
   {
     name: "Demi Wilkinson",
-    role: "CEO",
-    location: "Germany",
-    description: "Oversees the sales and visa procedures from Germany.",
+    role: "ceo",
+    location: "germany",
+    description: "about_team_ceo_desc",
     img: "https://placehold.co/240x240?text=Photo",
   },
   {
     name: "Demi Wilkinson",
-    role: "Manager from Nepal",
-    location: "Nepal",
-    description:
-      "Examine the product export details and review the visa process for Nepal.",
+    role: "manager_nepal",
+    location: "nepal",
+    description: "about_team_manager_nepal_desc",
     img: "https://placehold.co/240x240?text=Photo",
   },
   {
     name: "Rajesh Gupta",
-    role: "Operations Manager",
-    location: "South Asia",
-    description:
-      "Coordinates logistics and supply chain operations across South Asia.",
+    role: "operations_manager",
+    location: "south_asia",
+    description: "about_team_operations_manager_desc",
     img: "https://placehold.co/240x240?text=Photo",
   },
   {
     name: "Keisha Jones",
-    role: "Finance Analyst",
-    location: "North America",
-    description:
-      "Manages budgeting and financial reporting for North American operations.",
+    role: "finance_analyst",
+    location: "north_america",
+    description: "about_team_finance_analyst_desc",
     img: "https://placehold.co/240x240?text=Photo",
   },
   {
     name: "Li Wei",
-    role: "Product Designer",
-    location: "Asia",
-    description:
-      "Leads the design team to create user-centered products for the Asian market.",
+    role: "product_designer",
+    location: "asia",
+    description: "about_team_product_designer_desc",
     img: "https://placehold.co/240x240?text=Photo",
   },
   {
     name: "Demi Wilkinson",
-    role: "CEO",
-    location: "Germany",
-    description: "Oversees the sales and visa procedures from Germany.",
+    role: "ceo",
+    location: "germany",
+    description: "about_team_ceo_desc",
     img: "https://placehold.co/240x240?text=Photo",
   },
 ];
@@ -84,10 +80,10 @@ export default function AboutPeople() {
                   {person.name}
                 </div>
                 <div className="font-links text-[#9A2731] text-base font-semibold mb-2 uppercase tracking-wide">
-                  {person.role}
+                  {t(`about_team_role_${person.role}`) || person.role}
                 </div>
                 <div className="font-links text-[#23233B] text-base leading-relaxed">
-                  {person.description}
+                  {t(person.description)}
                 </div>
               </div>
             </div>

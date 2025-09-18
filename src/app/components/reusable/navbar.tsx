@@ -78,14 +78,14 @@ const Navbar = ({
         {
           title: t("navbar_menu_visa_service"),
           description: t("navbar_menu_visa_service_desc"),
-          icon: <Book className="size-5 shrink-0" />, // Visa Service
+          icon: <Book className="size-5 shrink-0" />,
           url: "/visa",
         },
         {
           title: t("navbar_menu_travel_offers"),
           description: t("navbar_menu_travel_offers_desc"),
           icon: <Plane className="size-5 shrink-0" />,
-          url: "/trek",
+          url: "/travel",
         },
         {
           title: t("navbar_menu_courier_service"),
