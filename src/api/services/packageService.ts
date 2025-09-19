@@ -9,4 +9,13 @@ export const packageService = {
     });
     return response.data;
   },
+
+  getPackageSlug: async (slug: string) => {
+    const response = await axiosInstance.get(`v1/packages/${slug}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  },
 };
