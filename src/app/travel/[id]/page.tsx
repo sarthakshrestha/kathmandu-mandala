@@ -82,6 +82,8 @@ export default function TravelCarousel() {
     carouselApi?.scrollTo(idx);
   };
 
+  // cmomit
+
   if (loading)
     return (
       <div className="bg-[#FFF9EE]">
