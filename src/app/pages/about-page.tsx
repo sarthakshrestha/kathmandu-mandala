@@ -11,8 +11,8 @@ function AboutPage() {
     <div>
       <AboutHeader />
       <Component5 />
-      <AboutStats />
-      <AboutPeople />
+      {/* <AboutStats /> */}
+      {/* <AboutPeople /> */}
     </div>
   );
 }

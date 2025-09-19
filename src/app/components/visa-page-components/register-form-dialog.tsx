@@ -713,21 +713,6 @@ export default function RegisterFormDialog() {
                             <SelectItem value="Business">
                               {t("visa_type_business") || "Business"}
                             </SelectItem>
-                            <SelectItem value="Student">
-                              {t("visa_type_student") || "Student"}
-                            </SelectItem>
-                            <SelectItem value="Work">
-                              {t("visa_type_work") || "Work"}
-                            </SelectItem>
-                            <SelectItem value="Diplomatic">
-                              {t("visa_type_diplomatic") || "Diplomatic"}
-                            </SelectItem>
-                            <SelectItem value="Medical">
-                              {t("visa_type_medical") || "Medical"}
-                            </SelectItem>
-                            <SelectItem value="Pilgrimage">
-                              {t("visa_type_pilgrimage") || "Pilgrimage"}
-                            </SelectItem>
                             <SelectItem value="Other">
                               {t("visa_type_other") || "Other"}
                             </SelectItem>
