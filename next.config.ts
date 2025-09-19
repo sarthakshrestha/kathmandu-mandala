@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
     domains: ["placehold.co"],
   },
   /* config options here */
-  output: "export",
 };
 
 export default nextConfig;
