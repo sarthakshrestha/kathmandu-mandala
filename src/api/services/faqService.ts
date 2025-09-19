@@ -5,6 +5,7 @@ export const faqService = {
     page?: number;
     search?: string;
     size?: number;
+    type?: string;
   }) => {
     const response = await axiosInstance.get("v1/faqs", {
       headers: {

@@ -1,43 +1,34 @@
 "use client";
 import Image from "next/image";
 import { useTranslation } from "@/app/hooks/use-translation";
+import { useEffect, useState } from "react";
+import { packageService } from "@/api/services/packageService";
+import { useRouter } from "next/navigation";
+import TravelSkeleton from "../skeletons/travel-skeleton";
 
 function TravelMain() {
   const { t, isLoaded } = useTranslation();
+  const [packages, setPackages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-  if (!isLoaded) {
-    return null;
+  useEffect(() => {
+    async function fetchPackages() {
+      try {
+        const res = await packageService.getPackages();
+        setPackages(res.data || []);
+      } catch (error) {
+        setPackages([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPackages();
+  }, []);
+
+  if (!isLoaded || loading) {
+    return <TravelSkeleton />;
   }
-
-  const cards = [
-    {
-      img: "/images/places/Place1.png",
-      title: t("card1_title"),
-      days: t("card1_days"),
-      desc: t("card1_desc"),
-      price: t("card1_price"),
-      alt: t("card1_title"),
-      daysClass: "font-semibold",
-    },
-    {
-      img: "/images/places/Place2.png",
-      title: t("card2_title"),
-      days: t("card2_days"),
-      desc: t("card2_desc"),
-      price: t("card2_price"),
-      alt: t("card2_title"),
-      daysClass: "font-semibold",
-    },
-    {
-      img: "/images/places/Place3.png",
-      title: t("card3_title"),
-      days: t("card3_days"),
-      desc: t("card3_desc"),
-      price: t("card3_price"),
-      alt: t("card3_title"),
-      daysClass: "font-semibold",
-    },
-  ];
 
   return (
     <section className="relative py-10 max-sm:py-12 max-sm:px-4 px-2 sm:px-6 pb-24 lg:px-18 overflow-hidden bg-[#FFF9EE]">
@@ -51,30 +42,36 @@ function TravelMain() {
           {t("travel_offers_title")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cards.map((card, idx) => (
+          {packages.map((pkg, idx) => (
             <div
-              key={idx}
-              className="bg-[#F7ECD8] rounded-xl shadow p-6 flex flex-col shadow-sm"
+              key={pkg.id || idx}
+              className="bg-[#F7ECD8] rounded-xl  p-6 flex flex-col shadow-sm hover:cursor-pointer"
+              onClick={() => pkg.slug && router.push(`/travel/${pkg.slug}`)}
             >
               <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
                 <Image
-                  src={card.img}
-                  alt={card.alt}
+                  src={`/images/places/Place${idx + 1}.png`}
+                  alt={pkg.title}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 400px"
                 />
               </div>
               <h3 className="font-garamond text-2xl sm:text-2xl text-[#4B2323] mb-2 font-semibold">
-                {card.title}
+                {pkg.title}
                 <br />
-                <span className={card.daysClass}>{card.days}</span>
+                <span className="font-semibold">
+                  {pkg.overview?.replace(/<[^>]+>/g, "")}
+                </span>
               </h3>
-              <p className="text-[#4B2323] font-links text-sm mb-4">
-                {card.desc}
-              </p>
+              <p
+                className="text-[#4B2323] font-links text-sm mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: pkg.subt_title || "",
+                }}
+              />
               <span className="text-[#B94B4B] font-garamond text-2xl font-semibold mt-auto">
-                {card.price}
+                {pkg.price}
               </span>
             </div>
           ))}

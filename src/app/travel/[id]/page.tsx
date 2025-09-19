@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -10,68 +10,65 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useTranslation } from "@/app/hooks/use-translation";
+import { packageService } from "@/api/services/packageService";
+import { useParams } from "next/navigation";
+import SingleTravelSkeleton from "@/app/components/skeletons/single-travel-skeleton";
+
+function extractImageUrls(html: string): string[] {
+  const imgRegex = /<img[^>]+src="([^">]+)"/g;
+  const urls: string[] = [];
+  let match;
+  while ((match = imgRegex.exec(html))) {
+    urls.push(match[1]);
+  }
+  return urls;
+}
 
 export default function TravelCarousel() {
   const { t } = useTranslation();
+  const params = useParams();
+  const slug =
+    typeof params?.id === "string"
+      ? params.id
+      : Array.isArray(params?.id)
+      ? params.id[0]
+      : "";
+
+  const [packageData, setPackageData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Carousel state
   const [activeIdx, setActiveIdx] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
 
-  const images = [
-    {
-      src: "/images/places/Place1.png",
-      alt: t("card1_title") || "Travel Image 1",
-    },
-    {
-      src: "/images/places/Place2.png",
-      alt: t("card2_title") || "Travel Image 2",
-    },
-    {
-      src: "/images/places/Place3.png",
-      alt: t("card3_title") || "Travel Image 3",
-    },
-    {
-      src: "/images/places/Place4.png",
-      alt: t("card4_title") || "Travel Image 4",
-    },
-  ];
+  useEffect(() => {
+    async function fetchPackage() {
+      try {
+        if (slug) {
+          const res = await packageService.getPackageSlug(slug);
+          setPackageData(res.data);
+        }
+      } catch (error) {
+        setPackageData(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPackage();
+  }, [slug]);
 
-  const cards = [
-    {
-      img: "/images/places/Place1.png",
-      title: t("card1_title"),
-      days: t("card1_days"),
-      desc: t("card1_desc"),
-      price: t("card1_price"),
-      alt: t("card1_title"),
-      daysClass: "font-semibold",
-    },
-    {
-      img: "/images/places/Place2.png",
-      title: t("card2_title"),
-      days: t("card2_days"),
-      desc: t("card2_desc"),
-      price: t("card2_price"),
-      alt: t("card2_title"),
-      daysClass: "font-semibold",
-    },
-    {
-      img: "/images/places/Place3.png",
-      title: t("card3_title"),
-      days: t("card3_days"),
-      desc: t("card3_desc"),
-      price: t("card3_price"),
-      alt: t("card3_title"),
-      daysClass: "font-semibold",
-    },
-  ];
+  // Extract images from description HTML
+  const bodyImages = packageData?.description
+    ? extractImageUrls(packageData.description)
+    : [];
 
-  // Sync activeIdx with carousel
+  // Carousel logic
   const onSelect = useCallback(() => {
     if (!carouselApi) return;
     setActiveIdx(carouselApi.selectedScrollSnap());
   }, [carouselApi]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!carouselApi) return;
     carouselApi.on("select", onSelect);
     setActiveIdx(carouselApi.selectedScrollSnap());
@@ -80,92 +77,80 @@ export default function TravelCarousel() {
     };
   }, [carouselApi, onSelect]);
 
-  // Dot click handler
   const handleDotClick = (idx: number) => {
     setActiveIdx(idx);
     carouselApi?.scrollTo(idx);
   };
 
+  if (loading)
+    return (
+      <div className="bg-[#FFF9EE]">
+        <SingleTravelSkeleton />
+      </div>
+    );
+  if (!packageData) return <div>Package not found.</div>;
+
   return (
-    <div className="w-full max-w-5xl mx-auto py-8 px-2 sm:px-0 max-sm:px-8">
-      <Carousel className="relative" setApi={setCarouselApi}>
-        <div className="flex max-sm:hidden">
-          <CarouselPrevious />
-          <CarouselNext />
-        </div>
-        <CarouselContent>
-          {images.map((img, idx) => (
-            <CarouselItem
-              key={idx}
-              className="flex justify-center items-center"
-            >
-              <div className="w-full h-[250px] sm:h-[400px] relative rounded-xl overflow-hidden">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, 600px"
-                  priority
-                />
+    <div className="bg-[#FFF9EE]">
+      <div className="w-full max-w-5xl mx-auto py-8 px-2 sm:px-0 max-sm:px-8 bg-[#FFF9EE]">
+        {/* Only show carousel if there are images */}
+        {bodyImages.length > 0 && (
+          <>
+            <Carousel className="relative" setApi={setCarouselApi}>
+              <div className="flex max-sm:hidden">
+                <CarouselPrevious />
+                <CarouselNext />
               </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-      {/* Mobile Dots */}
-      <div className="flex justify-center items-center mt-4 sm:hidden">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => handleDotClick(idx)}
-            className={`mx-1 transition-all duration-200 rounded-full bg-[#B94B4B] ${
-              activeIdx === idx ? "w-8 h-2" : "w-2 h-2 opacity-50"
-            }`}
-            aria-label={`Go to image ${idx + 1}`}
-            style={{ border: "none" }}
-          />
-        ))}
-      </div>
-      <div className="mt-10">
-        <h1 className="text-3xl sm:text-4xl font-garamond font-semibold mb-4 text-[#4B2323] text-left">
-          {t("hero_title")} {t("hero_subtitle")}
-        </h1>
-        <p className="text-[#4B2323] text-base sm:text-lg mb-6 text-left">
-          {t("hero_paragraph")}
-        </p>
-      </div>
-      <h3 className="font-garamond text-3xl mt-8 font-semibold">
-        Trip plans in Nepal
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-        {cards.map((card, idx) => (
-          <div
-            key={idx}
-            className="bg-[#F7ECD8] rounded-xl shadow p-6 flex flex-col mt-6"
-          >
-            <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden bg-[#F7ECD8]">
-              <Image
-                src={card.img}
-                alt={card.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 400px"
-              />
+              <CarouselContent>
+                {bodyImages.map((src, idx) => (
+                  <CarouselItem
+                    key={idx}
+                    className="flex justify-center items-center"
+                  >
+                    <div className="w-full h-[250px] sm:h-[400px] relative rounded-xl overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={packageData?.title || `Travel Image ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, 600px"
+                        priority
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            {/* Mobile Dots */}
+            <div className="flex justify-center items-center mt-4 sm:hidden">
+              {bodyImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleDotClick(idx)}
+                  className={`mx-1 transition-all duration-200 rounded-full bg-[#B94B4B] ${
+                    activeIdx === idx ? "w-8 h-2" : "w-2 h-2 opacity-50"
+                  }`}
+                  aria-label={`Go to image ${idx + 1}`}
+                  style={{ border: "none" }}
+                />
+              ))}
             </div>
-            <h3 className="font-garamond text-2xl sm:text-2xl text-[#4B2323] mb-2 font-semibold">
-              {card.title}
-              <br />
-              <span className={card.daysClass}>{card.days}</span>
-            </h3>
-            <p className="text-[#4B2323] font-links text-sm mb-4">
-              {card.desc}
-            </p>
-            <span className="text-[#B94B4B] font-garamond text-2xl font-semibold mt-auto">
-              {card.price}
-            </span>
-          </div>
-        ))}
+          </>
+        )}
+        <div className="mt-10">
+          <h1 className="text-3xl sm:text-4xl font-garamond font-semibold mb-4 text-[#4B2323] text-left">
+            {packageData.title}
+          </h1>
+          <p className="text-[#4B2323] text-base sm:text-lg mb-6 text-left">
+            {packageData.price}
+          </p>
+        </div>
+        <div className="prose max-w-none text-[#4B2323]">
+          {/* Render the HTML body safely */}
+          <div
+            dangerouslySetInnerHTML={{ __html: packageData.description || "" }}
+          />
+        </div>
       </div>
     </div>
   );
