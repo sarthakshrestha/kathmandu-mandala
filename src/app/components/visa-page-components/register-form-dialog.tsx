@@ -449,6 +449,13 @@ export default function RegisterFormDialog() {
                         <Input
                           {...field}
                           placeholder={t("form_passport_number")}
+                          type="text"
+                          inputMode="numeric"
+                          pattern="[0-9]*"
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/\D/g, "");
+                            field.onChange(value);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
@@ -595,26 +602,13 @@ export default function RegisterFormDialog() {
                           <Label>{t("form_occupation") || "Occupation"}</Label>
                         </FormLabel>
                         <FormControl>
-                          <Select
-                            value={field.value}
-                            onValueChange={field.onChange}
-                          >
-                            <SelectTrigger className="w-full">
-                              {field.value
-                                ? occupationOptions.find(
-                                    (opt) => opt.value === field.value
-                                  )?.label
-                                : t("form_select_occupation") ||
-                                  "Select your occupation"}
-                            </SelectTrigger>
-                            <SelectContent>
-                              {occupationOptions.map((opt) => (
-                                <SelectItem key={opt.value} value={opt.value}>
-                                  {opt.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <Input
+                            {...field}
+                            placeholder={
+                              t("form_occupation_placeholder") ||
+                              "Enter your occupation"
+                            }
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -718,21 +712,6 @@ export default function RegisterFormDialog() {
                             </SelectItem>
                             <SelectItem value="Business">
                               {t("visa_type_business") || "Business"}
-                            </SelectItem>
-                            <SelectItem value="Student">
-                              {t("visa_type_student") || "Student"}
-                            </SelectItem>
-                            <SelectItem value="Work">
-                              {t("visa_type_work") || "Work"}
-                            </SelectItem>
-                            <SelectItem value="Diplomatic">
-                              {t("visa_type_diplomatic") || "Diplomatic"}
-                            </SelectItem>
-                            <SelectItem value="Medical">
-                              {t("visa_type_medical") || "Medical"}
-                            </SelectItem>
-                            <SelectItem value="Pilgrimage">
-                              {t("visa_type_pilgrimage") || "Pilgrimage"}
                             </SelectItem>
                             <SelectItem value="Other">
                               {t("visa_type_other") || "Other"}

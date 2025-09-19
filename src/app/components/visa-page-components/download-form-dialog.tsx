@@ -51,7 +51,7 @@ export default function DownloadFormDialog() {
                 <li>
                   {t("visa_application_step3_prefix") || "Send Via Whatsapp to"}{" "}
                   <span className="font-semibold">
-                    {t("visa_application_whatsapp") || "+49 17698225546"}
+                    {t("visa_application_whatsapp") || "+49 172 7497932"}
                   </span>
                 </li>
               </ol>
