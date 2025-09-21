@@ -4,9 +4,10 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["placehold.co"],
   },
-  /* config options here */
   assetPrefix:
-    process.env.NODE_ENV === "production" ? "https://kathmandumandala.de" : "",
+    process.env.NODE_ENV === "production"
+      ? "https://www.kathmandumandala.de"
+      : "",
 };
 
 export default nextConfig;
