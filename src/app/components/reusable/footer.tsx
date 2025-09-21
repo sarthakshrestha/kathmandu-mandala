@@ -2,12 +2,32 @@
 import { Facebook, Github, Linkedin, X, Hand, Dribbble } from "lucide-react";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { FaXTwitter } from "react-icons/fa6";
-
+import { useState } from "react";
+import { z } from "zod";
 export default function Footer() {
   const { t, locale, isLoaded } = useTranslation();
+  const emailSchemaFixed = z.email({ message: "Invalid email address" });
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   if (!isLoaded) {
     return null;
+  }
+
+  function handleNewsletterSubmit(
+    e: React.FormEvent<HTMLFormElement>,
+    email: string,
+    setError: (msg: string) => void,
+    t: (key: string) => string
+  ) {
+    e.preventDefault();
+    const emailSchemaFixed = z.email({ message: "Invalid email address" });
+    const result = emailSchemaFixed.safeParse(email);
+    if (!result.success) {
+      setError(t("footer_newsletter_invalid_email") || "Invalid email address");
+    } else {
+      setError("");
+    }
   }
 
   return (
@@ -67,15 +87,29 @@ export default function Footer() {
             <span className="text-[#D6A346] font-links md:items-start md:justify-end md:flex-row-reverse font-semibold mb-3">
               {t("footer_newsletter_title")}
             </span>
-            <form className="flex flex-col sm:flex-row gap-3 w-full max-w-2xl md:justify-end">
-              <input
-                type="email"
-                placeholder={t("footer_newsletter_placeholder")}
-                className="border border-gray-300 rounded-lg px-4 py-2 w-full font-links text-[#23233B] focus:outline-none focus:ring-2 focus:ring-[#D6A346] bg-white"
-              />
+            <form
+              className="flex flex-col sm:flex-row gap-3 w-full max-w-2xl md:justify-end items-center"
+              onSubmit={(e) => handleNewsletterSubmit(e, email, setError, t)}
+            >
+              <div className="flex flex-col w-full max-w-xs">
+                <input
+                  type="email"
+                  placeholder={t("footer_newsletter_placeholder")}
+                  className="border border-gray-300 rounded-lg px-4 py-2 w-full font-links text-[#23233B] focus:outline-none focus:ring-2 focus:ring-[#D6A346] bg-white"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <span
+                  className="text-red-500 text-sm font-links mt-1 min-h-[1.5em] block"
+                  style={{ minHeight: "1.5em" }}
+                >
+                  {error}
+                </span>
+              </div>
               <button
                 type="submit"
-                className="bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links font-semibold px-6 py-2 rounded-lg shadow transition"
+                className="bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links mb-5 font-semibold px-6 py-2 rounded-lg shadow transition"
+                style={{ height: "48px" }} // match input height for perfect alignment
               >
                 {t("footer_newsletter_button")}
               </button>

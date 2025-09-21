@@ -78,7 +78,7 @@ export function PopoverCalendar({
                 (!minDate || date >= minDate) &&
                 (!maxDate || date <= maxDate)
               ) {
-                onChange?.(formatDate(date)); // always store/send as yyyy-mm-dd
+                onChange?.(formatDate(date));
                 setOpen(false);
               }
             }}
