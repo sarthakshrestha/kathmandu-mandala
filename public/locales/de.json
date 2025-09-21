@@ -401,5 +401,6 @@
   "contact_info_travel_label": "Reise Telefon",
   "contact_info_travel_value": "030 91 51 15 64",
   "contact_info_whatsapp_label": "WhatsApp",
-  "contact_info_whatsapp_value": "+49 172 7497932"
+  "contact_info_whatsapp_value": "+49 172 7497932",
+  "calendar_select_date": "Datum auswählen"
 }

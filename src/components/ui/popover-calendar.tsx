@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
 import { formatDate, formatDateDisplay } from "@/app/helpers/helpers";
+import { useTranslation } from "@/app/hooks/use-translation";
 import {
   Popover,
   PopoverContent,
@@ -29,6 +30,8 @@ export function PopoverCalendar({
   max,
   disabled,
 }: PopoverCalendarProps) {
+  const { t } = useTranslation();
+
   const [open, setOpen] = React.useState(false);
 
   const selectedDate =
@@ -56,7 +59,9 @@ export function PopoverCalendar({
             className="w-full justify-between font-normal bg-transparent"
             disabled={disabled}
           >
-            {selectedDate ? formatDateDisplay(selectedDate) : "Select date"}
+            {selectedDate
+              ? formatDateDisplay(selectedDate)
+              : t("calendar_select_date")}
             <ChevronDownIcon />
           </Button>
         </PopoverTrigger>
