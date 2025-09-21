@@ -48,9 +48,6 @@ export default function Footer() {
               {t("footer_privacy")}
             </a>
             <a href="#" className="hover:underline">
-              {t("footer_imprint")}
-            </a>
-            <a href="#" className="hover:underline">
               {t("footer_terms")}
             </a>
             <a href="/about" className="hover:underline">
