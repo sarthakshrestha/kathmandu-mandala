@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
     domains: ["placehold.co"],
   },
   /* config options here */
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "https://kathmandumandala.de" : "",
 };
 
 export default nextConfig;
