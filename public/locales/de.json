@@ -392,5 +392,14 @@
   "imprint_liability_links_text": "Unsere Website enthält möglicherweise Links zu externen Websites, auf deren Inhalte wir keinen Einfluss haben. Daher können wir für diese Inhalte keine Verantwortung übernehmen. Für die Inhalte der verlinkten Seiten sind stets die jeweiligen Anbieter oder Betreiber verantwortlich.",
   "imprint_copyright_title": "Urheberrecht",
   "footer_impressum": "Impressum",
-  "imprint_copyright_text": "Alle auf dieser Website veröffentlichten Inhalte unterliegen dem Urheberrecht. Jede Vervielfältigung, Bearbeitung, Verbreitung oder jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung von Kathmandu Mandala."
+  "imprint_copyright_text": "Alle auf dieser Website veröffentlichten Inhalte unterliegen dem Urheberrecht. Jede Vervielfältigung, Bearbeitung, Verbreitung oder jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung von Kathmandu Mandala.",
+  "contact_info_title": "Kontaktinformationen",
+  "contact_info_email_label": "E-Mail",
+  "contact_info_email_value": "info@kathmandumandala.de",
+  "contact_info_cafe_label": "Café Telefon",
+  "contact_info_cafe_value": "030 91 51 15 70",
+  "contact_info_travel_label": "Reise Telefon",
+  "contact_info_travel_value": "030 91 51 15 64",
+  "contact_info_whatsapp_label": "WhatsApp",
+  "contact_info_whatsapp_value": "+49 172 7497932"
 }

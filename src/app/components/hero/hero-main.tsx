@@ -41,7 +41,7 @@ function Hero() {
               {t("download")}
             </a>
             <a
-              href="#"
+              href="/travel"
               className="text-white font-links font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg flex items-center gap-2 hover:underline transition text-sm max-sm:text-sm"
             >
               {t("discover")}
