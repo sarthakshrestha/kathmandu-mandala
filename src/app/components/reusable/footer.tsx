@@ -82,13 +82,13 @@ export default function Footer() {
           </div>
         </div>
         {/* Right Section */}
-        <div className="flex-1 flex flex-col items-start md:items-end">
+        <div className="flex-1 flex flex-col items-start md:items-end max-sm:items-start">
           <div className="flex-1 flex flex-col items-start md:items-start">
             <span className="text-[#D6A346] font-links md:items-start md:justify-end md:flex-row-reverse font-semibold mb-3">
               {t("footer_newsletter_title")}
             </span>
             <form
-              className="flex flex-col sm:flex-row gap-3 w-full max-w-2xl md:justify-end items-center"
+              className="flex flex-col sm:flex-row gap-3 w-full max-w-2xl md:justify-end items-center max-sm:items-start"
               onSubmit={(e) => handleNewsletterSubmit(e, email, setError, t)}
             >
               <div className="flex flex-col w-full max-w-xs">
@@ -108,7 +108,7 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
-                className="bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links mb-5 font-semibold px-6 py-2 rounded-lg shadow transition"
+                className="bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links mb-5 font-semibold px-6 py-2 rounded-lg shadow transition max-sm:items-start max-sm:justify-start"
                 style={{ height: "48px" }} // match input height for perfect alignment
               >
                 {t("footer_newsletter_button")}
