@@ -27,10 +27,10 @@ export default function RestaurantMain() {
             {t("restaurant_main_paragraph_2")}
           </p>
           <a
-            href="tel:+977123456798"
-            className="text-base italic underline text-[#222] mt-2 w-fit"
+            href="tel:+493091511570"
+            className="text-base   text-[#222] mt-2 w-fit"
           >
-            +977 123456798
+            +49 030 91 51 15 70
           </a>
         </div>
       </div>
