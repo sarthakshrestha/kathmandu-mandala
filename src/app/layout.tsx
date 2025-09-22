@@ -23,6 +23,9 @@ const garamond = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Kathmandu Mandala",
   description: "Destination for Travel",
+  verification: {
+    google: "yvxxzA1F7RGvGhZUn9Eh-VdeSzAcfxrrHsd1NEvR7hw",
+  },
 };
 
 export default function RootLayout({
@@ -47,7 +50,7 @@ export default function RootLayout({
             gtag('config', 'G-WWSFTRYVMW');
           `}
         </Script>
-        
+
         <AppClientWrapper>
           <Navbar />
           {children}
