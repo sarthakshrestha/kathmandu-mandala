@@ -35,6 +35,9 @@ export const visaService = {
     formData.append("passport_number", data.passport_number ?? "");
     formData.append("passport_expiry", data.passport_expiry ?? "");
     formData.append("passport_type", data.passport_type ?? "");
+    formData.append("address", data.address ?? "");
+    formData.append("phone", data.phone ?? "");
+    formData.append("occupation", data.occupation ?? "");
     formData.append("arrival_date", data.arrival_date ?? "");
     formData.append("visa_type", data.visa_type ?? "");
     formData.append(
@@ -42,7 +45,6 @@ export const visaService = {
       data.duration_of_stay?.toString() ?? ""
     );
     formData.append("purpose_of_visit", data.purpose_of_visit ?? "");
-    // Send nullable for address_in_destination
     formData.append(
       "address_in_destination",
       data.address_in_destination ?? ""

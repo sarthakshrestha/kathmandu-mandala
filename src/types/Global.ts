@@ -16,12 +16,15 @@ export interface VisaForm {
   passport_type: string;
   arrival_date: string;
   visa_type: string;
+  occupation: string;
   duration_of_stay: number;
   purpose_of_visit: string;
   address_in_destination?: string | null;
   point_of_entry: string;
   payment: File | string;
   passport: File | string;
+  address: string;
+  phone: string;
 }
 
 export interface CallScheduleForm {

@@ -131,6 +131,7 @@ export default function Footer() {
           </span>
         </a>
       </div>
+
       {/* Divider */}
       <div className="max-w-[85rem] mx-auto  mb-6 border-t border-gray-300"></div>
       {/* Bottom Section */}
@@ -149,6 +150,19 @@ export default function Footer() {
             <Facebook className="w-6 h-6 text-[#23233B] hover:text-[#D6A346]" />
           </a>
         </div>
+      </div>
+      <div className="flex mx-auto items-center justify-center w-full text-base max-sm:mt-3 max-sm:mb-4">
+        <p>
+          Developed by{" "}
+          <a
+            href="https://mantraideas.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold hover:underline"
+          >
+            Mantra Ideas
+          </a>
+        </p>
       </div>
     </footer>
   );
