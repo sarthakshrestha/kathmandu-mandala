@@ -47,6 +47,7 @@ export default function RootLayout({
             gtag('config', 'G-WWSFTRYVMW');
           `}
         </Script>
+        
         <AppClientWrapper>
           <Navbar />
           {children}
