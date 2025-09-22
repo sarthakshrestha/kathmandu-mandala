@@ -31,7 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <body
+        className={`${raleway.variable} ${garamond.variable} antialiased font-links`}
+      >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WWSFTRYVMW"
           strategy="afterInteractive"
@@ -44,10 +46,6 @@ export default function RootLayout({
             gtag('config', 'G-WWSFTRYVMW');
           `}
         </Script>
-      </Head>
-      <body
-        className={`${raleway.variable} ${garamond.variable} antialiased font-links`}
-      >
         <AppClientWrapper>
           <Navbar />
           {children}
