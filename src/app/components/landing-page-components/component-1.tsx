@@ -12,8 +12,8 @@ export default function Component1() {
   }
 
   return (
-    <section className="bg-[#F7ECD8] px-18 py-16 max-sm:py-12  items-center justify-center flex max-sm:px-4">
-      <div className="mx-auto flex flex-col md:flex-row gap-10 items-center w-full px-12 max-sm:px-8">
+    <section className="bg-[#F7ECD8] px-6 py-16 flex items-center justify-center">
+      <div className="mx-auto flex flex-col lg:flex-row gap-10 items-center w-full px-4 lg:px-12 max-w-7xl">
         {/* Left: Text */}
         <div className="flex-1 w-full">
           <h2 className="font-garamond text-3xl md:text-4xl lg:text-5xl text-[#4B2323] mb-4 leading-tight">
@@ -70,7 +70,7 @@ export default function Component1() {
             {t("download")}
           </a>
           {/* Mobile-only image below button */}
-          <div className="mt-6 w-full max-sm:block hidden">
+          <div className="mt-6 w-full block lg:hidden">
             <Image
               src="/images/MobileImage.png"
               alt="Mobile Visual"

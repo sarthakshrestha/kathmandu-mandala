@@ -13,7 +13,7 @@ export default function Component4() {
   return (
     <section className="relative py-24 max-sm:py-12 px-18 sm:px-6 lg:px-18 overflow-hidden max-sm:px-4">
       {/* Decorative background pattern */}
-      <div className="px-18 max-sm:px-8 md:px-18">
+      <div className="px-8 max-sm:px-8 md:px-18">
         <Image
           src="/images/background/BackgroundPattern.png"
           alt="Background Pattern"

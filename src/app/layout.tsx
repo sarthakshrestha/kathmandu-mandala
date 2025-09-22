@@ -5,7 +5,8 @@ import { Navbar } from "./components/reusable/navbar";
 import Footer from "./components/reusable/footer";
 import AppClientWrapper from "./wrappers/app-client-wrapper";
 import { Toaster } from "sonner";
-
+import Script from "next/script";
+import Head from "next/head";
 const raleway = Raleway({
   subsets: ["latin"],
   variable: "--font-raleway",
@@ -30,6 +31,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WWSFTRYVMW"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WWSFTRYVMW');
+          `}
+        </Script>
+      </Head>
       <body
         className={`${raleway.variable} ${garamond.variable} antialiased font-links`}
       >

@@ -11,8 +11,8 @@ export default function Component3() {
   }
 
   return (
-    <section className="bg-[#F7ECD8] px-4 md:px-12 max-sm:py-12 py-16 flex items-center justify-center">
-      <div className="md:max-w-[78rem] md:px-18 mx-auto flex flex-col md:flex-row gap-10 items-center w-full max-sm:px-8">
+    <section className="bg-[#F7ECD8] px-6 py-16 flex items-center justify-center">
+      <div className="mx-auto flex flex-col lg:flex-row gap-10 items-center w-full px-4 lg:px-12 lg:max-w-7xl">
         <div className="flex-1 w-full">
           <h2 className="font-garamond text-2xl md:text-4xl lg:text-5xl text-[#4B2323] mb-4 leading-tight">
             {t("restaurant_title")} <br /> {t("restaurant_subtitle")}
@@ -55,8 +55,8 @@ export default function Component3() {
           </a>
         </div>
         {/* Single Image */}
-        <div className="w-full md:w-[700px] md:h-[500px] flex items-center justify-center">
-          <div className="w-full aspect-square md:h-full relative">
+        <div className="w-full flex items-center justify-center mt-8 lg:mt-0 lg:w-[700px] lg:h-[500px]">
+          <div className="w-full aspect-square lg:h-full relative">
             <img
               src="/images/restaurant.png"
               alt={t("restaurant_image_alt")}

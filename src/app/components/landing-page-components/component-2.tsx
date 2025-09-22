@@ -42,7 +42,7 @@ function Component2() {
         style={{ zIndex: 0 }}
         priority
       />
-      <div className="relative z-10 max-w-7xl px-18 max-sm:px-8 mx-auto">
+      <div className="relative z-10 max-w-7xl px-8 max-sm:px-8 mx-auto">
         <h2 className="text-center font-garamond text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-10">
           {t("travel_offers_title")}
         </h2>

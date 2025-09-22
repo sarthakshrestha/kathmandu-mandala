@@ -32,7 +32,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#FFF9EE]  pt-12 pb-6 max-sm:px-8 ">
-      <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row justify-between gap-10 ">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10 ">
         {/* Left Section */}
         <div className="flex-1 mb-8 md:mb-0">
           <div className="flex items-center max-sm:items-start gap-4 mb-5">
@@ -117,7 +117,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="max-w-[85rem] mx-auto mt-10 mb-1 items-end flex justify-end ">
+      <div className="max-w-7xl mx-auto mt-10 mb-1 items-end flex justify-end ">
         <a
           href="https://maps.app.goo.gl/DUDPAbTTmdvyo9bXA"
           target="_blank"
@@ -133,9 +133,9 @@ export default function Footer() {
       </div>
 
       {/* Divider */}
-      <div className="max-w-[85rem] mx-auto  mb-6 border-t border-gray-300"></div>
+      <div className="max-w-7xl mx-auto  mb-6 border-t border-gray-300"></div>
       {/* Bottom Section */}
-      <div className="max-w-[85rem] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <span className="text-[#23233B] font-links text-sm mb-4 md:mb-0 text-center w-full md:w-auto">
           {t("footer_copyright")}
         </span>
