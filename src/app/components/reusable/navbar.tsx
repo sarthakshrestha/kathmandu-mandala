@@ -243,24 +243,24 @@ const Navbar = ({
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
                   {/* Language Switcher Buttons for mobile */}
-                  <div className="flex flex-col items-end gap-2 mt-8 absolute bottom-5">
+                  <div className="flex flex-row items-center gap-2 relative">
                     <Button
                       type="button"
                       onClick={() =>
                         useTranslationStore.getState().setLocale("de")
                       }
-                      className="px-3 py-1 rounded bg-transparent shadow-none text-[#23233B] font-links text-sm focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
+                      className="px-5 py-4 border-2 rounded-3xl font-semibold bg-transparent shadow-none text-[#23233B] font-links text-base focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
                     >
-                      🇩🇪 Deutsch
+                      🇩🇪 DE
                     </Button>
                     <Button
                       type="button"
                       onClick={() =>
                         useTranslationStore.getState().setLocale("en")
                       }
-                      className="px-3 py-1 rounded bg-transparent shadow-none text-[#23233B] font-links text-sm focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
+                      className="px-5 py-4 border-2 rounded-3xl bg-transparent font-semibold shadow-none text-[#23233B] font-links text-base focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
                     >
-                      🇬🇧 English
+                      🇬🇧 EN
                     </Button>
                   </div>
                 </div>
