@@ -53,7 +53,7 @@ export default function Component5() {
             </ul>
           </div>
           <a
-            href="#"
+            href="/travel"
             className="inline-block bg-[#D6A346] hover:bg-[#c9a13e] text-[#23233B] font-links font-semibold px-6 py-3 rounded-lg shadow transition text-base mt-2"
           >
             {t("discover_button")}
