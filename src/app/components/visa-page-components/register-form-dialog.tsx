@@ -489,7 +489,7 @@ export default function RegisterFormDialog() {
                           disabled={field.disabled}
                         />
                       </FormControl>
-                      <FormMessage />
+                      {!field.value && <FormMessage />}
                     </FormItem>
                   )}
                 />
