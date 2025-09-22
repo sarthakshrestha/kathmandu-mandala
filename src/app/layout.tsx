@@ -5,8 +5,9 @@ import { Navbar } from "./components/reusable/navbar";
 import Footer from "./components/reusable/footer";
 import AppClientWrapper from "./wrappers/app-client-wrapper";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/next";
+
 import Script from "next/script";
-import Head from "next/head";
 const raleway = Raleway({
   subsets: ["latin"],
   variable: "--font-raleway",
@@ -49,6 +50,7 @@ export default function RootLayout({
         <AppClientWrapper>
           <Navbar />
           {children}
+          <Analytics />
           <Toaster richColors position="top-center" />
           <Footer />
         </AppClientWrapper>
