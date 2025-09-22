@@ -67,7 +67,7 @@ export default function Component4() {
               </li>
             </ul>
             <a
-              href="#"
+              href="/contact"
               className="inline-block bg-[#D6A346] hover:bg-[#c9a13e] text-[#4B2323] font-links font-semibold px-6 py-3 rounded-lg shadow transition text-base mt-2"
             >
               {t("courier_button")}
