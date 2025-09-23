@@ -157,7 +157,15 @@ export default function PackageDialog({ packageId }: { packageId: number }) {
                       <Input
                         {...field}
                         placeholder={t("phone") || "Enter your phone number"}
-                        type="text"
+                        type="tel"
+                        inputMode="tel"
+                        pattern="^\+?[0-9\s\-]{7,}$"
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (/^(\+)?[0-9\s\-]*$/.test(val)) {
+                            field.onChange(val);
+                          }
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
