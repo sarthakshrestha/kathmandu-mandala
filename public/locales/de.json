@@ -414,5 +414,6 @@
   "number_of_people": "Anzahl der Personen",
   "message": "Nachricht / Fragen",
   "message_placeholder": "Teilen Sie uns gerne Ihre Nachrichten oder Fragen mit!",
-  "no_package_found": "Kein Paket gefunden"
+  "no_package_found": "Kein Paket gefunden",
+  "package_not_found": "Paket nicht gefunden."
 }

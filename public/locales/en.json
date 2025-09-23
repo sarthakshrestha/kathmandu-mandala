@@ -414,5 +414,6 @@
   "number_of_people": "Number of People",
   "message": "Message / Questions",
   "message_placeholder": "Feel free to share any messages or questions you have!",
-  "no_package_found": "No Package found"
+  "no_package_found": "No Package found",
+  "package_not_found": "Package not found."
 }

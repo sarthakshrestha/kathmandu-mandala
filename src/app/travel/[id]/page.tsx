@@ -83,16 +83,20 @@ export default function TravelCarousel() {
     carouselApi?.scrollTo(idx);
   };
 
-  // cmomit
-
   if (loading)
     return (
       <div className="bg-[#FFF9EE]">
         <SingleTravelSkeleton />
       </div>
     );
-  if (!packageData) return <div>Package not found.</div>;
-
+  if (!packageData)
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#FFF9EE]">
+        <div className="text-[#B94B4B] font-garamond text-2xl font-semibold text-center">
+          {t("package_not_found")}
+        </div>
+      </div>
+    );
   return (
     <div className="bg-[#FFF9EE]">
       <div className="w-full max-w-5xl mx-auto py-8 px-8 sm:px-8 max-sm:px-8 bg-[#FFF9EE]">
