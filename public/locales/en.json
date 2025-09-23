@@ -413,5 +413,6 @@
   "start_date": "Preferred Start Date",
   "number_of_people": "Number of People",
   "message": "Message / Questions",
-  "message_placeholder": "Feel free to share any messages or questions you have!"
+  "message_placeholder": "Feel free to share any messages or questions you have!",
+  "no_package_found": "No Package found"
 }

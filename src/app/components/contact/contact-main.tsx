@@ -131,7 +131,7 @@ export default function ContactMain() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block font-links mb-1">
-                {t("contact_first_name")}
+                {t("contact_first_name")} 
               </label>
               <input
                 {...register("firstName")}

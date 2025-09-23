@@ -52,43 +52,49 @@ function TravelMain() {
             {t("travel_offers_title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packages.map((pkg, idx) => (
-              <div
-                key={pkg.id || idx}
-                className="bg-[#F7ECD8] rounded-xl  p-6 flex flex-col shadow-sm hover:cursor-pointer"
-                onClick={() => pkg.slug && router.push(`/travel/${pkg.slug}`)}
-              >
-                <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
-                  <Image
-                    src={`/images/places/Place${idx + 1}.png`}
-                    alt={pkg.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                </div>
-                <h3 className="font-garamond text-2xl sm:text-2xl text-[#4B2323] mb-2 font-semibold">
-                  <span
+            {packages && packages.length > 0 ? (
+              packages.map((pkg, idx) => (
+                <div
+                  key={pkg.id || idx}
+                  className="bg-[#F7ECD8] rounded-xl  p-6 flex flex-col shadow-sm hover:cursor-pointer"
+                  onClick={() => pkg.slug && router.push(`/travel/${pkg.slug}`)}
+                >
+                  <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
+                    <Image
+                      src={`/images/places/Place${idx + 1}.png`}
+                      alt={pkg.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                  </div>
+                  <h3 className="font-garamond text-2xl sm:text-2xl text-[#4B2323] mb-2 font-semibold">
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: pkg.title || "",
+                      }}
+                    />
+                    <br />
+                    <span className="font-semibold">
+                      {pkg.overview?.replace(/<[^>]+>/g, "")}
+                    </span>
+                  </h3>
+                  <p
+                    className="text-[#4B2323] font-links text-sm mb-4"
                     dangerouslySetInnerHTML={{
-                      __html: pkg.title || "",
+                      __html: pkg.subt_title || "",
                     }}
                   />
-                  <br />
-                  <span className="font-semibold">
-                    {pkg.overview?.replace(/<[^>]+>/g, "")}
+                  <span className="text-[#B94B4B] font-garamond text-2xl font-semibold mt-auto">
+                    {pkg.price}
                   </span>
-                </h3>
-                <p
-                  className="text-[#4B2323] font-links text-sm mb-4"
-                  dangerouslySetInnerHTML={{
-                    __html: pkg.subt_title || "",
-                  }}
-                />
-                <span className="text-[#B94B4B] font-garamond text-2xl font-semibold mt-auto">
-                  {pkg.price}
-                </span>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-3 text-center text-[#B94B4B] font-garamond text-2xl font-semibold py-12">
+                {t("no_package_found")}
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>

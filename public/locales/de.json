@@ -413,5 +413,6 @@
   "start_date": "Bevorzugtes Startdatum",
   "number_of_people": "Anzahl der Personen",
   "message": "Nachricht / Fragen",
-  "message_placeholder": "Teilen Sie uns gerne Ihre Nachrichten oder Fragen mit!"
+  "message_placeholder": "Teilen Sie uns gerne Ihre Nachrichten oder Fragen mit!",
+  "no_package_found": "Kein Paket gefunden"
 }
