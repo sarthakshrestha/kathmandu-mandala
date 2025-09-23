@@ -27,22 +27,22 @@ import {
 } from "@/components/ui/form";
 import { PopoverCalendar } from "@/components/ui/popover-calendar";
 
-const inquirySchema = z.object({
-  first_name: z.string().min(1, "First name is required"),
-  last_name: z.string().min(1, "Last name is required"),
-  email: z.string().email("Valid email is required"),
-  phone: z.string().min(1, "Phone is required"),
-  start_date: z.string().min(1, "Start date is required"),
-  number_of_people: z
-    .union([z.number().min(1, "At least 1 person is required"), z.null()])
-    .refine((val) => val !== null, "At least 1 person is required"),
-  message: z.string().optional(),
-});
-type InquiryFormValues = z.infer<typeof inquirySchema>;
-
 export default function PackageDialog({ packageId }: { packageId: number }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  type InquiryFormValues = z.infer<typeof inquirySchema>;
+
+  const inquirySchema = z.object({
+    first_name: z.string().min(1, "First name is required"),
+    last_name: z.string().min(1, "Last name is required"),
+    email: z.string().email("Valid email is required"),
+    phone: z.string().min(1, "Phone is required"),
+    start_date: z.string().min(1, "Start date is required"),
+    number_of_people: z
+      .union([z.number().min(1, "At least 1 person is required"), z.null()])
+      .refine((val) => val !== null, "At least 1 person is required"),
+    message: z.string().optional(),
+  });
 
   const methods = useForm<InquiryFormValues>({
     resolver: zodResolver(inquirySchema),
