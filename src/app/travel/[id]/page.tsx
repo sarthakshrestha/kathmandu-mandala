@@ -13,6 +13,7 @@ import { useTranslation } from "@/app/hooks/use-translation";
 import { packageService } from "@/api/services/packageService";
 import { useParams } from "next/navigation";
 import SingleTravelSkeleton from "@/app/components/skeletons/single-travel-skeleton";
+import PackageDialog from "@/app/components/travel/send-inqury-package-dialog";
 
 function extractImageUrls(html: string): string[] {
   const imgRegex = /<img[^>]+src="([^">]+)"/g;
@@ -94,7 +95,7 @@ export default function TravelCarousel() {
 
   return (
     <div className="bg-[#FFF9EE]">
-      <div className="w-full max-w-5xl mx-auto py-8 px-2 sm:px-0 max-sm:px-8 bg-[#FFF9EE]">
+      <div className="w-full max-w-5xl mx-auto py-8 px-8 sm:px-8 max-sm:px-8 bg-[#FFF9EE]">
         {/* Only show carousel if there are images */}
         {bodyImages.length > 0 && (
           <>
@@ -146,6 +147,9 @@ export default function TravelCarousel() {
           <p className="text-[#4B2323] text-base sm:text-lg mb-6 text-left">
             {packageData.price}
           </p>
+        </div>
+        <div className="mb-8">
+          <PackageDialog packageId={packageData?.id} />
         </div>
         <div className="prose max-w-none text-[#4B2323]">
           {/* Render the HTML body safely */}

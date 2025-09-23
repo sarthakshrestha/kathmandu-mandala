@@ -403,5 +403,15 @@
   "contact_info_whatsapp_label": "WhatsApp",
   "contact_info_whatsapp_value": "+49 172 7497932",
   "calendar_select_date": "Datum auswählen",
-  "footer_newsletter_invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+  "footer_newsletter_invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "send_inquiry": "Anfrage senden",
+  "inquiry_title": "Anfrage senden",
+  "first_name": "Vorname",
+  "last_name": "Nachname",
+  "email": "E-Mail",
+  "phone": "Telefon / WhatsApp",
+  "start_date": "Bevorzugtes Startdatum",
+  "number_of_people": "Anzahl der Personen",
+  "message": "Nachricht / Fragen",
+  "message_placeholder": "Teilen Sie uns gerne Ihre Nachrichten oder Fragen mit!"
 }

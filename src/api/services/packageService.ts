@@ -18,4 +18,13 @@ export const packageService = {
     });
     return response.data;
   },
+
+  sendPackageEnquiry: async (body: any) => {
+    const response = await axiosInstance.post("v1/package-enquiry", body, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  },
 };

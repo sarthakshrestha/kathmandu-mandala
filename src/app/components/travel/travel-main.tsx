@@ -68,7 +68,11 @@ function TravelMain() {
                   />
                 </div>
                 <h3 className="font-garamond text-2xl sm:text-2xl text-[#4B2323] mb-2 font-semibold">
-                  {pkg.title}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: pkg.title || "",
+                    }}
+                  />
                   <br />
                   <span className="font-semibold">
                     {pkg.overview?.replace(/<[^>]+>/g, "")}
