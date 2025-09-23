@@ -249,7 +249,7 @@ const Navbar = ({
                       onClick={() =>
                         useTranslationStore.getState().setLocale("de")
                       }
-                      className="px-5 py-4 border-2 rounded-3xl font-semibold bg-transparent shadow-none text-[#23233B] font-links text-base focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
+                      className="px-5 py-4 border-2 rounded-3xl font-semibold bg-transparent shadow-none hover:bg-transparent text-[#23233B] font-links text-base focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
                     >
                       🇩🇪 DE
                     </Button>
@@ -258,7 +258,7 @@ const Navbar = ({
                       onClick={() =>
                         useTranslationStore.getState().setLocale("en")
                       }
-                      className="px-5 py-4 border-2 rounded-3xl bg-transparent font-semibold shadow-none text-[#23233B] font-links text-base focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
+                      className="px-5 py-4 border-2 rounded-3xl bg-transparent font-semibold shadow-none text-[#23233B] hover:bg-transparent font-links text-base focus:outline-none focus:ring-2 focus:ring-[#FFD868] transition"
                     >
                       🇬🇧 EN
                     </Button>
