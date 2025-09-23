@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
         </div>
         {/* Right Section */}
-        <div className="flex-1 flex flex-col items-start md:items-end max-sm:items-start">
+        {/* <div className="flex-1 flex flex-col items-start md:items-end max-sm:items-start">
           <div className="flex-1 flex flex-col items-start md:items-start">
             <span className="text-[#D6A346] font-links md:items-start md:justify-end md:flex-row-reverse font-semibold mb-3">
               {t("footer_newsletter_title")}
@@ -115,7 +115,7 @@ export default function Footer() {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="max-w-7xl mx-auto mt-10 mb-1 items-end flex justify-end ">
         <a
