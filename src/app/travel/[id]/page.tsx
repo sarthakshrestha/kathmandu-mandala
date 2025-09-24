@@ -261,7 +261,10 @@ export default function TravelCarousel() {
                     {t("trek_detail_tour_type") || "Tour Type"}
                   </span>
                   <span className="font-links font-semibold text-base">
-                    {packageData.type || "Standard"}
+                    {packageData.type
+                      ? packageData.type.charAt(0).toUpperCase() +
+                        packageData.type.slice(1)
+                      : "Standard"}
                   </span>
                 </div>
                 <div>
