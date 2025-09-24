@@ -96,6 +96,9 @@ function Component2() {
             const subTitle = getTranslatedContent(pkg, "sub_title");
             const price = pkg.price;
 
+            console.log("The title from helper function", title);
+            console.log("The title from api are", pkg.title);
+
             return (
               <div
                 key={pkg.id || idx}

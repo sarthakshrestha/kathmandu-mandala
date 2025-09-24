@@ -97,6 +97,8 @@ function TravelMain() {
                 const title = getTranslatedContent(pkg, "title");
                 const subTitle = getTranslatedContent(pkg, "sub_title");
 
+                console.log("Package title:", title, "Original:", pkg.title);
+
                 return (
                   <div
                     key={pkg.id || idx}

@@ -247,7 +247,7 @@ export default function TravelCarousel() {
         </div>
 
         {/* Main Grid Layout */}
-        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start mt-10 max-sm:flex-col-reverse">
+        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start max-sm:mt-0 mt-10 max-sm:flex-col-reverse">
           {/* Content Column */}
           <div className="flex flex-col w-full">
             {/* Overview Section */}
@@ -338,7 +338,7 @@ export default function TravelCarousel() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="w-full sticky top-24 self-start">
+          <div className="w-full max-sm:relative sticky lg:mt-2 lg:top-24 max-sm:top-2 self-start">
             <div className="bg-[#F7ECD8] rounded-xl p-6 shadow-sm">
               <h2 className="font-garamond text-xl font-semibold mb-4 text-[#4B2323]">
                 {t("package_price_details") || "Price Details"}
