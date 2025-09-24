@@ -76,7 +76,7 @@ function Component2() {
                 }}
               />
               <span className="text-[#B94B4B] font-garamond text-2xl font-semibold mt-auto">
-                {pkg.price}
+                €{pkg.price}
               </span>
             </div>
           ))}
