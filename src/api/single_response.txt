@@ -2,37 +2,52 @@
     "status": 200,
     "message": "Package retrieved successfully",
     "data": {
-        "id": 1,
-        "title": "Test Package",
-        "sub_title": "Test Sub Title",
-        "slug": "test-package",
-        "price": "1000",
-        "description": "<p>Test Description<\/p>",
-        "tour_plan": [
+        "id": 4,
+        "slug": "everest-heli-tour",
+        "price": "Starting from $1200",
+        "type": "premium",
+        "max_group_size": "5",
+        "min_age": "5",
+        "tags": "",
+        "meta_title": "Everest Helicopter Tour with Kalapatthar Landing | Scenic Himalaya Flight",
+        "meta_description": "Experience a 5-hour helicopter tour from Kathmandu with landings at Lukla, Pheriche, Kalapatthar, and Hotel Everest View. Witness stunning views of Mount Everest and the Himalayas.",
+        "meta_keywords": "Everest helicopter tour, Kalapatthar landing, Kathmandu helicopter flight, Hotel Everest View, Lukla helicopter tour, Nepal scenic flight, Himalaya aerial tour",
+        "image": [
             {
-                "title": "Title",
-                "description": "Description"
+                "id": 5,
+                "name": "image",
+                "file_name": "01K5XFDF9PRVA4K1AN5W8DNE0B.png",
+                "mime_type": "image\/png",
+                "size": 746030,
+                "file_url": "https:\/\/dev-api.kathmandumandala.com\/storage\/5\/01K5XFDF9PRVA4K1AN5W8DNE0B.png"
             }
         ],
-        "included": [
+        "translations": [
             {
-                "item": "Item 1"
+                "language": "en",
+                "title": "EVEREST HELI TOUR",
+                "sub_title": "Everest Helicopter Tour with Kalapatthar Landing | Scenic Himalaya Flight",
+                "description": "<p>Experience a 5-hour helicopter tour from Kathmandu with landings at Lukla, Pheriche, Kalapatthar, and Hotel Everest View. Witness stunning views of Mount Everest and the Himalayas.<\/p>",
+                "overview": "<p>Everest helicopter tour, Kalapatthar landing, Kathmandu helicopter flight, Hotel Everest View, Lukla helicopter tour, Nepal scenic flight, Himalaya aerial tour<\/p>",
+                "tour_plan": [
+                    {
+                        "title": "Day 1: Everest Helicopter Tour",
+                        "description": "Your tour begins early morning at the domestic terminal of Tribhuvan International Airport, Kathmandu. After a pre-flight briefing, you will fly towards Lukla for refueling, then continue to Pheriche for weight adjustment. From there, enjoy a shuttle flight to Kalapatthar (5,300m) for a breathtaking close-up view of Mount Everest and surrounding peaks. After 10 minutes for photos, fly back to Pheriche, then onward to Hotel Everest View for breakfast or lunch with panoramic mountain views. Return flight to Kathmandu via Lukla, concluding the experience in about 5 hours."
+                    }
+                ],
+                "included": [
+                    {
+                        "item": "Helicopter flight (Kathmandu\u2013Lukla\u2013Pheriche\u2013Kalapatthar\u2013Hotel Everest View\u2013Kathmandu)  Landing at Kalapatthar (if included in package)  Sagarmatha National Park & Khumbu Pasang Lhamu permits  Airport taxes and domestic terminal charges  Shared oxygen cylinder for emergency use  Window seat for all passengers (in most operators)  Hotel pick-up and drop-off in Kathmandu  Passenger insurance (during flight only)  Experienced high-altitude pilot"
+                    }
+                ],
+                "excluded": [
+                    {
+                        "item": "International round-trip flights to\/from Nepal  Nepal visa on arrival (USD 30 for 15 days)  Meals not mentioned (e.g., at Hotel Everest View or Kathmandu)  Tips for guide, driver, pilot, hotel staff (optional but recommended)  Personal travel insurance (must include high-altitude flight coverage)  Extra expenses due to bad weather, natural disasters, political unrest, or other unforeseen events"
+                    }
+                ],
+                "operated_in": "English, Nepali (guides available)",
+                "itinerary": "<p><strong>Kathmandu \u2192 Lukla \u2192 Pheriche \u2192 Kalapatthar \u2192 Pheriche \u2192 Hotel Everest View \u2192 Lukla \u2192 Kathmandu<\/strong><\/p><ol><li><strong>Kathmandu:<\/strong> Meet tour guide\/operator, safety briefing, flight departure.<\/li><li><strong>Lukla (2,850m):<\/strong> First stop for refueling.<\/li><li><strong>Pheriche (4,370m):<\/strong> Second stop for weight adjustment, shuttle flights begin.<\/li><li><strong>Kalapatthar (5,300m):<\/strong> Main highlight; 10-minute stop for photos of Everest &amp; surrounding peaks.<\/li><li><strong>Hotel Everest View (3,960m):<\/strong> Breakfast or lunch with 360\u00b0 Himalayan views.<\/li><li><strong>Return Flight:<\/strong> Fly back to Kathmandu (via Lukla if refueling required).<\/li><\/ol>"
             }
-        ],
-        "excluded": [
-            {
-                "item": "Item 2"
-            }
-        ],
-        "overview": "<p>Test Overview <br><strong>orem Ipsum<\/strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p><h2>Why do we use it?<\/h2><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\/p><p><br><\/p><h2>Where does it come from?<\/h2><p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.<\/p><p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.<\/p><h2>Where can I get some?<\/h2><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.<\/p><p><br><br><\/p>",
-        "type": "standard",
-        "max_group_size": "9",
-        "min_age": "0",
-        "operated_in": "Nepali ",
-        "itinerary": null,
-        "tags": "Tag 1,Tag 2",
-        "meta_title": null,
-        "meta_description": null,
-        "meta_keywords": null
+        ]
     }
 }

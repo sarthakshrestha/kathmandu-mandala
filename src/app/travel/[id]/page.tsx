@@ -9,6 +9,7 @@ import {
   CarouselNext,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { useMemo } from "react";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { packageService } from "@/api/services/packageService";
 import { useParams } from "next/navigation";
@@ -18,6 +19,7 @@ import ScrollTabPortal from "@/components/portals/scroll-tab-portal";
 import IncludeExcludePortal from "@/components/portals/include-exclude-portal";
 import TourPlanPortal from "@/components/portals/tour-plan-portal";
 import FaqDynamic from "@/components/portals/faq-dynamic";
+import { useCurrentTranslation } from "@/app/hooks/use-dynamic-translation";
 
 function extractImageUrls(html: string): string[] {
   const imgRegex = /<img[^>]+src="([^">]+)"/g;
@@ -45,6 +47,7 @@ export default function TravelCarousel() {
   // Carousel state
   const [activeIdx, setActiveIdx] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const translation = useCurrentTranslation(packageData);
 
   // Refs for scrolling
   const overviewRef = useRef<HTMLDivElement>(null);
@@ -72,6 +75,16 @@ export default function TravelCarousel() {
   const bodyImages = packageData?.description
     ? extractImageUrls(packageData.description)
     : [];
+
+  const carouselImages = useMemo(() => {
+    const dedicatedImages =
+      packageData?.image?.map((img: any) => img.file_url) || [];
+    const descriptionImages = packageData?.description
+      ? extractImageUrls(packageData.description)
+      : [];
+
+    return [...dedicatedImages, ...descriptionImages];
+  }, [packageData]);
 
   // Carousel logic
   const onSelect = useCallback(() => {
@@ -132,19 +145,29 @@ export default function TravelCarousel() {
       </div>
     );
 
+  const title = translation?.title || packageData.title || "";
+  const overview = translation?.overview || packageData.overview || "";
+  const description = translation?.description || packageData.description || "";
+
   // Format tour plan items for TourPlanPortal
   const tourPlanItems =
-    packageData?.tour_plan?.map((plan: any, idx: number) => ({
-      key: `day${idx + 1}`,
-      title: plan.title,
-      description: plan.description,
-    })) || [];
+    (translation?.tour_plan || packageData?.tour_plan)?.map(
+      (plan: any, idx: number) => ({
+        key: `day${idx + 1}`,
+        title: plan.title,
+        description: plan.description,
+      })
+    ) || [];
 
   // Format included/excluded items
   const includedItems =
-    packageData?.included?.map((item: any) => item.item) || [];
+    (translation?.included || packageData?.included)?.map(
+      (item: any) => item.item
+    ) || [];
   const excludedItems =
-    packageData?.excluded?.map((item: any) => item.item) || [];
+    (translation?.excluded || packageData?.excluded)?.map(
+      (item: any) => item.item
+    ) || [];
 
   // Create tabs for the scroll tabs component
   const tabs = [
@@ -174,7 +197,7 @@ export default function TravelCarousel() {
     <div className="bg-[#FFF9EE]">
       <div className="w-full max-w-6xl mx-auto max-sm:py-0 py-8 px-4 sm:px-8 bg-[#FFF9EE]">
         {/* Carousel Section */}
-        {bodyImages.length > 0 && (
+        {carouselImages.length > 0 && (
           <>
             <Carousel className="relative" setApi={setCarouselApi}>
               <div className="flex max-sm:hidden">
@@ -182,7 +205,7 @@ export default function TravelCarousel() {
                 <CarouselNext />
               </div>
               <CarouselContent>
-                {bodyImages.map((src, idx) => (
+                {carouselImages.map((src, idx) => (
                   <CarouselItem
                     key={idx}
                     className="flex justify-center items-center"
@@ -203,7 +226,7 @@ export default function TravelCarousel() {
             </Carousel>
             {/* Mobile Dots */}
             <div className="flex justify-center items-center mt-4 sm:hidden">
-              {bodyImages.map((_, idx) => (
+              {carouselImages.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleDotClick(idx)}
@@ -270,7 +293,7 @@ export default function TravelCarousel() {
               <div className="prose max-w-none text-[#4B2323]">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: packageData.overview || "",
+                    __html: overview,
                   }}
                 />
               </div>
@@ -302,7 +325,7 @@ export default function TravelCarousel() {
             <div className="prose max-w-none text-[#4B2323] mb-10">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: packageData.description || "",
+                  __html: description,
                 }}
               />
             </div>
