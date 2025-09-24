@@ -93,14 +93,23 @@ export default function TravelCarousel() {
 
   const scrollToSection = (sectionId: string) => {
     if (sectionId === "overview" && overviewRef.current) {
-      overviewRef.current.scrollIntoView({ behavior: "smooth" });
+      // Scroll with offset to account for navbar
+      window.scrollTo({
+        top: overviewRef.current.offsetTop - 100,
+        behavior: "smooth",
+      });
     } else if (sectionId === "tour-plan" && tourPlanRef.current) {
-      tourPlanRef.current.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({
+        top: tourPlanRef.current.offsetTop - 100,
+        behavior: "smooth",
+      });
     } else if (sectionId === "include-exclude" && includeExcludeRef.current) {
-      includeExcludeRef.current.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({
+        top: includeExcludeRef.current.offsetTop - 100,
+        behavior: "smooth",
+      });
     }
   };
-
   if (loading)
     return (
       <div className="bg-[#FFF9EE]">

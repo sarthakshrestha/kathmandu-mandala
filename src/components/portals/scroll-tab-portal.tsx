@@ -27,11 +27,16 @@ export default function ScrollTabPortal({
   useEffect(() => {
     const handleScroll = () => {
       let found = tabs[0].value;
+      // Account for navbar height (h-20 = 80px) + some padding
+      const navbarHeight = 80;
+      const offsetMargin = 20;
+      const totalOffset = navbarHeight + offsetMargin; // 100px total
+
       for (const tab of tabs) {
         const el = document.getElementById(tab.sectionId);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
+          if (rect.top <= totalOffset) {
             found = tab.value;
           }
         }
