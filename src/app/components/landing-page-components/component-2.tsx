@@ -66,7 +66,7 @@ function Component2() {
                 {pkg.title}
                 <br />
                 <span className="font-semibold">
-                  {pkg.overview?.replace(/<[^>]+>/g, "")}
+                  {pkg.sub_title?.replace(/<[^>]+>/g, "")}
                 </span>
               </h3>
               <p
