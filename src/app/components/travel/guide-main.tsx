@@ -6,7 +6,7 @@ export default function GuideMain() {
   const { t, locale } = useTranslation();
 
   return (
-    <section className="bg-[#FFF9EE] px-4 md:px-12 py-6 flex items-center justify-center">
+    <section className="bg-[#FFF9EE] px-4 md:px-12 py-6 flex items-center justify-center max-sm:px-8">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-10 items-center w-full rounded-2xl bg-[#F7ECD8] p-6 md:p-6">
         <div className="flex-1 w-full flex justify-center items-center">
           <div className="rounded-xl overflow-hidden w-full max-w-xs">

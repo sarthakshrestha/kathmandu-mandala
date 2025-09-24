@@ -41,8 +41,8 @@ function TravelMain() {
       <Head>
         {metaKeywords && <meta name="keywords" content={metaKeywords} />}
       </Head>
-      <section className="relative py-10 max-sm:py-12 max-sm:px-4 px-2 sm:px-6 pb-24 lg:px-18 overflow-hidden bg-[#FFF9EE]">
-        <div className="relative z-10 max-w-6xl px-18 max-sm:px-8 mx-auto">
+      <section className="relative pt-10 max-sm:pt-12 max-sm:pb-4 max-sm:px-8 px-2 sm:px-6 pb-24 lg:px-18 overflow-hidden bg-[#FFF9EE]">
+        <div className="relative z-10 max-w-6xl lg:px-18 mx-auto">
           <div className="text-center mb-2">
             <span className="inline-block text-[#B94B4B]  px-4 py-1 rounded-full font-garamond text-lg font-semibold">
               Travel list
