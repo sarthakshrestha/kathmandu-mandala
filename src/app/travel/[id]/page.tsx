@@ -160,7 +160,7 @@ export default function TravelCarousel() {
 
   return (
     <div className="bg-[#FFF9EE]">
-      <div className="w-full max-w-6xl mx-auto py-8 px-4 sm:px-8 bg-[#FFF9EE]">
+      <div className="w-full max-w-6xl mx-auto max-sm:py-0 py-8 px-4 sm:px-8 bg-[#FFF9EE]">
         {/* Carousel Section */}
         {bodyImages.length > 0 && (
           <>

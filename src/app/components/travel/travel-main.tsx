@@ -76,17 +76,17 @@ function TravelMain() {
                     />
                     <br />
                     <span className="font-semibold">
-                      {pkg.overview?.replace(/<[^>]+>/g, "")}
+                      {pkg.sub_title?.replace(/<[^>]+>/g, "")}
                     </span>
                   </h3>
                   <p
                     className="text-[#4B2323] font-links text-sm mb-4"
                     dangerouslySetInnerHTML={{
-                      __html: pkg.subt_title || "",
+                      __html: pkg.sub_title || "",
                     }}
                   />
                   <span className="text-[#B94B4B] font-garamond text-2xl font-semibold mt-auto">
-                    {pkg.price}
+                    €{pkg.price}
                   </span>
                 </div>
               ))
