@@ -17,6 +17,7 @@ import PackageDialog from "@/app/components/travel/send-inqury-package-dialog";
 import ScrollTabPortal from "@/components/portals/scroll-tab-portal";
 import IncludeExcludePortal from "@/components/portals/include-exclude-portal";
 import TourPlanPortal from "@/components/portals/tour-plan-portal";
+import FaqDynamic from "@/components/portals/faq-dynamic";
 
 function extractImageUrls(html: string): string[] {
   const imgRegex = /<img[^>]+src="([^">]+)"/g;
@@ -297,6 +298,7 @@ export default function TravelCarousel() {
                 }}
               />
             </div>
+            <FaqDynamic type="tour" />
           </div>
 
           {/* Sidebar Column */}
