@@ -304,7 +304,7 @@ export default function TravelCarousel() {
                   {t("package_price") || "Price:"}
                 </span>
                 <span className="text-[#B94B4B] font-garamond text-2xl font-semibold">
-                  {packageData.price}
+                  € {packageData.price}
                 </span>
               </div>
               <PackageDialog packageId={packageData?.id} />
