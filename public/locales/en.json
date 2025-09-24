@@ -418,5 +418,6 @@
   "package_not_found": "Package not found.",
   "package_price_details": "Price Details",
   "package_price": "Price:",
-  "no_faqs_available": "No FAQs available at this time."
+  "no_faqs_available": "No FAQs available at this time.",
+  "travel_list": "Travel List"
 }
