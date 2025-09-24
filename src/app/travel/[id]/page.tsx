@@ -224,7 +224,7 @@ export default function TravelCarousel() {
         </div>
 
         {/* Main Grid Layout */}
-        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start mt-10">
+        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start mt-10 max-sm:flex-col-reverse">
           {/* Content Column */}
           <div className="flex flex-col w-full">
             {/* Overview Section */}
