@@ -415,5 +415,9 @@
   "message": "Message / Questions",
   "message_placeholder": "Feel free to share any messages or questions you have!",
   "no_package_found": "No Package found",
-  "package_not_found": "Package not found."
+  "package_not_found": "Package not found.",
+  "package_price_details": "Price Details",
+  "package_price": "Price:",
+  "no_faqs_available": "No FAQs available at this time.",
+  "travel_list": "Travel List"
 }

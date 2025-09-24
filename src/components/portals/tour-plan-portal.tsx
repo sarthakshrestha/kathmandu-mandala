@@ -22,7 +22,7 @@ export default function TourPlanPortal({
   sectionTitle = "Tour Plan",
 }: TourPlanPortalProps) {
   return (
-    <section className="w-full bg-transparent rounded-xl p-4 md:p-8 lg:-mt-14">
+    <section className="w-full bg-transparent rounded-xl p-0 md:p-0 ">
       <h2 className="font-links font-semibold text-lg md:text-3xl mb-4 font-garamond">
         {sectionTitle}
       </h2>

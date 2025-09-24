@@ -12,12 +12,14 @@ interface ScrollTabPortalProps {
   tabs: TabItem[];
   className?: string;
   tabListClassName?: string;
+  onTabClick?: (sectionId: string) => void; // Add this prop
 }
 
 export default function ScrollTabPortal({
   tabs,
   className = "",
   tabListClassName = "",
+  onTabClick, // Accept the prop here
 }: ScrollTabPortalProps) {
   const [active, setActive] = useState(tabs[0]?.value);
 
@@ -25,11 +27,16 @@ export default function ScrollTabPortal({
   useEffect(() => {
     const handleScroll = () => {
       let found = tabs[0].value;
+      // Account for navbar height (h-20 = 80px) + some padding
+      const navbarHeight = 80;
+      const offsetMargin = 20;
+      const totalOffset = navbarHeight + offsetMargin; // 100px total
+
       for (const tab of tabs) {
         const el = document.getElementById(tab.sectionId);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
+          if (rect.top <= totalOffset) {
             found = tab.value;
           }
         }
@@ -41,9 +48,16 @@ export default function ScrollTabPortal({
   }, [tabs]);
 
   const handleTabClick = (tab: TabItem) => {
-    const el = document.getElementById(tab.sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // If onTabClick prop is provided, use it
+    if (onTabClick) {
+      onTabClick(tab.sectionId);
+    }
+    // Otherwise, fall back to the built-in scroll behavior
+    else {
+      const el = document.getElementById(tab.sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 

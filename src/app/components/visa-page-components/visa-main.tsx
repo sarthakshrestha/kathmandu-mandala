@@ -6,6 +6,7 @@ import { useTranslation } from "@/app/hooks/use-translation";
 import VisaFAQ from "./visa-faq";
 import RegisterFormDialog from "./register-form-dialog";
 import { Loader2 } from "lucide-react";
+import FaqDynamic from "@/components/portals/faq-dynamic";
 
 export default function VisaMain() {
   const { t, isLoaded } = useTranslation();
@@ -33,7 +34,7 @@ export default function VisaMain() {
           />
         </div>
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row gap-6 sm:gap-8">
+        <div className="flex flex-col md:flex-row gap-6 sm:gap-8 max-sm:flex-col-reverse">
           {/* Left: Info */}
           <div className="flex-1 min-w-0">
             <h1 className="font-garamond text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6 text-[#23233B]">
@@ -123,7 +124,7 @@ export default function VisaMain() {
             <p className="text-[#23233B] text-sm sm:text-base mb-4 sm:mb-6">
               {t("visa_paragraph")}
             </p>
-            <div>
+            <div className="mb-2">
               <h2 className="font-garamond text-base sm:text-lg mb-2 sm:mb-3 text-[#23233B]">
                 {t("important_notes")}
               </h2>
@@ -143,6 +144,7 @@ export default function VisaMain() {
                 </li>
               </ul>
             </div>
+            <FaqDynamic type="visa" />
           </div>
           {/* Right: Card */}
           <div className="bg-white rounded-xl shadow p-4 sm:p-6 w-full md:w-[320px] flex flex-col gap-3 sm:gap-4 h-fit mt-4 md:mt-0">
@@ -151,7 +153,6 @@ export default function VisaMain() {
             <RegisterFormDialog />
           </div>
         </div>
-        <VisaFAQ />
       </div>
     </section>
   );

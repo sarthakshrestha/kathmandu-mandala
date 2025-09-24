@@ -415,5 +415,9 @@
   "message": "Nachricht / Fragen",
   "message_placeholder": "Teilen Sie uns gerne Ihre Nachrichten oder Fragen mit!",
   "no_package_found": "Kein Paket gefunden",
-  "package_not_found": "Paket nicht gefunden."
+  "package_not_found": "Paket nicht gefunden.",
+  "package_price_details": "Preisdetails",
+  "package_price": "Preis:",
+  "no_faqs_available": "Derzeit sind keine FAQs verfügbar.",
+  "travel_list": "Reiseliste"
 }
