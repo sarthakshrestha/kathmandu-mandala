@@ -34,7 +34,7 @@ export default function VisaMain() {
           />
         </div>
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row gap-6 sm:gap-8">
+        <div className="flex flex-col md:flex-row gap-6 sm:gap-8 max-sm:flex-col-reverse">
           {/* Left: Info */}
           <div className="flex-1 min-w-0">
             <h1 className="font-garamond text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6 text-[#23233B]">
@@ -124,7 +124,7 @@ export default function VisaMain() {
             <p className="text-[#23233B] text-sm sm:text-base mb-4 sm:mb-6">
               {t("visa_paragraph")}
             </p>
-            <div>
+            <div className="mb-2">
               <h2 className="font-garamond text-base sm:text-lg mb-2 sm:mb-3 text-[#23233B]">
                 {t("important_notes")}
               </h2>
