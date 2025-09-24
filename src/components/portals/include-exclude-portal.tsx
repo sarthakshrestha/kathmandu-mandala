@@ -14,7 +14,7 @@ export default function IncludeExcludePortal({
   title = "Included/Exclude",
 }: IncludeExcludePortalProps) {
   return (
-    <section className="w-full bg-transparent rounded-xl p-4 md:p-8">
+    <section className="w-full bg-transparent rounded-xl ">
       <h2 className="font-garamond text-lg md:text-3xl mb-8 text-[#23233B] md:font-semibold">
         {title}
       </h2>
