@@ -10,6 +10,7 @@ interface FAQItem {
   key: string;
   question: string;
   answer: string;
+  isHtml?: boolean;
 }
 
 interface FAQPortalProps {
@@ -22,7 +23,7 @@ export default function FAQPortal({
   sectionTitle = "FAQ",
 }: FAQPortalProps) {
   return (
-    <section className="bg-[#FCF8F2] py-6 w-full rounded-xl p-4 md:p-8">
+    <section className="bg-transparent py-6 w-full rounded-xl ">
       <h2 className="font-garamond font-semibold text-2xl md:text-3xl mb-6 text-[#23233B]">
         {sectionTitle}
       </h2>
@@ -37,7 +38,14 @@ export default function FAQPortal({
               {item.question}
             </AccordionTrigger>
             <AccordionContent className="text-[#23233B] font-links text-base">
-              {item.answer}
+              {item.isHtml ? (
+                <div
+                  className="text-[#23233B] text-base"
+                  dangerouslySetInnerHTML={{ __html: item.answer }}
+                />
+              ) : (
+                <p className="text-[#23233B] text-base">{item.answer}</p>
+              )}
             </AccordionContent>
           </AccordionItem>
         ))}

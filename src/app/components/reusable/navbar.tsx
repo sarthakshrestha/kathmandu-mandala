@@ -87,12 +87,12 @@ const Navbar = ({
           icon: <Plane className="size-5 shrink-0" />,
           url: "/travel",
         },
-        {
-          title: t("navbar_menu_courier_service"),
-          description: t("navbar_menu_courier_service_desc"),
-          icon: <Send className="size-5 shrink-0" />, // Courier Service
-          url: "#",
-        },
+        // {
+        //   title: t("navbar_menu_courier_service"),
+        //   description: t("navbar_menu_courier_service_desc"),
+        //   icon: <Send className="size-5 shrink-0" />, // Courier Service
+        //   url: "#",
+        // },
       ],
     },
     {

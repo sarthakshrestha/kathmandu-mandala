@@ -9,6 +9,7 @@ import {
   CarouselNext,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { useMemo } from "react";
 import { useTranslation } from "@/app/hooks/use-translation";
 import { packageService } from "@/api/services/packageService";
 import { useParams } from "next/navigation";
@@ -17,6 +18,8 @@ import PackageDialog from "@/app/components/travel/send-inqury-package-dialog";
 import ScrollTabPortal from "@/components/portals/scroll-tab-portal";
 import IncludeExcludePortal from "@/components/portals/include-exclude-portal";
 import TourPlanPortal from "@/components/portals/tour-plan-portal";
+import FaqDynamic from "@/components/portals/faq-dynamic";
+import { useCurrentTranslation } from "@/app/hooks/use-dynamic-translation";
 
 function extractImageUrls(html: string): string[] {
   const imgRegex = /<img[^>]+src="([^">]+)"/g;
@@ -44,11 +47,13 @@ export default function TravelCarousel() {
   // Carousel state
   const [activeIdx, setActiveIdx] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const translation = useCurrentTranslation(packageData);
 
   // Refs for scrolling
   const overviewRef = useRef<HTMLDivElement>(null);
   const tourPlanRef = useRef<HTMLDivElement>(null);
   const includeExcludeRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetchPackage() {
@@ -70,6 +75,16 @@ export default function TravelCarousel() {
   const bodyImages = packageData?.description
     ? extractImageUrls(packageData.description)
     : [];
+
+  const carouselImages = useMemo(() => {
+    const dedicatedImages =
+      packageData?.image?.map((img: any) => img.file_url) || [];
+    const descriptionImages = packageData?.description
+      ? extractImageUrls(packageData.description)
+      : [];
+
+    return [...dedicatedImages, ...descriptionImages];
+  }, [packageData]);
 
   // Carousel logic
   const onSelect = useCallback(() => {
@@ -108,6 +123,11 @@ export default function TravelCarousel() {
         top: includeExcludeRef.current.offsetTop - 100,
         behavior: "smooth",
       });
+    } else if (sectionId === "faq-section" && faqRef.current) {
+      window.scrollTo({
+        top: faqRef.current.offsetTop - 100,
+        behavior: "smooth",
+      });
     }
   };
   if (loading)
@@ -125,19 +145,29 @@ export default function TravelCarousel() {
       </div>
     );
 
+  const title = translation?.title || packageData.title || "";
+  const overview = translation?.overview || packageData.overview || "";
+  const description = translation?.description || packageData.description || "";
+
   // Format tour plan items for TourPlanPortal
   const tourPlanItems =
-    packageData?.tour_plan?.map((plan: any, idx: number) => ({
-      key: `day${idx + 1}`,
-      title: plan.title,
-      description: plan.description,
-    })) || [];
+    (translation?.tour_plan || packageData?.tour_plan)?.map(
+      (plan: any, idx: number) => ({
+        key: `day${idx + 1}`,
+        title: plan.title,
+        description: plan.description,
+      })
+    ) || [];
 
   // Format included/excluded items
   const includedItems =
-    packageData?.included?.map((item: any) => item.item) || [];
+    (translation?.included || packageData?.included)?.map(
+      (item: any) => item.item
+    ) || [];
   const excludedItems =
-    packageData?.excluded?.map((item: any) => item.item) || [];
+    (translation?.excluded || packageData?.excluded)?.map(
+      (item: any) => item.item
+    ) || [];
 
   // Create tabs for the scroll tabs component
   const tabs = [
@@ -156,13 +186,18 @@ export default function TravelCarousel() {
       label: t("trek_tab_include") || "Included/Exclude",
       sectionId: "include-exclude",
     },
+    {
+      value: "faq",
+      label: t("trek_tab_faq") || "FAQs",
+      sectionId: "faq-section",
+    },
   ];
 
   return (
     <div className="bg-[#FFF9EE]">
       <div className="w-full max-w-6xl mx-auto max-sm:py-0 py-8 px-4 sm:px-8 bg-[#FFF9EE]">
         {/* Carousel Section */}
-        {bodyImages.length > 0 && (
+        {carouselImages.length > 0 && (
           <>
             <Carousel className="relative" setApi={setCarouselApi}>
               <div className="flex max-sm:hidden">
@@ -170,7 +205,7 @@ export default function TravelCarousel() {
                 <CarouselNext />
               </div>
               <CarouselContent>
-                {bodyImages.map((src, idx) => (
+                {carouselImages.map((src, idx) => (
                   <CarouselItem
                     key={idx}
                     className="flex justify-center items-center"
@@ -191,7 +226,7 @@ export default function TravelCarousel() {
             </Carousel>
             {/* Mobile Dots */}
             <div className="flex justify-center items-center mt-4 sm:hidden">
-              {bodyImages.map((_, idx) => (
+              {carouselImages.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleDotClick(idx)}
@@ -212,7 +247,7 @@ export default function TravelCarousel() {
         </div>
 
         {/* Main Grid Layout */}
-        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start mt-10">
+        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-start max-sm:mt-0 mt-10 max-sm:flex-col-reverse">
           {/* Content Column */}
           <div className="flex flex-col w-full">
             {/* Overview Section */}
@@ -226,7 +261,10 @@ export default function TravelCarousel() {
                     {t("trek_detail_tour_type") || "Tour Type"}
                   </span>
                   <span className="font-links font-semibold text-base">
-                    {packageData.type || "Standard"}
+                    {packageData.type
+                      ? packageData.type.charAt(0).toUpperCase() +
+                        packageData.type.slice(1)
+                      : "Standard"}
                   </span>
                 </div>
                 <div>
@@ -254,19 +292,15 @@ export default function TravelCarousel() {
                   </span>
                 </div>
               </div>
-              <h3 className="font-links font-semibold text-lg md:text-2xl mb-2 font-garamond">
-                {t("trek_detail_overview_title") || "Overview"}
-              </h3>
               {/* Overview Content */}
               <div className="prose max-w-none text-[#4B2323]">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: packageData.overview || "",
+                    __html: overview,
                   }}
                 />
               </div>
             </div>
-
             {/* Tour Plan Section */}
             {tourPlanItems.length > 0 && (
               <div ref={tourPlanRef} id="tour-plan" className="mb-10">
@@ -276,7 +310,6 @@ export default function TravelCarousel() {
                 />
               </div>
             )}
-
             {/* Include/Exclude Section */}
             {(includedItems.length > 0 || excludedItems.length > 0) && (
               <div
@@ -291,19 +324,21 @@ export default function TravelCarousel() {
                 />
               </div>
             )}
-
             {/* Description Section */}
             <div className="prose max-w-none text-[#4B2323] mb-10">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: packageData.description || "",
+                  __html: description,
                 }}
               />
             </div>
+            <div ref={faqRef} id="faq-section" className="mb-6">
+              <FaqDynamic type="tour" />
+            </div>{" "}
           </div>
 
           {/* Sidebar Column */}
-          <div className="w-full sticky top-24 self-start">
+          <div className="w-full max-sm:relative sticky lg:mt-2 lg:top-24 max-sm:top-2 self-start">
             <div className="bg-[#F7ECD8] rounded-xl p-6 shadow-sm">
               <h2 className="font-garamond text-xl font-semibold mb-4 text-[#4B2323]">
                 {t("package_price_details") || "Price Details"}
