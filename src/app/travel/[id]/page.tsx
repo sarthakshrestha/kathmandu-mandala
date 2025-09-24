@@ -50,6 +50,7 @@ export default function TravelCarousel() {
   const overviewRef = useRef<HTMLDivElement>(null);
   const tourPlanRef = useRef<HTMLDivElement>(null);
   const includeExcludeRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetchPackage() {
@@ -109,6 +110,11 @@ export default function TravelCarousel() {
         top: includeExcludeRef.current.offsetTop - 100,
         behavior: "smooth",
       });
+    } else if (sectionId === "faq-section" && faqRef.current) {
+      window.scrollTo({
+        top: faqRef.current.offsetTop - 100,
+        behavior: "smooth",
+      });
     }
   };
   if (loading)
@@ -156,6 +162,11 @@ export default function TravelCarousel() {
       value: "include",
       label: t("trek_tab_include") || "Included/Exclude",
       sectionId: "include-exclude",
+    },
+    {
+      value: "faq",
+      label: t("trek_tab_faq") || "FAQs",
+      sectionId: "faq-section",
     },
   ];
 
@@ -264,7 +275,6 @@ export default function TravelCarousel() {
                 />
               </div>
             </div>
-
             {/* Tour Plan Section */}
             {tourPlanItems.length > 0 && (
               <div ref={tourPlanRef} id="tour-plan" className="mb-10">
@@ -274,7 +284,6 @@ export default function TravelCarousel() {
                 />
               </div>
             )}
-
             {/* Include/Exclude Section */}
             {(includedItems.length > 0 || excludedItems.length > 0) && (
               <div
@@ -289,7 +298,6 @@ export default function TravelCarousel() {
                 />
               </div>
             )}
-
             {/* Description Section */}
             <div className="prose max-w-none text-[#4B2323] mb-10">
               <div
@@ -298,7 +306,9 @@ export default function TravelCarousel() {
                 }}
               />
             </div>
-            <FaqDynamic type="tour" />
+            <div ref={faqRef} id="faq-section" className="mb-6">
+              <FaqDynamic type="tour" />
+            </div>{" "}
           </div>
 
           {/* Sidebar Column */}
