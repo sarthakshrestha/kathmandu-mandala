@@ -254,9 +254,6 @@ export default function TravelCarousel() {
                   </span>
                 </div>
               </div>
-              <h3 className="font-links font-semibold text-lg md:text-2xl mb-2 font-garamond">
-                {t("trek_detail_overview_title") || "Overview"}
-              </h3>
               {/* Overview Content */}
               <div className="prose max-w-none text-[#4B2323]">
                 <div

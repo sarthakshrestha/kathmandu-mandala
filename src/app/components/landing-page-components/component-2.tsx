@@ -56,7 +56,7 @@ function Component2() {
               <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
                 <Image
                   src={`/images/places/Place${idx + 1}.png`}
-                  alt={pkg.title}
+                  alt="Title"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 400px"
