@@ -10,10 +10,11 @@ import Component6 from "../components/landing-page-components/component-6";
 import Component7 from "../components/landing-page-components/component-7";
 import Footer from "../components/reusable/footer";
 import PaymentComponent from "../components/landing-page-components/payment-component";
+import HeroCarousel from "../components/hero/hero-carousel";
 export default function LandingPage() {
   return (
     <div className="w-full bg-transparent">
-      <Hero />
+      <HeroCarousel />
       <Component1 />
       <Component2 />
       <Component3 />
