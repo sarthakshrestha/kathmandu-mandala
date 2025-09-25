@@ -20,7 +20,7 @@ function AboutNepal() {
   }
 
   return (
-    <div className="bg-[#FFF9EE] min-h-screen">
+    <div className="bg-[#FFF9EE] min-h-screen ">
       {/* Hero Section */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
