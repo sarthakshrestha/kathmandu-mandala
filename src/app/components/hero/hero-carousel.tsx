@@ -41,6 +41,7 @@ const heroSlides = [
     primaryButtonHref: "/files/Menu.pdf",
     secondaryButtonText: "visit_restaurant",
     secondaryButtonHref: "/restaurant",
+    primaryButtonDownload: true,
   },
 ];
 
@@ -125,6 +126,9 @@ function HeroCarousel() {
                     <a
                       href={slide.primaryButtonHref}
                       className="bg-[#D6A346] hover:bg-[#c9a13e] text-zinc-900 font-links font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg shadow-lg transition-all duration-300 text-base sm:text-lg hover:shadow-xl transform hover:scale-105"
+                      {...(slide.primaryButtonDownload && {
+                        download: "Kathmandu-Mandala-Menu.pdf",
+                      })}
                     >
                       {t(slide.primaryButtonText)}
                     </a>
