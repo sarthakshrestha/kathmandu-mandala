@@ -121,14 +121,14 @@ const Navbar = ({
           title: t("navbar_menu_about_nepal"),
           description: t("navbar_menu_about_nepal_desc"),
           icon: <Globe className="size-5 shrink-0" />, // About Nepal
-          url: "#",
+          url: "/about/nepal",
         },
-        {
-          title: t("navbar_menu_product_showcase"),
-          description: t("navbar_menu_product_showcase_desc"),
-          icon: <Gift className="size-5 shrink-0" />, // Product Showcase
-          url: "#",
-        },
+        // {
+        //   title: t("navbar_menu_product_showcase"),
+        //   description: t("navbar_menu_product_showcase_desc"),
+        //   icon: <Gift className="size-5 shrink-0" />, // Product Showcase
+        //   url: "#",
+        // },
       ],
     },
     {
