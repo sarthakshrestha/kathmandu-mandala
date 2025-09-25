@@ -34,7 +34,7 @@ const heroSlides = [
   },
   {
     id: 3,
-    image: "/images/hero/3.jpg",
+    image: "/images/hero/5.jpg",
     titleKey: "restaurant_title",
     descriptionKey: "restaurant_paragraph",
     primaryButtonText: "download_menu",
